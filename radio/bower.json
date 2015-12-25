@@ -1,0 +1,22 @@
+{
+  "name": "radio",
+  "version": "0.0.0",
+  "homepage": "https://github.com/wolendranh/movie_radio",
+  "authors": [
+    "yura.hulpa <hulpa.yura@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "videogular": "~1.4.0"
+  }
+}

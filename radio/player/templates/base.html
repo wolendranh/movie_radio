@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static "bower_components/angular/angular.js" %}"></script>
+    <script src="{% static "bower_components/angular-sanitize/angular-sanitize.min.js" %}"></script>
+    <script src="{% static "bower_components/videogular/videogular.js" %}"></script>
+    <script src="{% static "bower_components/videogular-controls/vg-controls.js" %}"></script>
+    <script src="{% static "js/player/app.js" %}"></script>
+    <script src="{% static "js/player/controllers/playerController.js" %}"></script>
+
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static "css/player/player.css" %}">
+    {% endblock %}
+    <title></title>
+</head>
+<body style="{background: {% static "img/cat.jpg"%}}">
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
