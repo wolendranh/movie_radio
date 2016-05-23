@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>radio</title>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+	<body>
+		<div id="wrap">
+			<div id="main" class="container clear-top">
+				<div class="row logo-container">
+						<div class="col-xs-4">
+							<img src="img/logo_text.png" class="img-responsive">
+							<span class="daily-quote">Свет и сладость</span>
+						</div>					
+				</div>
+
+				<div class="row player-controlls">
+						<div class="col-sm-4 col-sm-offset-4 shake">
+
+<!-- 							<div class="playback-play center-block">
+							</div>
+ -->
+							<div class="playback-pause center-block">
+							</div>							
+						</div>
+				</div>
+				<div class="row player-container">
+					<div class="col-sm-4 col-sm-offset-4 player">
+						<audio id="playerTwo" class="player" preload="none">
+							<source src="http://195.248.234.62:8000/radioskovoroda" type="audio/mpeg"/>
+						</audio>
+<!-- 						<div>
+						  <button onclick="document.getElementById('playerTwo').play()">Play the Audio</button>
+						  <button onclick="document.getElementById('playerTwo').pause()">Pause the Audio</button>
+						  <button onclick="document.getElementById('playerTwo').volume+=0.1">Increase Volume</button>
+						  <button onclick="document.getElementById('playerTwo').volume-=0.1">Decrease Volume</button>
+						</div> -->
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<footer class="footer row-fluid">
+			<div class="col-sm-4 col-sm-offset-4">
+				<div class="row">
+						<div class="social-button col-xs-4 col-sm-4 shake">
+							<img src="img/social/fb.png" class="img-responsive">
+						</div>
+						<div class="social-button col-xs-4 col-sm-4 shake">
+							<img src="img/social/mail.png" class="img-responsive center-block">
+						</div>
+						<div class="social-button col-xs-4 col-sm-4 shake">
+							<img src="img/social/vk.png" class="img-responsive pull-right">
+						</div>
+				</div>
+			</div>
+		</footer>
+
+
+	</body>
+</html>
