@@ -3,5 +3,5 @@ from .views import RadioHomePage
 
 
 urlpatterns = [
-    url(r'^$', RadioHomePage.as_view(), name="radio_home")
+    url(r'^', RadioHomePage.as_view(), name="radio_home")
 ]
