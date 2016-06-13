@@ -4,6 +4,8 @@ var Player = class Player {
     let pause = pauseButton;
     let player = playerContainer;
 
+    $(pauseButton).hide();
+
     $(play).click(function () {
       $(player)[0].play();
       $(this).hide();
