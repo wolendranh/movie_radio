@@ -11,6 +11,10 @@ static/bower_components/
 # Pycharm
 .idea
 
+
+# Redis
+*.rdb
+
 # Distribution / packaging
 .Python
 env/

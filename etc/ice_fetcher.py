@@ -1,7 +1,10 @@
+
+import json
 import asyncio
 import aiohttp
 from aioredis import create_redis
 import sys
+import json
 
 METADATA_FILE = 'status-json.xsl'
 
@@ -14,20 +17,20 @@ def main(*args):
     response = loop.run_until_complete(get_current_song(host, port))
 
     redis = loop.run_until_complete(create_redis(('localhost', 6379)))
-    loop.run_until_complete(redis.publish('CHANNEL', response))
+    loop.run_until_complete(redis.publish('CHANNEL', json.dumps(response)))
     loop.close()
     print (response)
     return False
 
 
 
-@asyncio.coroutine
-def get_current_song(host, port):
+
+async def get_current_song(host, port):
     if port:
         host = ':'.join([host, port])
     host = '/'.join([host, METADATA_FILE])
-    response = yield from aiohttp.request('GET', host)
-    body = yield from response.json()
+    response = await aiohttp.request('GET', host)
+    body = await response.json()
     return body
 
 
