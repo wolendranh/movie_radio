@@ -1,2 +1,2 @@
-SITE_PORT = '8000'
+SITE_PORT = '8080'
 SITE_HOST = 'localhost'
