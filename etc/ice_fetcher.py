@@ -14,7 +14,7 @@ def main(*args):
     response = loop.run_until_complete(get_current_song(host, port))
 
     redis = loop.run_until_complete(create_redis(('localhost', 6379)))
-    loop.run_until_complete(redis.publish('CHANNEL', ujson.dumps(week_data)))
+    loop.run_until_complete(redis.publish('CHANNEL', response))
     loop.close()
     print (response)
     return False
