@@ -14,6 +14,7 @@ body {
 }
 
 #main {
+  min-height: 100%;
   overflow:auto;
   padding-bottom:5% /* this needs to be bigger than footer height*/
 }
@@ -42,16 +43,53 @@ body {
 
 .player-container {
 	margin-top: 13%;
+	height: 8.7%;
 }
 
 .player {
-	height: 37px;
+	height: 3.2%;
 	background-color: black;
 	opacity: 0.7;
 	border-radius: 5px;
 }
 
- 
+/* Volume bars */
+.volume-bars {
+  height: 8.2%;
+}
+
+.volume-bar {
+  position: relative;
+  width: 1.5em;;
+  opacity: 0.7;
+  background: #fff;
+  margin: 5px;
+  float: left;
+}
+
+.one {
+  top: 58%;
+  height: 42%;
+}
+
+.two {
+  top: 45.5%;
+  height: 55.5%;
+}
+
+.three {
+  top: 31%;
+  height: 69%;
+}
+
+.four {
+  top: 17.5%;
+  height: 82.5%;
+}
+
+.five {
+  height: 100%;
+}
 
 /* play button  */
 .playback-play  {

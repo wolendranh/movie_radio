@@ -13,11 +13,11 @@
 </head>
 	<body>
 		<div id="wrap">
-			<div id="main" class="container clear-top">
+			<div id="main" class="clear-top">
 				<div class="row logo-container">
 						<div class="col-xs-4">
 							<img src="{% static 'img/logo_text.png' %}" class="img-responsive">
-							<span class="daily-quote">Свет и сладость</span>
+							<span class="daily-quote">Свет и мерзость</span>
 						</div>
 				</div>
 
@@ -31,16 +31,21 @@
 				</div>
 				<div class="row player-container">
 					<div class="col-sm-4 col-sm-offset-4 player">
-						<audio id="playerTwo" class="player" preload="none">
+						<audio id="barmaglot-player" preload="none">
 							<source src="http://195.248.234.62:8000/radioskovoroda" type="audio/mpeg"/>
 						</audio>
  						<div>
-{#						  <button onclick="document.getElementById('playerTwo').play()">Play the Audio</button>#}
-{#						  <button onclick="document.getElementById('playerTwo').pause()">Pause the Audio</button>#}
-						  <button onclick="document.getElementById('playerTwo').volume+=0.1">Increase Volume</button>
-						  <button onclick="document.getElementById('playerTwo').volume-=0.1">Decrease Volume</button>
 						</div>
 					</div>
+                    <div class="col-sm-4">
+                        <div class="volume-bars">
+                          <div class='volume-bar one'></div>
+                          <div class='volume-bar two'></div>
+                          <div class='volume-bar three'></div>
+                          <div class='volume-bar four'></div>
+                          <div class='volume-bar five'></div>
+                        </div>
+                    </div>
 				</div>
 
 			</div>
@@ -65,7 +70,9 @@
 
 	</body>
     <script>
-        var player = new Player(playButton='.playback-play', pauseButton='.playback-pause', playerContainer='#playerTwo');
+        var player = new Player(playButton='.playback-play',
+                                pauseButton='.playback-pause',
+                                playerContainer='#barmaglot-player');
 
     </script>
 </html>
