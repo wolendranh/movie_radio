@@ -4,7 +4,7 @@ from aioredis import create_redis
 
 
 class HomeView(web.View):
-    @aiohttp_jinja2.template('base.html')
+    @aiohttp_jinja2.template('radio/landing.html')
     async def get(self):
         return {}
 
@@ -18,7 +18,7 @@ async def push_current_track(request):
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive',
     })
-    response.start(request)
+    response.prepare(request)
     redis = await create_redis(('localhost', 6379))
     channel = (await redis.subscribe('CHANNEL'))[0]
 
