@@ -15,7 +15,7 @@ class Quote:
     async def create_quote(self, **kwargs):
         quote = await self.check_user()
         if not quote:
-            result = await self.collection.insert({'text': self.text })
+            result = await self.collection.insert({'text': self.text})
         else:
             result = 'Quote exists'
         return result
