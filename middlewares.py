@@ -19,7 +19,7 @@ async def authorize(app, handler):
     async def middleware(request):
         def check_path(path):
             result = True
-            for r in ['/login', '/static/', '/signin', '/signout', '/_debugtoolbar/']:
+            for r in ['/', '/login', '/static/', '/signin', '/signout', '/_debugtoolbar/']:
                 if path.startswith(r):
                     result = False
             return result

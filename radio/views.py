@@ -4,6 +4,7 @@ from aioredis import create_redis
 
 
 class HomeView(web.View):
+
     @aiohttp_jinja2.template('radio/landing.html')
     async def get(self):
         return {}
