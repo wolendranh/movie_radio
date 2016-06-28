@@ -29,7 +29,7 @@ class Login(web.View):
     async def get(self):
         session = await get_session(self.request)
         if session.get('user'):
-            redirect(self.request, 'main')
+            redirect(self.request, 'home')
         return {'conten': 'Please enter login or email'}
 
     async def post(self):
@@ -63,6 +63,7 @@ class SignIn(web.View):
             set_session(session, str(result), self.request)
         else:
             return web.Response(content_type='application/json', text=convert_json(result))
+
 
 class SignOut(web.View):
 
