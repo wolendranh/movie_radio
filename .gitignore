@@ -2,6 +2,10 @@
 __pycache__/
 *.py[cod]
 
+# MAC OS
+.DS_Store
+
+
 # C extensions
 *.so
 
