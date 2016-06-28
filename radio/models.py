@@ -19,3 +19,7 @@ class Quote:
         else:
             result = 'Quote exists'
         return result
+
+    async def all(self):
+        result = self.collection.find()
+        return await result.to_list(length=None)

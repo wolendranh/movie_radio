@@ -1,5 +1,6 @@
 from radio.views import HomeView, push_current_track
 from auth.views import Login, SignOut, SignIn
+from admin.views import AdminListView, QuoteAdminListView, QuoteAdminNewView
 
 
 routes = [
@@ -8,4 +9,7 @@ routes = [
     ('*',   '/login',   Login,     'login'),
     ('*', '/signin', SignIn, 'signin'),
     ('*',   '/signout', SignOut,   'signout'),
+    ('*', '/admin', AdminListView, 'admin'),
+    ('*', '/admin/quote', QuoteAdminListView, 'quote_list'),
+    ('*', '/admin/quote/add', QuoteAdminNewView, 'quote_new'),
 ]
