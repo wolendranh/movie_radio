@@ -1,29 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h4>
-{{ conten }}
-</h4>
-<form class="form-horizontal" autocomplete="on">
-    <div id="error" style="color: red;"></div>
-    <div class="form-group">
-        <label>Insert login
-            <input type="text" class="form-control" pattern="[A-Za-zА-Яа-я0-9]{3,}" placeholder="Login" id="login" required>
-        </label>
-    </div>
+<div class="wrapper">
+<form class="form-signin">
+  <h2 class="form-signin-heading">Please login</h2>
+  <input type="text" class="form-control" name="username" id="login" placeholder="Email Address" required="" autofocus="" />
+  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required=""/>
+  <label class="checkbox">
 
-    <div class="form-group">
-        <label>Enter password
-            <input type="password" class="form-control" pattern="[A-Za-zА-Яа-я0-9]{8,}" placeholder="Password", id="password" required>
-        </label>
-    </div>
-    <p>
-        <input class="btn btn-primary" id="submit" title="Send" type="button" value="Send">
-        <input class="btn btn-default" id="signin" title="Sign In" type="button" value="Sign In">
-    </p>
+  </label>
+  <button class="btn btn-lg btn-primary btn-block" id="submit" type="button">Login</button>
+  <button class="btn btn-lg btn-primary btn-block" id="signin" type="button">Sign In</button>
 </form>
-{% endblock %}
+</div>
 
+
+{% endblock %}
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ app.router.static.url(filename='css/login.css') }}" />
+{% endblock %}
 {% block js %}
     {{ super() }}
     <script src="{{ app.router.static.url(filename='js/login.js') }}"></script>
