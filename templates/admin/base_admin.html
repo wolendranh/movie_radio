@@ -9,6 +9,8 @@
     {% endblock %}
     {% block js %}
         <script src="{{ app.router.static.url(filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ app.router.static.url(filename='app/app.component.js') }}"></script>
+        <script src="{{ app.router.static.url(filename='app/main.js') }}"></script>
     {% endblock %}
 </head>
 {% block  content %}

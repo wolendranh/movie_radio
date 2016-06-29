@@ -1,6 +1,7 @@
 {% extends 'admin/base_admin.html' %}
 {% block content %}
     {{ super() }}
+     <my-app>Loading...</my-app>
 {% for quote in quotes %}
     {{ quote.text }}
 {% endfor %}
