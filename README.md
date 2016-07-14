@@ -6,6 +6,6 @@ To run project
 
 - go to your project dir
 - activate your virtual env
-(source venv/bin/activate)
+(source env/bin/activate)
 - python app.py
  
