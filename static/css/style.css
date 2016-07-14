@@ -44,6 +44,17 @@ p{
 
 /* Player Section */
 
+.col-sm-4.col-sm-offset-4.shake{
+  position: absolute;
+  top: 39%;
+  height: 100px;
+  margin-top: -50px;
+  left: 40%;
+  width: 430px;
+  margin-left: 0;
+  padding: 0px;
+}
+
 .player-controlls {
   margin-top: 12%
 }
@@ -65,11 +76,43 @@ p{
 .player-container .col-sm-4{
   margin: 0 15%;
 }
-@media only screen and (max-width: 768px) {
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+  .track-and-volume-wrapper{
+    width: 363px;
+    margin-left: 0;
+    left: 20%;
+    position: absolute;
+  }
+  .col-sm-4.col-sm-offset-4.shake{
+    width: 363px;
+    left: 20%;
+  }
+  .trackInfoWrapper{
+    width: 303px;
+    float: left;
+  }
+
+  .volume-bars-wrapper{
+    width:57px;
+    float:left;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  .col-sm-4.col-sm-offset-4.shake{
+    left: 34%;
+  }
   
   .track-and-volume-wrapper{
     width: 90%;
-    margin-left: 10%;
+    margin-left: 16%;
+    position: absolute;
+    top: 56%;
+    height: 100px;
+    margin-top: -50px;
   }
 
   .trackInfoWrapper{
@@ -83,6 +126,31 @@ p{
   }
 
 }
+
+@media only screen and (min-width: 768px) {
+
+  .track-and-volume-wrapper{
+    width: 430px;
+    margin: 0 auto;
+    position: absolute;
+    top: 56%;
+    height: 100px;
+    margin-top: -50px;
+    left: 40%;
+  }
+
+  .trackInfoWrapper{
+    width: 360px;
+    float: left;
+  }
+
+  .volume-bars-wrapper{ 
+    width: 70px;
+    float: left;
+  }
+
+}
+
 .trackInfo{
   background: rgba(00, 00, 00, 0.5);
   height: 35px;
