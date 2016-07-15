@@ -64,7 +64,7 @@ var QuoteBox = React.createClass({
   render: function() {
     return (
       <div className="quoteBox">
-        <h1>Comments</h1>
+        <h1>Quotes</h1>
         <QuoteList data={this.state.data} />
         <QuoteForm onQuoteSubmit={this.handleQuoteSubmit} />
       </div>
@@ -83,7 +83,7 @@ var QuoteList = React.createClass({
       );
     });
     return (
-      <div className="quoteList">
+      <div className="quoteList col-md-8">
         {quoteNodes}
       </div>
     );
@@ -109,26 +109,28 @@ var QuoteForm = React.createClass({
   },
   render: function() {
     return (
-        <form class="form-horizontal" method="post" role="form" onSubmit={this.handleSubmit}>
-                <div class="form-group">
-                    <label for="text" class="col-md-2 control-label">Text</label>
+        <div className="col-md-4">
+          <form className="form-horizontal" method="post" role="form" onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                      <label for="text" className="col-md-2 control-label">Text</label>
 
-                    <div class="col-md col-md-10">
-                      <textarea class="form-control"
-                                value={this.state.text}
-                                onChange={this.handleTextChange}
-                                id="text"
-                                name="text"></textarea>
-                    </div>
+                      <div className="col-md col-md-10">
+                        <textarea className="form-control"
+                                  value={this.state.text}
+                                  onChange={this.handleTextChange}
+                                  id="text"
+                                  name="text"></textarea>
+                      </div>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10 submit-row">
-                                <input type="submit" class="btn btn-primary" value="Save"/>
-                                <a href="/admin/quote" class="btn btn-danger" role="button">Cancel</a>
-                         </div>
-                    </div>
-            </div>
-        </form>
+                      <div className="form-group">
+                          <div className="col-md-offset-2 col-md-10 submit-row">
+                                  <input type="submit" className="btn btn-primary" value="Save"/>
+                                  <a href="/admin/quote" className="btn btn-danger" role="button">Cancel</a>
+                           </div>
+                      </div>
+              </div>
+          </form>
+        </div>
     );
   }
 });
