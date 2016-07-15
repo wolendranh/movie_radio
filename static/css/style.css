@@ -336,5 +336,5 @@ p{
 
 @font-face {
     font-family: gogol;
-    src: url(GOGOGL.otf);
+    src: url("../fonts/gogol_font.ttf");
 }
