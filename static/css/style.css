@@ -3,9 +3,13 @@ html, body {
 }
 
 body {
-	background: url("../img/background.png") no-repeat center center fixed;
-	background-size: cover;
-
+  background: url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+p{
+  margin: 0px;
+  padding: 0px;
 }
 
 
@@ -15,118 +19,235 @@ body {
 
 #main {
   min-height: 100%;
-  overflow:auto;
+  /*overflow:auto;*/
   padding-bottom:5% /* this needs to be bigger than footer height*/
 }
 
+.logo-container .col-xs-4{
+  margin: 4% 0 0 4%;
+}
+
 .footer {
-  position: relative;
-  margin-top: -5%; /* negative value of footer height */
-  height: 5%;
-  clear:both;
-  margin-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
 
 } 
 
 
 .daily-quote {
-	font-family: gogol;
-	font-size: 47px;
-	color: #ca0600;
+  font-family: gogol;
+  font-size: 47px;
+  color: #ca0600;
 }
 
 /* Player Section */
 
+.col-sm-4.col-sm-offset-4.shake{
+  position: absolute;
+  top: 39%;
+  height: 100px;
+  margin-top: -50px;
+  left: 40%;
+  width: 430px;
+  margin-left: 0;
+  padding: 0px;
+}
+
 .player-controlls {
-	margin-top: 12%
+  margin-top: 12%
 }
 
 .player-container {
-	margin-top: 13%;
-	height: 8.7%;
+  margin-top: 13%;
+  height: 8.7%;
 }
 
 .player {
-	height: 3.2%;
-	background-color: black;
-	opacity: 0.7;
-	border-radius: 5px;
+  visibility: hidden;
+  height: 3.2%;
+  background-color: black;
+  opacity: 0.7;
+  border-radius: 5px;
+}
+
+/*Track info bar*/
+.player-container .col-sm-4{
+  margin: 0 15%;
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+  .track-and-volume-wrapper{
+    width: 363px;
+    margin-left: 0;
+    left: 20%;
+    position: absolute;
+  }
+  .col-sm-4.col-sm-offset-4.shake{
+    width: 363px;
+    left: 20%;
+  }
+  .trackInfoWrapper{
+    width: 303px;
+    float: left;
+  }
+
+  .volume-bars-wrapper{
+    width:57px;
+    float:left;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  .col-sm-4.col-sm-offset-4.shake{
+    left: 34%;
+  }
+  
+  .track-and-volume-wrapper{
+    width: 90%;
+    margin-left: 16%;
+    position: absolute;
+    top: 56%;
+    height: 100px;
+    margin-top: -50px;
+  }
+
+  .trackInfoWrapper{
+    width: 70%;
+    float: left;
+  }
+
+  .volume-bars-wrapper{ 
+    width: 20%;
+    float: left;
+  }
+
+}
+
+@media only screen and (min-width: 768px) {
+
+  .track-and-volume-wrapper{
+    width: 430px;
+    margin: 0 auto;
+    position: absolute;
+    top: 56%;
+    height: 100px;
+    margin-top: -50px;
+    left: 40%;
+  }
+
+  .trackInfoWrapper{
+    width: 360px;
+    float: left;
+  }
+
+  .volume-bars-wrapper{ 
+    width: 70px;
+    float: left;
+  }
+
+}
+
+.trackInfo{
+  background: rgba(00, 00, 00, 0.5);
+  height: 35px;
+  border-radius: 5px;
+}
+.trackInfo p{
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 6px;
 }
 
 /* Volume bars */
 .volume-bars {
-  height: 8.2%;
+  height: 60px;
+  margin-top: -26px;
 }
 
 .volume-bar {
   position: relative;
-  width: 1.5em;;
+  width: 11px;
   opacity: 0.7;
-  background: #fff;
-  margin: 5px;
+  background-color: #fff;
+  margin-left: 3px;
   float: left;
+  border-radius: 2px;
 }
 
-.one {
+.volume-bar.one {
   top: 58%;
   height: 42%;
 }
 
-.two {
-  top: 45.5%;
+.volume-bar.two {
+  top: 44%;
   height: 55.5%;
 }
 
-.three {
+.volume-bar.three {
   top: 31%;
   height: 69%;
 }
 
-.four {
+.volume-bar.four {
   top: 17.5%;
   height: 82.5%;
 }
 
-.five {
+.volume-bar.five {
   height: 100%;
+}
+
+.volume-bar:hover{
+  opacity: 1;
+}
+.volume-bar.red{
+  background-color: #fa0000;
+  opacity: 1;
 }
 
 /* play button  */
 .playback-play  {
-	position: relative;
-	background-color: white;
-	opacity: 0.7;
-	text-align: left;
-	top: 0.5em;
+  position: relative;
+  background-color: white;
+  opacity: 0.7;
+  text-align: left;
+  top: 0.5em;
 }
 .playback-play:before,
 .playback-play:after {
-	content: '';
-	position: absolute;
-	background-color: inherit;
+  content: '';
+  position: absolute;
+  background-color: inherit;
 }
 
 .playback-play,
 .playback-play:before,
 .playback-play:after {
-	width:  4em;
-	height: 4em;
-	border-top-right-radius: 30%;
+  width:  4em;
+  height: 4em;
+  border-top-right-radius: 30%;
 }
 
 .playback-play  {
-	transform: rotate(-90deg) skewX(-30deg) scale(1,.866);
+  transform: rotate(-90deg) skewX(-30deg) scale(1,.866);
 }
 .playback-play:before {
-	transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
+  transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
 }
 .playback-play:after {
-	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
+  transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
 }
 
 .playback-play {
-	filter: drop-shadow(4px 7px 10px rgb(0,0,0));
-	-webkit-filter: drop-shadow(4px 7px 10px rgb(0,0,0));
+  filter: drop-shadow(4px 7px 10px rgb(0,0,0));
+  -webkit-filter: drop-shadow(4px 7px 10px rgb(0,0,0));
 }
 /* play button end */
 
@@ -164,8 +285,8 @@ body {
 .playback-pause:before, 
 .playback-pause:after,
 .playback-pause {
-	filter: drop-shadow(4px 7px 20px rgb(0,0,0));
-	-webkit-filter: drop-shadow(-4px 7px 20px rgb(0,0,0));
+  filter: drop-shadow(4px 7px 20px rgb(0,0,0));
+  -webkit-filter: drop-shadow(-4px 7px 20px rgb(0,0,0));
 }
 
 /* pause button end */
@@ -190,30 +311,30 @@ body {
 /* Animation */
 
 @keyframes spaceboots {
-	0% { transform: translate(2px, 1px) rotate(0deg); }
-	10% { transform: translate(-1px, -2px) rotate(-1deg); }
-	20% { transform: translate(-3px, 0px) rotate(1deg); }
-	30% { transform: translate(0px, 2px) rotate(0deg); }
-	40% { transform: translate(1px, -1px) rotate(1deg); }
-	50% { transform: translate(-1px, 2px) rotate(-1deg); }
-	60% { transform: translate(-3px, 1px) rotate(0deg); }
-	70% { transform: translate(2px, 1px) rotate(-1deg); }
-	80% { transform: translate(-1px, -1px) rotate(1deg); }
-	90% { transform: translate(2px, 2px) rotate(0deg); }
-	100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0% { transform: translate(2px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(0px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(2px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(2px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 .shake:hover,
 .shake:focus {
-	animation-name: spaceboots;
-	animation-duration: 3s;
-	transform-origin:50% 50%;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
+  animation-name: spaceboots;
+  animation-duration: 3s;
+  transform-origin:50% 50%;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 /* Fonts */ 
 
 @font-face {
     font-family: gogol;
-    src: url(GOGOGL.otf);
+    src: url("../fonts/gogol_font.ttf");
 }
