@@ -1,9 +1,12 @@
 {% extends 'admin/base_admin.html' %}
+{% block js %}
+    {{ super() }}
+    <script type="text/babel" src="{{ app.router.static.url(filename='js/quote.js') }}"></script>
+{% endblock %}
 {% block content %}
     {{ super() }}
-     <my-app>Loading...</my-app>
-{% for quote in quotes %}
-    {{ quote.text }}
-{% endfor %}
-<a href="/admin/quote/add" class="btn btn-primary">Add new Quote</a>
+
+    <div id="quote-wrap">
+    </div>
+
 {% endblock %}

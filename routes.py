@@ -16,6 +16,6 @@ routes = [
     ('*',   '/signout', SignOut,   'signout'),
     ('*', '/admin', AdminListView, 'admin'),
     ('*', '/admin/quote', QuoteAdminListView, 'quote_list'),
-    ('*', '/admin/quote/add', QuoteAdminNewView, 'quote_new'),
+    # ('*', '/admin/quote/add', QuoteAdminNewView, 'quote_new'),
     ('*', '/api/quotes', Collection, 'quote_collection'),
 ]
