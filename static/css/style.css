@@ -38,7 +38,7 @@ p{
 
 .daily-quote {
   font-family: gogol;
-  font-size: 47px;
+  font-size: 3.5vw;
   color: #ca0600;
 }
 
@@ -46,7 +46,7 @@ p{
 
 .col-sm-4.col-sm-offset-4.shake{
   position: absolute;
-  top: 39%;
+  top: 51%;
   height: 100px;
   margin-top: -50px;
   left: 40%;
@@ -84,33 +84,36 @@ p{
     margin-left: 0;
     left: 20%;
     position: absolute;
+    top: 63%;
   }
   .col-sm-4.col-sm-offset-4.shake{
     width: 363px;
     left: 20%;
   }
   .trackInfoWrapper{
-    width: 303px;
+    width: 291px;
     float: left;
   }
 
   .volume-bars-wrapper{
-    width:57px;
+    width:70px;
     float:left;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 320px) and (max-width: 479px) {
 
   .col-sm-4.col-sm-offset-4.shake{
-    left: 34%;
+    width: 285px;
+    left: 6%;
+  
   }
   
   .track-and-volume-wrapper{
-    width: 90%;
-    margin-left: 16%;
+    width: 285px;
+    left: 10%;
     position: absolute;
-    top: 56%;
+    top: 63%;
     height: 100px;
     margin-top: -50px;
   }
@@ -121,7 +124,7 @@ p{
   }
 
   .volume-bars-wrapper{ 
-    width: 20%;
+    width: 26%;
     float: left;
   }
 
@@ -133,7 +136,7 @@ p{
     width: 430px;
     margin: 0 auto;
     position: absolute;
-    top: 56%;
+    top: 63%;
     height: 100px;
     margin-top: -50px;
     left: 40%;
