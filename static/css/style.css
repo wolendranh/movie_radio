@@ -27,6 +27,10 @@ p{
   margin: 4% 0 0 4%;
 }
 
+.logo-img {
+  max-width: 77%;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -38,7 +42,7 @@ p{
 
 .daily-quote {
   font-family: gogol;
-  font-size: 3.5vw;
+  font-size: 2.5vw;
   color: #ca0600;
 }
 
@@ -46,7 +50,7 @@ p{
 
 .col-sm-4.col-sm-offset-4.shake{
   position: absolute;
-  top: 51%;
+  top: 53%;
   height: 100px;
   margin-top: -50px;
   left: 40%;
@@ -139,7 +143,10 @@ p{
 }
 
 @media only screen and (min-width: 768px) {
+  .col-sm-4.col-sm-offset-4.shake{
+    left: 34%;
 
+  }
   .track-and-volume-wrapper{
     width: 430px;
     margin: 0 auto;
@@ -147,7 +154,7 @@ p{
     top: 91%;
     height: 100px;
     margin-top: -50px;
-    left: 40%;
+    left: 34%;
   }
 
   .trackInfoWrapper{
@@ -161,7 +168,7 @@ p{
   }
   footer.footer .col-sm-4.col-sm-offset-4{
     width: 430px;
-    left: 42%;
+    left: 43%;
   }
 
 }
@@ -320,7 +327,9 @@ p{
 }
 
 body .row .social-button.col-xs-4.col-sm-4.shake{
-  width: 89px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 4em;
 }
 footer.footer .col-sm-4.col-sm-offset-4{
   margin: 0 auto;
