@@ -15,8 +15,8 @@ from middlewares import authorize, db_handler
 async def init(loop):
 
     app = web.Application(loop=loop,middlewares=[
-        session_middleware(EncryptedCookieStorage(SECRET_KEY)),
-        authorize,
+        # session_middleware(EncryptedCookieStorage(SECRET_KEY)),
+        # authorize,
         db_handler,
         ])
     handler = app.make_handler()

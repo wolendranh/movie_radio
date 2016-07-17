@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
   var Player = class Player {
     constructor(playButton, pauseButton, playerContainer) {

@@ -359,5 +359,5 @@ footer.footer .col-sm-4.col-sm-offset-4{
 
 @font-face {
     font-family: gogol;
-    src: url(GOGOGL.otf);
+    src: url("../fonts/gogol_font.ttf");
 }

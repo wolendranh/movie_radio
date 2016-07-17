@@ -17,7 +17,11 @@ static/bower_components/
 
 
 # Redis
+redis-stable
 *.rdb
+
+# temp compressed archives
+*.tar.gz
 
 # Distribution / packaging
 .Python
