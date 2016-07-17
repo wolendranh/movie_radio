@@ -84,7 +84,7 @@ p{
     margin-left: 0;
     left: 20%;
     position: absolute;
-    top: 63%;
+    top: 87%;
   }
   .col-sm-4.col-sm-offset-4.shake{
     width: 363px;
@@ -98,6 +98,10 @@ p{
   .volume-bars-wrapper{
     width:70px;
     float:left;
+  }
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 363px;
+    left: 22%;
   }
 }
 
@@ -113,7 +117,7 @@ p{
     width: 285px;
     left: 10%;
     position: absolute;
-    top: 63%;
+    top: 91%;
     height: 100px;
     margin-top: -50px;
   }
@@ -127,6 +131,10 @@ p{
     width: 26%;
     float: left;
   }
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 285px;
+    left: 11%;
+  }
 
 }
 
@@ -136,7 +144,7 @@ p{
     width: 430px;
     margin: 0 auto;
     position: absolute;
-    top: 63%;
+    top: 91%;
     height: 100px;
     margin-top: -50px;
     left: 40%;
@@ -150,6 +158,10 @@ p{
   .volume-bars-wrapper{ 
     width: 70px;
     float: left;
+  }
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 430px;
+    left: 42%;
   }
 
 }
@@ -305,6 +317,14 @@ p{
 }
 .pull-right {
   float: right !important;
+}
+
+body .row .social-button.col-xs-4.col-sm-4.shake{
+  width: 89px;
+}
+footer.footer .col-sm-4.col-sm-offset-4{
+  margin: 0 auto;
+  position: absolute;
 }
 
 .playback-play {
