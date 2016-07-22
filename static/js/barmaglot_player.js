@@ -1,6 +1,7 @@
 var Player = React.createClass({
 
   setVolume: function(volume){
+    // get reference of player to bypass it to child components if needed
     this.refs.audio.volume = volume;
   },
 
@@ -64,6 +65,7 @@ var Volume = React.createClass({
   },
 
   getDefaultProps: function() {
+    // sets default array of props
     return {
       classes: ['one', 'two', 'three', 'four', 'five'],
       volumes: {'one': 0.2, 'two': 0.4, 'three': 0.6, 'four': 0.8, 'five': 1}
@@ -73,6 +75,7 @@ var Volume = React.createClass({
   soundHandler: function(bar, event) {
     var soundValue = this.props.volumes[bar];
     console.log(soundValue);
+    // call method of parent component (Player)
     this.props.volumeHandle(soundValue)
   },
 
