@@ -231,6 +231,9 @@ p{
 }
 .volume-bar.red{
   background-color: #fa0000;
+}
+
+.volume-bar.red:hover {
   opacity: 1;
 }
 

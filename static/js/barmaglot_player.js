@@ -1,8 +1,27 @@
 var Player = React.createClass({
 
+  componentDidMount: function() {
+    this.refs.audio.volume = 0.4;
+  },
+
+  getDefaultProps: function() {
+    // sets default array of props
+    return {
+      volume: 0.4
+    };
+  },
+
   setVolume: function(volume){
     // get reference of player to bypass it to child components if needed
     this.refs.audio.volume = volume;
+  },
+
+  getVolume: function() {
+    if (typeof this.refs.audio != "undefined"){
+      return this.refs.audio.volume;
+    } else {
+      return this.props.volume;
+    }
   },
 
   getPlayer: function(){
@@ -23,7 +42,7 @@ var Player = React.createClass({
                   </div>
               </div>
 
-              <Volume volumeHandle={ this.setVolume }/>
+              <Volume setVolumeHandle={ this.setVolume } getVolumeHandle={ this.getVolume }/>
           </div>
       </div>
     );}
@@ -76,16 +95,25 @@ var Volume = React.createClass({
     var soundValue = this.props.volumes[bar];
     console.log(soundValue);
     // call method of parent component (Player)
-    this.props.volumeHandle(soundValue)
+    this.props.setVolumeHandle(soundValue);
+    this.forceUpdate();
+  },
+
+  getClass: function(i){
+      console.log('Volume', this.props.getVolumeHandle());
+      var volume = this.props.getVolumeHandle();
+      var barVolume = this.props.volumes[i];
+      if (barVolume <= volume){
+        return 'volume-bar red ' + i;
+      }
+      return 'volume-bar ' + i;
+
   },
 
   render: function () {
-    var getClass = function(i){
-      return 'volume-bar ' + i;
-    };
 
     var _this = this, bars = this.props.classes.map(function(i) {
-      return <div onClick={ _this.soundHandler.bind(event, i) } className={getClass(i)}></div>;
+      return <div onClick={ _this.soundHandler.bind(event, i) } className={ _this.getClass(i)}></div>;
     });
 
     return (
