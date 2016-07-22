@@ -81,10 +81,6 @@ var Volume = React.createClass({
       return 'volume-bar ' + i;
     };
 
-    var _soundHandler = function(bar, event){
-        this.soundHandller(bar);
-    };
-
     var _this = this, bars = this.props.classes.map(function(i) {
       return <div onClick={ _this.soundHandler.bind(event, i) } className={getClass(i)}></div>;
     });
