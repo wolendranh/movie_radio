@@ -93,14 +93,12 @@ var Volume = React.createClass({
 
   soundHandler: function(bar, event) {
     var soundValue = this.props.volumes[bar];
-    console.log(soundValue);
     // call method of parent component (Player)
     this.props.setVolumeHandle(soundValue);
     this.forceUpdate();
   },
 
   getClass: function(i){
-      console.log('Volume', this.props.getVolumeHandle());
       var volume = this.props.getVolumeHandle();
       var barVolume = this.props.volumes[i];
       if (barVolume <= volume){
