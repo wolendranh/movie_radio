@@ -343,6 +343,47 @@ footer.footer .col-sm-4.col-sm-offset-4{
 
 }
 
+
+/* Leaves and bugs */
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    /* Retina-specific stuff here */
+.fur.center-block {
+  padding-left: 61%;
+  padding-top: 15%;
+
+}
+.fur.center-block>img {
+  animation-name: windshiver;
+  animation-duration: 3s;
+  transform-origin:50% 50%;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  width: 3em;
+  background-color: white;
+}
+
+}
+
+
+
+@keyframes windshiver {
+  0% { transform: rotate(3deg); }
+  10% { transform: rotate(5deg); }
+  20% { transform: rotate(7deg); }
+  30% { transform: rotate(9deg); }
+  40% { transform: rotate(11deg); }
+  50% { transform: rotate(13deg); }
+  60% { transform: rotate(15deg); }
+  70% { transform: rotate(13deg); }
+  80% { transform: rotate(5deg); }
+  /*90% { transform: rotate(-2deg); }*/
+  /*90% { transform: rotate(-6deg); }*/
+}
+
+
+/* Leaves and bugs END */
 /* Animation */
 
 @keyframes spaceboots {
