@@ -345,10 +345,7 @@ footer.footer .col-sm-4.col-sm-offset-4{
 
 
 /* Leaves and bugs */
-@media
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-    /* Retina-specific stuff here */
+
 .fur.center-block {
   padding-left: 61%;
   padding-top: 15%;
@@ -363,6 +360,13 @@ footer.footer .col-sm-4.col-sm-offset-4{
   width: 3em;
   background-color: white;
 }
+
+
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    /* Retina-specific stuff here */
 
 }
 
