@@ -49,7 +49,6 @@ var LoginForm = React.createClass({
 
           </label>
           <button className="btn btn-lg btn-primary btn-block" id="submit" type="submit">Login</button>
-          <button className="btn btn-lg btn-primary btn-block" id="signin" type="button">Sign In</button>
         </form>
         </div>
        )
