@@ -1,7 +1,7 @@
 @import "bourbon";
 
 body {
-	background: #eee !important;
+	background: #D9ECB6;
 }
 
 .wrapper {
@@ -9,11 +9,15 @@ body {
   margin-bottom: 80px;
 }
 
+.form-signin-heading {
+	color: #337ab7;
+}
+
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 45px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #ffffff;;
   border: 1px solid rgba(0,0,0,0.1);
 
   .form-signin-heading,
@@ -48,4 +52,5 @@ body {
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 	}
+
 }

@@ -4,6 +4,7 @@
   "dependencies": {
     "bootstrap": "*",
     "jquery": "*",
-    "react": "*"
+    "react": "*",
+    "validator-js":"*"
   }
 }

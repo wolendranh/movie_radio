@@ -1,19 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="wrapper">
-<form class="form-signin">
-  <h2 class="form-signin-heading">Please login</h2>
-  <input type="text" class="form-control" name="username" id="login" placeholder="Email Address" required="" autofocus="" />
-  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required=""/>
-  <label class="checkbox">
-
-  </label>
-  <button class="btn btn-lg btn-primary btn-block" id="submit" type="button">Login</button>
-  <button class="btn btn-lg btn-primary btn-block" id="signin" type="button">Sign In</button>
-</form>
-</div>
-
+<span id="login-wrapper"></span>
 
 {% endblock %}
 {% block css %}
@@ -22,5 +10,6 @@
 {% endblock %}
 {% block js %}
     {{ super() }}
-    <script src="{{ app.router.static.url(filename='js/login.js') }}"></script>
+    <script type="text/javascript" src="{{ app.router.static.url(filename='bower_components/validator-js/validator.min.js') }}"></script>
+    <script type="text/babel" src="{{ app.router.static.url(filename='js/login.js') }}"></script>
 {% endblock %}
