@@ -22,9 +22,10 @@ class User:
     async def create_user(self, **kwargs):
         user = await self.check_user()
         if not user:
-            result = await self.collection.insert({'email': self.email,
-                                                   'login': self.login,
-                                                   'password': self.password})
+            user_data = {'email': self.email,
+                         'password': self.password}
+            result = create_user(collection=self.collection,
+                                 **user_data)
         else:
             result = 'User exists'
         return result
