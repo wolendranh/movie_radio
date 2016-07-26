@@ -5,7 +5,7 @@
 {% endblock %}
 {% block js %}
     {{ super() }}
-    <script src="{{ app.router.static.url(filename="js/barmaglot_player.js") }}"></script>
+    <script type="text/babel" src="{{ app.router.static.url(filename="js/barmaglot_player.js") }}"></script>
 {% endblock %}
 {% block content %}
     <body>
@@ -13,49 +13,11 @@
                 <div id="main" class="clear-top">
                     <div class="row logo-container">
                             <div class="col-xs-4">
-                                <img src="{{ app.router.static.url(filename='img/logo_text.png') }}" class="img-responsive">
-                                <span class="daily-quote">Свет и мерзость</span>
+                                <img src="{{ app.router.static.url(filename='img/logo_text.png') }}" class="logo-img img-responsive">
+                                <span class="daily-quote">свет и сладость</span>
                             </div>
                     </div>
-
-                    <div class="row player-controlls">
-                            <div class="col-sm-4 col-sm-offset-4 shake">
-                                <div class="playback-pause center-block">
-                                </div>
-                                <div class="playback-play center-block">
-                                </div>
-                            </div>
-                    </div>
-                    <div class="row player-container">
-                        <div class="col-sm-4 col-sm-offset-4 player">
-                            <audio id="barmaglot-player" preload="none">
-                                <source src="http://195.248.234.62:8000/radioskovoroda" type="audio/mpeg"/>
-                            </audio>
-                            <div>
-                            </div>
-                        </div>
-                        
-                        <div class="track-and-volume-wrapper">
-
-                            <div class="trackInfoWrapper">
-                                <div class="trackInfo">
-                                       <p>pink floyd - wish you where here</p>
-                                </div>
-                            </div>
-
-                            <div class="volume-bars-wrapper">
-                                <div class="volume-bars">
-                                  <div class='volume-bar one.red'></div>
-                                  <div class='volume-bar two'></div>
-                                  <div class='volume-bar three'></div>
-                                  <div class='volume-bar four'></div>
-                                  <div class='volume-bar five'></div>
-                                </div>
-                            </div>
-
-                        </div>
-                                                
-                    </div>
+                    <div id="barmaglot-player"></div>
 
                 </div>
             </div>
@@ -79,18 +41,18 @@
 
         </body>
         <script>
-            var player = new Player(playButton='.playback-play',
-                                    pauseButton='.playback-pause',
-                                    playerContainer='#barmaglot-player');
-
-            var eventSource = new EventSource("/api/track_stream");
-            eventSource.addEventListener("track_update", function(event){
-                console.log(event.data)
-            });
-
-            eventSource.onerror = function(event){
-                console.log(event);
-            }
+{#            var player = new Player(playButton='.playback-play',#}
+{#                                    pauseButton='.playback-pause',#}
+{#                                    playerContainer='#barmaglot-player');#}
+{##}
+{#            var eventSource = new EventSource("/api/track_stream");#}
+{#            eventSource.addEventListener("track_update", function(event){#}
+{#                console.log(event.data)#}
+{#            });#}
+{##}
+{#            eventSource.onerror = function(event){#}
+{#                console.log(event);#}
+{#            }#}
         </script>
 {% endblock %}
 

@@ -3,7 +3,7 @@ html, body {
 }
 
 body {
-  background: url("../img/background.png") no-repeat center center fixed;
+  background: url("../img/barmaglot.gif") no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
 }
@@ -27,6 +27,10 @@ p{
   margin: 4% 0 0 4%;
 }
 
+.logo-img {
+  max-width: 77%;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -38,7 +42,7 @@ p{
 
 .daily-quote {
   font-family: gogol;
-  font-size: 47px;
+  font-size: 2.5vw;
   color: #ca0600;
 }
 
@@ -46,7 +50,7 @@ p{
 
 .col-sm-4.col-sm-offset-4.shake{
   position: absolute;
-  top: 39%;
+  top: 53%;
   height: 100px;
   margin-top: -50px;
   left: 40%;
@@ -84,33 +88,40 @@ p{
     margin-left: 0;
     left: 20%;
     position: absolute;
+    top: 87%;
   }
   .col-sm-4.col-sm-offset-4.shake{
     width: 363px;
     left: 20%;
   }
   .trackInfoWrapper{
-    width: 303px;
+    width: 291px;
     float: left;
   }
 
   .volume-bars-wrapper{
-    width:57px;
+    width:70px;
     float:left;
+  }
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 363px;
+    left: 22%;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 320px) and (max-width: 479px) {
 
   .col-sm-4.col-sm-offset-4.shake{
-    left: 34%;
+    width: 285px;
+    left: 6%;
+  
   }
   
   .track-and-volume-wrapper{
-    width: 90%;
-    margin-left: 16%;
+    width: 285px;
+    left: 10%;
     position: absolute;
-    top: 56%;
+    top: 91%;
     height: 100px;
     margin-top: -50px;
   }
@@ -121,22 +132,29 @@ p{
   }
 
   .volume-bars-wrapper{ 
-    width: 20%;
+    width: 26%;
     float: left;
+  }
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 285px;
+    left: 11%;
   }
 
 }
 
 @media only screen and (min-width: 768px) {
+  .col-sm-4.col-sm-offset-4.shake{
+    left: 34%;
 
+  }
   .track-and-volume-wrapper{
     width: 430px;
     margin: 0 auto;
     position: absolute;
-    top: 56%;
+    top: 91%;
     height: 100px;
     margin-top: -50px;
-    left: 40%;
+    left: 34%;
   }
 
   .trackInfoWrapper{
@@ -147,6 +165,10 @@ p{
   .volume-bars-wrapper{ 
     width: 70px;
     float: left;
+  }
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 430px;
+    left: 43%;
   }
 
 }
@@ -209,6 +231,9 @@ p{
 }
 .volume-bar.red{
   background-color: #fa0000;
+}
+
+.volume-bar.red:hover {
   opacity: 1;
 }
 
@@ -304,10 +329,65 @@ p{
   float: right !important;
 }
 
+body .row .social-button.col-xs-4.col-sm-4.shake{
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 4em;
+}
+footer.footer .col-sm-4.col-sm-offset-4{
+  margin: 0 auto;
+  position: absolute;
+}
+
 .playback-play {
 
 }
 
+
+/* Leaves and bugs */
+
+.fur.center-block {
+  padding-left: 61%;
+  padding-top: 15%;
+
+}
+.fur.center-block>img {
+  animation-name: windshiver;
+  animation-duration: 3s;
+  transform-origin:50% 50%;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  width: 3em;
+  background-color: white;
+}
+
+
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    /* Retina-specific stuff here */
+
+}
+
+
+
+@keyframes windshiver {
+  0% { transform: rotate(3deg); }
+  10% { transform: rotate(5deg); }
+  20% { transform: rotate(7deg); }
+  30% { transform: rotate(9deg); }
+  40% { transform: rotate(11deg); }
+  50% { transform: rotate(13deg); }
+  60% { transform: rotate(15deg); }
+  70% { transform: rotate(13deg); }
+  80% { transform: rotate(5deg); }
+  /*90% { transform: rotate(-2deg); }*/
+  /*90% { transform: rotate(-6deg); }*/
+}
+
+
+/* Leaves and bugs END */
 /* Animation */
 
 @keyframes spaceboots {
