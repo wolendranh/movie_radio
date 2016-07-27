@@ -7,7 +7,7 @@ var LoginForm = React.createClass({
     },
 
     handlePasswordChange: function(e) {
-        this.setState({ passwordError: this.validateField(this.state.password, validator.isLength, 10) ? false: true});
+        this.setState({ passwordError: this.validateField(this.state.password, validator.isLength, 4) ? false: true});
 
         this.setState({password: e.target.value});
     },

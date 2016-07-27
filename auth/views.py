@@ -34,7 +34,7 @@ class Login(web.View):
     async def post(self):
         data = await self.request.post()
 
-        user = await check_user_auth(db=self.request.db, email=data.get('email'), password=data.get('password'))
+        user = await check_user_auth(db=self.request.db, email=data.get('username'), password=data.get('password'))
 
         if isinstance(user, dict):
             session = await get_session(self.request)

@@ -10,7 +10,7 @@ class User:
         self.collection = self.db[USER_COLLECTION]
         self.email = data.get('email')
         self.login = data.get('login')
-        self.password = data.get('password')
+        self.password = str.encode(data.get('password'))
         self.id = ObjectId(data.get('id'))
 
     async def get_login(self, **kwargs):
