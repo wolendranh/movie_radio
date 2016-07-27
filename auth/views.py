@@ -1,10 +1,9 @@
 import json
 from time import time
-from bson.objectid import ObjectId
 import aiohttp_jinja2
 from aiohttp_session import get_session
 from aiohttp import web
-from auth.models import User
+from auth.services import check_user_auth
 
 
 def redirect(request, router_name):
@@ -34,12 +33,12 @@ class Login(web.View):
 
     async def post(self):
         data = await self.request.post()
-        user = User(self.request.db, data)
-        result = await user.check_user()
-        print(result, 'login')
-        if isinstance(result, dict):
+
+        user = await check_user_auth(db=self.request.db, email=data.get('email'), password=data.get('password'))
+
+        if isinstance(user, dict):
             session = await get_session(self.request)
-            set_session(session, str(result['_id']), self.request)
+            set_session(session, str(user['_id']), self.request)
         else:
             result = {'error': 'user does not exists'}
             return web.Response(content_type='application/json', text=convert_json(result))
