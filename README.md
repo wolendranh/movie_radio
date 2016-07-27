@@ -16,6 +16,7 @@ In case if you do not  have Python 3.5:
 2. Install Prerequisites required for the packages this project uses:
 
 ```
+    sudo apt-get install libreadline-dev
     sudo apt-get install python3-dev    # debian / Ubuntu
 ```
 
