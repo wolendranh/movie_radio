@@ -14,12 +14,11 @@ def redirect(request, router_name):
 def set_session(session, user_id, request):
     session['user'] = str(user_id)
     session['last_visit'] = time()
-    print(session)
-    redirect(request, 'home')
+    return session
 
 
 def convert_json(message):
-    return json.dumps({'error': message})
+    return json.dumps(message)
 
 
 class Login(web.View):
@@ -38,10 +37,11 @@ class Login(web.View):
 
         if isinstance(user, dict):
             session = await get_session(self.request)
-            set_session(session, str(user['_id']), self.request)
+            session = set_session(session, str(user['_id']), self.request)
+            return web.json_response(content_type='application/json', data=convert_json({'login': 'true'}), status=200,)
+            # redirect(self.request, self.request.GET['?prev_url'])
         else:
-            result = {'error': 'user does not exists'}
-            return web.Response(content_type='application/json', text=convert_json(result))
+            return web.json_response(content_type='application/json', text=convert_json({'login': 'false'}), status=401)
 
 
 class SignOut(web.View):

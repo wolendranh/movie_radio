@@ -72,6 +72,11 @@ var LoginForm = React.createClass({
           </div>
 
           <button className="btn btn-lg btn-primary btn-block" id="submit" type="submit">Login</button>
+          <li>
+              <ReactRouter.Link to="/this">About us
+              </ReactRouter.Link>
+              {this.props.children}
+          </li>
         </form>
         </div>
        )
@@ -79,9 +84,28 @@ var LoginForm = React.createClass({
 });
 
 
-ReactDOM.render(
-  <LoginForm url='login'/>,
-  document.getElementById('login-wrapper')
+var AboutComponent = React.createClass({
+  componentDidMount: function (){
+    ReactRouter.browserHistory.push('/shit');
+  },
+
+  render: function () {
+    return (
+        <div>
+            <h1>I am routed</h1>
+        </div>
+    );
+  }
+});
+
+
+var routes = (
+                <ReactRouter.Route path="/" url='login' component={ LoginForm }>
+                    <ReactRouter.Route path="/this" component={ AboutComponent }>
+                    </ReactRouter.Route>
+                </ReactRouter.Route>
 );
 
+
+ReactDOM.render(<ReactRouter.Router history={ ReactRouter.hashHistory }>{routes}</ReactRouter.Router>, document.getElementById('login-wrapper'));
 
