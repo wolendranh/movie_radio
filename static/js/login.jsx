@@ -46,7 +46,7 @@ var LoginForm = React.createClass({
                  'password': this.state.password},
           success: function(data) {
               // TODO: handle success redirect
-              console.log(data);
+              this.props.history.push('/admin');
           }.bind(this),
           error: function(xhr, status, err) {
             // TODO: handle setting correct server side error into UI
@@ -83,29 +83,5 @@ var LoginForm = React.createClass({
     }
 });
 
-
-var AboutComponent = React.createClass({
-  componentDidMount: function (){
-    ReactRouter.browserHistory.push('/shit');
-  },
-
-  render: function () {
-    return (
-        <div>
-            <h1>I am routed</h1>
-        </div>
-    );
-  }
-});
-
-
-var routes = (
-                <ReactRouter.Route path="/" url='login' component={ LoginForm }>
-                    <ReactRouter.Route path="/this" component={ AboutComponent }>
-                    </ReactRouter.Route>
-                </ReactRouter.Route>
-);
-
-
-ReactDOM.render(<ReactRouter.Router history={ ReactRouter.hashHistory }>{routes}</ReactRouter.Router>, document.getElementById('login-wrapper'));
+export {LoginForm};
 
