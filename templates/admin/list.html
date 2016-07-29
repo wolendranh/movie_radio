@@ -1,1 +1,19 @@
 {% extends 'admin/base_admin.html' %}
+{% block content %}
+    { super() }
+        <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Barmaglot Admin</a>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/admin/quote">Quote</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/signout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}

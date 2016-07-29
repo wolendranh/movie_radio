@@ -5,6 +5,7 @@
     "bootstrap": "*",
     "jquery": "*",
     "react": "*",
+    "react-router": "*",
     "validator-js":"*"
   }
 }

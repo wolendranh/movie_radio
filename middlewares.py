@@ -28,7 +28,7 @@ async def authorize(app, handler):
         if session.get("user"):
             return await handler(request)
         elif check_path(request.path):
-            url = request.app.router['login'].url()
+            url = request.app.router['login'].url(query={'?prev_url':request.path.strip('/')})
             raise web.HTTPFound(url)
         else:
             return await handler(request)
