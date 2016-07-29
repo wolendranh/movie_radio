@@ -1,5 +1,5 @@
 from radio.views import HomeView, push_current_track
-from auth.views import Login, SignOut
+from auth.views import Login, SignOut, AuthTokenView
 from admin.views import (
     AdminListView,
     QuoteAdminListView,
@@ -18,3 +18,9 @@ routes = [
     # ('*', '/admin/quote/add', QuoteAdminNewView, 'quote_new'),
     ('*', '/api/quotes', Collection, 'quote_collection'),
 ]
+
+API_ROUTES = [
+    ('POST', '/api/get-auth-token', AuthTokenView, 'get-token'),
+]
+
+routes.extend(API_ROUTES)

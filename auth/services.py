@@ -9,6 +9,14 @@ async def create_user(collection, user_data):
                                     '_id': user_data['id']})
 
 
+async def create_token(collection, token_data):
+    # save token into db
+    return await collection.insert(token_data)
+
+async def get_token(collection, user_id):
+    # get Token based on a User identifier
+    return await collection.find_one({'user': user_id})
+
 async def get_user(collection, user_id):
     return await collection.find_one({'_id': user_id})
 
