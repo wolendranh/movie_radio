@@ -25,7 +25,6 @@ async def get_by_email(collection, email):
 
 
 async def check_user_auth(db, email, password):
-    password = str.encode(password)
     collection = db[USER_COLLECTION]
     user = await get_by_email(collection=collection, email=email)
     if user:

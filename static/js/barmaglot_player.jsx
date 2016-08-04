@@ -7,7 +7,8 @@ var Player = React.createClass({
   getDefaultProps: function() {
     // sets default array of props
     return {
-      volume: 0.4
+      volume: 0.4,
+      currentSong: 'Barmaglot ...'
     };
   },
 
@@ -118,8 +119,8 @@ var Volume = React.createClass({
     <div className="track-and-volume-wrapper">
 
         <div className="trackInfoWrapper">
-            <div className="trackInfo">
-                   <p>pink floyd - wish you where here</p>
+            <div className="trackInfo marquee">
+                   <p className="current-song">pink floyd - wish you where here</p>
             </div>
         </div>
 

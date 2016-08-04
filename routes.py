@@ -9,8 +9,8 @@ from admin.views import (
 
 
 routes = [
+    ('GET', '/api/track_stream', push_current_track, 'track_stream'),
     ('GET', '/', HomeView,  'home'),
-    ('GET', '/api/track_stream',  push_current_track, 'track_stream'),
     ('*',   '/login',   Login,     'login'),
     ('*',   '/signout', SignOut,   'signout'),
     ('*', '/admin', AdminListView, 'admin'),

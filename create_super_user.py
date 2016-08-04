@@ -6,6 +6,12 @@ from settings import MONGO_HOST, MONGO_DB_NAME
 
 
 async def create_super_user(*args, **kwargs):
+    """
+    Small script that allows to take email and pass as arguments
+     and creates User Instance
+    Returns: Uer instance
+
+    """
     parser = argparse.ArgumentParser(description='Process new superuser data...')
     parser.add_argument('--email', type=str)
     parser.add_argument('--password', type=str)
