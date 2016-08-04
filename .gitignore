@@ -5,6 +5,7 @@ __pycache__/
 # MAC OS
 .DS_Store
 
+*.xml.swp
 
 # C extensions
 *.so

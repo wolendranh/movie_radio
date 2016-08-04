@@ -45,14 +45,15 @@
 {#                                    pauseButton='.playback-pause',#}
 {#                                    playerContainer='#barmaglot-player');#}
 {##}
-{#            var eventSource = new EventSource("/api/track_stream");#}
-{#            eventSource.addEventListener("track_update", function(event){#}
-{#                console.log(event.data)#}
-{#            });#}
-{##}
-{#            eventSource.onerror = function(event){#}
-{#                console.log(event);#}
-{#            }#}
+            var eventSource = new EventSource("/api/track_stream");
+            eventSource.addEventListener("track_update", function(event){
+                console.log(event.data);
+                $('.current-song').text(event.data);
+            });
+
+            eventSource.onerror = function(event){
+                console.log(event);
+            }
         </script>
 {% endblock %}
 

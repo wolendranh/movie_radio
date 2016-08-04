@@ -25,6 +25,7 @@ async def push_current_track(request):
 
     while await channel.wait_message():
         message = await channel.get()
+        response.start(request)
         response.write(b'event: track_update\r\n')
         response.write(b'data: ' + message + b'\r\n\r\n')
 
