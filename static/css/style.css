@@ -29,6 +29,11 @@ html, body {
 }
 
 .day-background {
+  /*TODO: add day style*/
+}
+
+
+.evening-background {
   background:
           linear-gradient(to bottom, rgba(233, 99, 0, 0.1) 30%, rgba(233, 99, 0, 0.7) 60%),
           url("../img/background.png") no-repeat center center fixed;
