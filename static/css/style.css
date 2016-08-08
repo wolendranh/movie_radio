@@ -2,15 +2,42 @@ html, body {
   height: 100%;
 }
 
-body {
+/*body {*/
+  /*background:*/
+          /*linear-gradient(to bottom,rgba(228, 182, 158, 0.88) 5%, rgb(140, 53,1) 95%),*/
+          /*url("../img/background.png") no-repeat center center fixed;*/
+  /*background-size: cover;*/
+  /*overflow: hidden;*/
+  /*background-blend-mode: hue;*/
+
+/*}*/
+
+.default-background {
+  background:
+          url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.morning-background {
   background:
           linear-gradient(to bottom,rgba(228, 182, 158, 0.88) 5%, rgb(140, 53,1) 95%),
           url("../img/background.png") no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
   background-blend-mode: hue;
-
 }
+
+.day-background {
+  background:
+          linear-gradient(to bottom, rgba(233, 99, 0, 0.1) 30%, rgba(233, 99, 0, 0.7) 60%),
+          url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  background-blend-mode: color-burn;
+}
+
+
 p{
   margin: 0px;
   padding: 0px;

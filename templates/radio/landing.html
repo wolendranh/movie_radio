@@ -8,7 +8,7 @@
     <script type="text/babel" src="{{ app.router.static.url(filename="js/barmaglot_player.jsx") }}"></script>
 {% endblock %}
 {% block content %}
-    <body>
+    <body class="day-background">
             <div id="wrap">
                 <div id="main" class="clear-top">
                     <div class="row logo-container">
@@ -45,15 +45,15 @@
 {#                                    pauseButton='.playback-pause',#}
 {#                                    playerContainer='#barmaglot-player');#}
 {##}
-            var eventSource = new EventSource("/api/track_stream");
-            eventSource.addEventListener("track_update", function(event){
-                console.log(event.data);
-                $('.current-song').text(event.data);
-            });
-
-            eventSource.onerror = function(event){
-                console.log(event);
-            }
+{#            var eventSource = new EventSource("/api/track_stream");#}
+{#            eventSource.addEventListener("track_update", function(event){#}
+{#                console.log(event.data);#}
+{#                $('.current-song').text(event.data);#}
+{#            });#}
+{##}
+{#            eventSource.onerror = function(event){#}
+{#                console.log(event);#}
+{#            }#}
         </script>
 {% endblock %}
 

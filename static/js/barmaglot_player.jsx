@@ -2,15 +2,50 @@ var Player = React.createClass({
 
   componentDidMount: function() {
     this.refs.audio.volume = 0.4;
+    this.mountEventStream();
+  },
+
+  getInitialState: function() {
+      return {currentSong: 'Barmaglot ...'}
+  },
+
+  testMe: function(f, e){
+      console.log(e);
+      this.setState({currentSong: f.data})
+
   },
 
   getDefaultProps: function() {
     // sets default array of props
     return {
       volume: 0.4,
-      currentSong: 'Barmaglot ...'
+      currentSong: '...'
     };
   },
+
+  mountEventStream: function(){
+    var eventSource = new EventSource("/api/track_stream");
+    var that = this;
+
+    eventSource.onmessage = function (event, shit) {
+      console.log(event, shit)
+    };
+
+      
+
+    var makeListener = function(f) {
+        return {
+            handleEvent: f
+          };
+        };
+
+    eventSource.addEventListener("track_update", makeListener(this.testMe));
+
+    eventSource.onerror = function(event){
+        console.log(event);
+    }
+  },
+
 
   setVolume: function(volume){
     // get reference of player to bypass it to child components if needed
@@ -43,7 +78,7 @@ var Player = React.createClass({
                   </div>
               </div>
 
-              <Volume setVolumeHandle={ this.setVolume } getVolumeHandle={ this.getVolume }/>
+              <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>
           </div>
       </div>
     );}
@@ -120,7 +155,7 @@ var Volume = React.createClass({
 
         <div className="trackInfoWrapper">
             <div className="trackInfo marquee">
-                   <p className="current-song">pink floyd - wish you where here</p>
+                   <p className="current-song">{this.props.song }</p>
             </div>
         </div>
 
