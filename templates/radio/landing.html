@@ -41,19 +41,18 @@
 
         </body>
         <script>
-{#            var player = new Player(playButton='.playback-play',#}
-{#                                    pauseButton='.playback-pause',#}
-{#                                    playerContainer='#barmaglot-player');#}
-{##}
-{#            var eventSource = new EventSource("/api/track_stream");#}
-{#            eventSource.addEventListener("track_update", function(event){#}
-{#                console.log(event.data);#}
-{#                $('.current-song').text(event.data);#}
-{#            });#}
-{##}
-{#            eventSource.onerror = function(event){#}
-{#                console.log(event);#}
-{#            }#}
+            setInterval(function() {
+              // method to be executed;
+                   var body = $('body');
+                   if(body.hasClass('day-background')){
+                       $('body').switchClass('day-background', 'evening-background',  100000, 'easeInSine');
+                   }else if(body.hasClass('evening-background')){
+                        $('body').switchClass('evening-background', 'morning-background',  100000, 'easeInSine');
+                   }else if(body.hasClass('morning-background')){
+                       $('body').switchClass('morning-background', 'day-background',  100000, 'easeInSine');
+                   }
+
+            }, 800);
         </script>
 {% endblock %}
 
