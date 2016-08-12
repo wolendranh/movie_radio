@@ -62,11 +62,10 @@ class Login(web.View):
 
         if isinstance(user, dict):
             session = await get_session(self.request)
-            session = set_session(session, str(user['_id']), self.request)
+            set_session(session, str(user['_id']), self.request)
             return web.json_response(content_type='application/json',
                                      data=convert_json({'login': 'true'}),
                                      status=200)
-            # redirect(self.request, self.request.GET['?prev_url'])
         else:
             return web.json_response(content_type='application/json', text=convert_json({'login': 'false'}), status=401)
 

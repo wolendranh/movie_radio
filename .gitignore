@@ -44,6 +44,7 @@ var/
 
 # Funcking Node stuff
 node_modules/
+static/webpack/
 
 
 # PyInstaller

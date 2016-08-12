@@ -174,3 +174,4 @@ ReactDOM.render(
   <Player />,
   document.getElementById('barmaglot-player')
 );
+export {Player};

@@ -153,7 +153,5 @@ var QuoteForm = React.createClass({
   }
 });
 
-ReactDOM.render(
-  <QuoteBox url="/api/quotes" pollInterval={2000} />,
-  document.getElementById('quote-wrap')
-);
+
+export {QuoteBox};

@@ -5,10 +5,9 @@
 {% endblock %}
 {% block js %}
     {{ super() }}
-    <script type="text/babel" src="{{ app.router.static.url(filename="js/barmaglot_player.jsx") }}"></script>
 {% endblock %}
 {% block content %}
-    <body class="day-background">
+    <body>
             <div id="wrap">
                 <div id="main" class="clear-top">
                     <div class="row logo-container">
@@ -41,18 +40,18 @@
 
         </body>
         <script>
-            setInterval(function() {
-              // method to be executed;
-                   var body = $('body');
-                   if(body.hasClass('day-background')){
-                       $('body').switchClass('day-background', 'evening-background',  100000, 'easeInSine');
-                   }else if(body.hasClass('evening-background')){
-                        $('body').switchClass('evening-background', 'morning-background',  100000, 'easeInSine');
-                   }else if(body.hasClass('morning-background')){
-                       $('body').switchClass('morning-background', 'day-background',  100000, 'easeInSine');
-                   }
-
-            }, 800);
+{#            setInterval(function() {#}
+{#              // method to be executed;#}
+{#                   var body = $('body');#}
+{#                   if(body.hasClass('day-background')){#}
+{#                       $('body').switchClass('day-background', 'evening-background',  100000, 'easeInSine');#}
+{#                   }else if(body.hasClass('evening-background')){#}
+{#                        $('body').switchClass('evening-background', 'morning-background',  100000, 'easeInSine');#}
+{#                   }else if(body.hasClass('morning-background')){#}
+{#                       $('body').switchClass('morning-background', 'day-background',  100000, 'easeInSine');#}
+{#                   }#}
+{##}
+{#            }, 800);#}
         </script>
 {% endblock %}
 
