@@ -1,6 +1,8 @@
+import {QuoteBox} from "./quote.js"
+
 var AdminComponent = React.createClass({
    render: function(){
-       return (<h1>fdvdfvdvdvf</h1>)
+       return (<QuoteBox url="/api/quotes" pollInterval={2000} />)
    }
 });
 

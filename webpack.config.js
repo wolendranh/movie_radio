@@ -3,14 +3,18 @@ var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'static/webpack');
 var APP_DIR = path.resolve(__dirname, 'static/js');
+APP_DIR
 
 //TODO: add instructions about how to setup webpack into README
 
 var config = {
-  entry: [APP_DIR + '/app.jsx', APP_DIR + '/login.jsx'],
+  entry:{
+      app: [APP_DIR + '/app.jsx', APP_DIR + '/login.jsx'],
+      vendors: ['react']
+  },
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [

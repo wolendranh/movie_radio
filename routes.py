@@ -11,16 +11,17 @@ from admin.views import (
 routes = [
     ('GET', '/api/track_stream', push_current_track, 'track_stream'),
     ('GET', '/', HomeView,  'home'),
-    ('*',   '/login',   Login,     'login'),
     ('*',   '/signout', SignOut,   'signout'),
-    ('*', '/admin', AdminListView, 'admin'),
-    ('*', '/admin/quote', QuoteAdminListView, 'quote_list'),
+    # ('*', '/admin', AdminListView, 'admin'),
+    # ('*', '/admin/quote', QuoteAdminListView, 'quote_list'),
     # ('*', '/admin/quote/add', QuoteAdminNewView, 'quote_new'),
-    ('*', '/api/quotes', Collection, 'quote_collection'),
 ]
 
 API_ROUTES = [
     ('POST', '/api/get-auth-token', AuthTokenView, 'get-token'),
+    ('*', '/api/quotes', Collection, 'quote_collection'),
+    ('*',   '/login-api',   Login,     'login-api'),
+    ('*', '/login', Login, 'login'),
 ]
 
 routes.extend(API_ROUTES)
