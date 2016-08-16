@@ -153,5 +153,9 @@ var QuoteForm = React.createClass({
   }
 });
 
+ReactDOM.render(
+  <LoginForm />,
+  document.getElementById('quota-admin')
+);
 
 export {QuoteBox};
