@@ -1,3 +1,6 @@
+import { withRouter ,Router, browserHistory} from 'react-router'
+import { react } from 'react'
+
 var LoginForm = React.createClass({
     getInitialState: function() {
         return {username: 'Ваша Бармаглот пошта',
@@ -46,7 +49,7 @@ var LoginForm = React.createClass({
                  'password': this.state.password},
           success: function(data) {
               // TODO: handle success redirect
-              this.props.history.push('/admin');
+              browserHistory.push('/admin');
           }.bind(this),
           error: function(xhr, status, err) {
             // TODO: handle setting correct server side error into UI
@@ -82,6 +85,11 @@ var LoginForm = React.createClass({
        )
     }
 });
+
+ReactDOM.render(
+  <LoginForm />,
+  document.getElementById('login-wrapper')
+);
 
 export {LoginForm};
 

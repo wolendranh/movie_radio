@@ -30,7 +30,10 @@ async def get_current_song(host, port):
     host = '/'.join([host, METADATA_FILE])
     response = await aiohttp.request('GET', host)
     body = await response.json()
-    title = body['icestats']['source'].get('title')
+    try:
+        title = body['icestats']['source'].get('title')
+    except KeyError:
+        return None
     await asyncio.sleep(2)
     return title
 

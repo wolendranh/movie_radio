@@ -19,7 +19,7 @@ async def authorize(app, handler):
     async def middleware(request):
         def check_path(path):
             result = True
-            for r in ['/login', '/static/','/signout', '/_debugtoolbar/', '/api']:
+            for r in ['/login', '/login-api' '/img', '/static/', '/signout', '/_debugtoolbar/', '/api']:
                 if path.startswith(r) or path == '/':
                     result = False
             return result
@@ -28,7 +28,7 @@ async def authorize(app, handler):
         if session.get("user"):
             return await handler(request)
         elif check_path(request.path):
-            url = request.app.router['login'].url(query={'?prev_url':request.path.strip('/')})
+            url = request.app.router['login'].url()
             raise web.HTTPFound(url)
         else:
             return await handler(request)

@@ -1,9 +1,9 @@
-{% extends "admin/base_admin.html" %}
+{% extends "base.html" %}
 
 {% block content %}
     {{ super() }}
     <span id="login-wrapper"></span>
-
+    <span id="quota-admin"></span>
 {% endblock %}
 {% block css %}
     {{ super() }}
@@ -11,6 +11,4 @@
 {% endblock %}
 {% block js %}
     {{ super() }}
-    <script type="text/javascript" src="{{ app.router.static.url(filename='bower_components/validator-js/validator.min.js') }}"></script>
-    <script type="text/babel" src="{{ app.router.static.url(filename='js/login.jsx') }}"></script>
 {% endblock %}
