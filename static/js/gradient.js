@@ -1,4 +1,4 @@
-
+// array of all colors that will be applied  with linear gradient
 var colors = new Array(
   [198, 213, 186],
   [229,161,119],

@@ -1,4 +1,4 @@
-import {QuoteBox} from "./quote.js"
+import {QuoteBox} from "./quote.jsx"
 
 var AdminComponent = React.createClass({
    render: function(){
