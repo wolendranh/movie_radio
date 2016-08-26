@@ -3,13 +3,14 @@ var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'static/webpack');
 var APP_DIR = path.resolve(__dirname, 'static/js');
-APP_DIR
 
 //TODO: add instructions about how to setup webpack into README
 
 var config = {
+  devtool: 'source-map',
+  context: APP_DIR,
   entry:{
-      app: [APP_DIR + '/app.jsx', APP_DIR + '/login.jsx'],
+      app: [APP_DIR + '/app.jsx', APP_DIR + '/barmaglot_player.jsx'],
       vendors: ['react']
   },
   output: {

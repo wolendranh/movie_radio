@@ -1,5 +1,6 @@
-import { withRouter ,Router, browserHistory} from 'react-router'
-import { react } from 'react'
+import { Router, Link, browserHistory} from 'react-router';
+import {render} from 'react-dom';
+import {React} from 'react';
 
 var LoginForm = React.createClass({
     getInitialState: function() {
@@ -75,21 +76,17 @@ var LoginForm = React.createClass({
           </div>
 
           <button className="btn btn-lg btn-primary btn-block" id="submit" type="submit">Login</button>
-          <li>
-              <ReactRouter.Link to="/this">About us
-              </ReactRouter.Link>
-              {this.props.children}
-          </li>
         </form>
         </div>
        )
     }
 });
 
-ReactDOM.render(
+render(
   <LoginForm />,
   document.getElementById('login-wrapper')
 );
 
 export {LoginForm};
+
 

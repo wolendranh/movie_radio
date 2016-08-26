@@ -1,3 +1,6 @@
+import {render} from 'react-dom';
+import React from 'react';
+
 var Player = React.createClass({
 
   componentDidMount: function() {
@@ -170,7 +173,7 @@ var Volume = React.createClass({
   }
 });
 
-ReactDOM.render(
+render(
   <Player />,
   document.getElementById('barmaglot-player')
 );

@@ -1,3 +1,6 @@
+import {React} from "react";
+import {render} from "react-dom";
+
 var Quote = React.createClass({
   rawMarkup: function() {
     var md = new Remarkable();
@@ -153,8 +156,8 @@ var QuoteForm = React.createClass({
   }
 });
 
-ReactDOM.render(
-  <LoginForm />,
+render(
+  <Quote />,
   document.getElementById('quota-admin')
 );
 
