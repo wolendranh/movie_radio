@@ -1,10 +1,12 @@
-module.exports = {
+import $ from 'jquery';
+
+var self = module.exports = {
     login: function(username, pass, cb) {
         if (localStorage.token) {
             if (cb) cb(true);
                 return
         }
-        this.getToken(username, pass, (res) => {
+        self.getToken(username, pass, (res) => {
             if (res.authenticated) {
                 localStorage.token = res.token;
                 if (cb) cb(true)
@@ -37,5 +39,5 @@ module.exports = {
                 })
             }
         })
-    }, 
+    } 
 };

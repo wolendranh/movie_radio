@@ -21,7 +21,7 @@ class Token:
         self.collection = self.db[TOKEN_COLLECTION]
         self.key = None
         self.user_id = ObjectId(data.get('user_id'))
-        self.created = datetime.date()
+        self.created = datetime.now()
 
     async def get_or_create(self, *args, **kwargs):
         token = await get_token(collection=self.collection, user_id=self.user_id)

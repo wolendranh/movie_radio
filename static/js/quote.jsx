@@ -1,3 +1,9 @@
+import React from "react";
+import {render} from "react-dom";
+import Remarkable from "remarkable";
+import $ from 'jquery';
+
+
 var Quote = React.createClass({
   rawMarkup: function() {
     var md = new Remarkable();
@@ -76,8 +82,8 @@ var QuoteBox = React.createClass({
     return {data: []};
   },
   componentDidMount: function() {
-    this.loadQuotesFromServer();
-    setInterval(this.loadQuotesFromServer, this.props.pollInterval);
+    // this.loadQuotesFromServer();
+    // setInterval(this.loadQuotesFromServer, this.props.pollInterval);
   },
   render: function() {
     return (
@@ -153,9 +159,4 @@ var QuoteForm = React.createClass({
   }
 });
 
-ReactDOM.render(
-  <LoginForm />,
-  document.getElementById('quota-admin')
-);
-
-export {QuoteBox};
+export default QuoteBox;

@@ -1,5 +1,10 @@
-import { withRouter ,Router, browserHistory} from 'react-router'
-import { react } from 'react'
+import { Router, Link, browserHistory} from 'react-router';
+import {render} from 'react-dom';
+import React from 'react';
+import $ from 'jquery';
+import {login} from './auth.jsx'
+// import validator from 'validator';
+
 
 var LoginForm = React.createClass({
     getInitialState: function() {
@@ -42,18 +47,18 @@ var LoginForm = React.createClass({
         if (this.state.passwordError || this.state.usernameError){ return true }
 
         $.ajax({
-          url: this.props.url,
+          url: this.props.route.url,
           dataType: 'json',
           type: 'POST',
           data: {'username': this.state.username,
                  'password': this.state.password},
           success: function(data) {
-              // TODO: handle success redirect
+              login(this.state.username, this.state.password);
               browserHistory.push('/admin');
           }.bind(this),
           error: function(xhr, status, err) {
             // TODO: handle setting correct server side error into UI
-            console.error(this.props.url, status, err.toString());
+            console.error(this.props.route.url, status, err.toString());
           }.bind(this)
         });
     },
@@ -75,21 +80,10 @@ var LoginForm = React.createClass({
           </div>
 
           <button className="btn btn-lg btn-primary btn-block" id="submit" type="submit">Login</button>
-          <li>
-              <ReactRouter.Link to="/this">About us
-              </ReactRouter.Link>
-              {this.props.children}
-          </li>
         </form>
         </div>
        )
     }
 });
 
-ReactDOM.render(
-  <LoginForm />,
-  document.getElementById('login-wrapper')
-);
-
-export {LoginForm};
-
+export default LoginForm;

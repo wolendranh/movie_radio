@@ -4,21 +4,22 @@
     <link rel="stylesheet" type="text/css" href="{{ app.router.static.url(filename='css/style.css') }}" />
 {% endblock %}
 {% block content %}
-    <body class="gradient default-background">
-            <div id="wrap">
-                <div id="main" class="clear-top">
-                    <div class="row logo-container">
-                            <div class="col-xs-4">
-                                <img src="{{ app.router.static.url(filename='img/logo_text.png') }}" class="logo-img img-responsive">
-                                <span class="daily-quote">свет и сладость</span>
-                            </div>
-                    </div>
-                    <div id="barmaglot-player"></div>
-
-
-                </div>
-            </div>
-
+    <body class="gradient moring-background">
+{#            <div id="wrap">#}
+{#                <div id="main" class="clear-top">#}
+{#                    <div class="row logo-container">#}
+{#                            <div class="col-xs-4">#}
+{#                                <img src="{{ app.router.static.url(filename='img/logo_text.png') }}" class="logo-img img-responsive">#}
+{#                                <span class="daily-quote">свет и сладость</span>#}
+{#                            </div>#}
+{#                    </div>#}
+{#                    <div id="barmaglot-player"></div>#}
+{##}
+{##}
+{#                </div>#}
+{#            </div>#}
+{##}
+            <!-- FIXME: this should became react component(also all stuff on this page)-->
             <footer class="footer row-fluid">
                 <div class="col-sm-4 col-sm-offset-4">
                     <div class="row">
@@ -37,19 +38,7 @@
 
 
         </body>
-        <script>
-{#            setInterval(function() {#}
-{#              // method to be executed;#}
-{#                   var body = $('body');#}
-{#                   if(body.hasClass('day-background')){#}
-{#                       $('body').switchClass('day-background', 'evening-background',  100000, 'easeInSine');#}
-{#                   }else if(body.hasClass('evening-background')){#}
-{#                        $('body').switchClass('evening-background', 'morning-background',  100000, 'easeInSine');#}
-{#                   }else if(body.hasClass('morning-background')){#}
-{#                       $('body').switchClass('morning-background', 'day-background',  100000, 'easeInSine');#}
-{#                   }#}
-{##}
-{#            }, 800);#}
-        </script>
+            <div id=app></div>
+            <script src="{{ app.router.static.url(filename='webpack/app.js') }}"></script>
 {% endblock %}
 

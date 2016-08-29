@@ -1,3 +1,7 @@
+import {render} from 'react-dom';
+import React from 'react';
+import {Link} from 'react-router';
+
 var Player = React.createClass({
 
   componentDidMount: function() {
@@ -66,22 +70,21 @@ var Player = React.createClass({
 
   render: function() {
     return (
-      <div>
-          <Controls getPlayerRef={ this.getPlayer }/>
+          <div>
+              <li><Link to="/login">Login</Link></li>
+              <Controls getPlayerRef={ this.getPlayer }/>
 
-          <div className="row player-container">
-              <div className="col-sm-4 col-sm-offset-4 player">
-                  <audio id="barmaglot-player" preload="none" ref="audio">
-                      <source src="http://195.248.234.62:8000/radioskovoroda" type="audio/mpeg"/>
-                  </audio>
-                  <div>
+              <div className="row player-container">
+                  <div className="col-sm-4 col-sm-offset-4 player">
+                      <audio id="barmaglot-player" preload="none" ref="audio">
+                          <source src="http://195.248.234.62:8000/radioskovoroda" type="audio/mpeg"/>
+                      </audio>
                   </div>
+                  <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>
               </div>
-
-              <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>
           </div>
-      </div>
-    );}
+    )
+  }
 });
 
 
@@ -170,9 +173,9 @@ var Volume = React.createClass({
   }
 });
 
-ReactDOM.render(
-  <Player />,
-  document.getElementById('barmaglot-player')
-);
+// render(
+//   <Player />,
+//   document.getElementById('barmaglot-player')
+// );
 
-export {Player};
+export default Player;
