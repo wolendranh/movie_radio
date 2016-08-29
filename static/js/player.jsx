@@ -82,7 +82,9 @@ var Player = React.createClass({
                   </div>
                   <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>
               </div>
+              <span>{this.props.children || <FooterComponent/>}</span>
           </div>
+
     )
   }
 });
@@ -172,10 +174,5 @@ var Volume = React.createClass({
     )
   }
 });
-
-// render(
-//   <Player />,
-//   document.getElementById('barmaglot-player')
-// );
 
 export default Player;
