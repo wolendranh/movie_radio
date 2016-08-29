@@ -47,7 +47,7 @@ var LoginForm = React.createClass({
         if (this.state.passwordError || this.state.usernameError){ return true }
 
         $.ajax({
-          url: this.props.url,
+          url: this.props.route.url,
           dataType: 'json',
           type: 'POST',
           data: {'username': this.state.username,
@@ -58,7 +58,7 @@ var LoginForm = React.createClass({
           }.bind(this),
           error: function(xhr, status, err) {
             // TODO: handle setting correct server side error into UI
-            console.error(this.props.url, status, err.toString());
+            console.error(this.props.route.url, status, err.toString());
           }.bind(this)
         });
     },

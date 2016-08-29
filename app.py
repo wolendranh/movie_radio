@@ -3,10 +3,11 @@ import aiohttp_jinja2
 from aiohttp import web
 from aiohttp_session import session_middleware
 from aiohttp_session.cookie_storage import EncryptedCookieStorage
+import aiohttp_debugtoolbar
 import jinja2
 from motor import motor_asyncio as ma
 
-from routes import routes
+from routes import routes, API_ROUTES
 from settings import *
 from middlewares import authorize, db_handler
 
@@ -17,11 +18,14 @@ async def init(loop):
         session_middleware(EncryptedCookieStorage(SECRET_KEY)),
         db_handler,
         ])
+    aiohttp_debugtoolbar.setup(app)
     handler = app.make_handler()
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
     # route part
     app.router.add_static('/static', 'static', name='static')
+    for api_route in API_ROUTES:
+        app.router.add_route(api_route[0], api_route[1], api_route[2], name=api_route[3])
     for route in routes:
         app.router.add_route(route[0], route[1], route[2], name=route[3])
     # end route part
