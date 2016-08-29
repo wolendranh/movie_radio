@@ -1,6 +1,10 @@
 import { Router, Link, browserHistory} from 'react-router';
 import {render} from 'react-dom';
-import {React} from 'react';
+import React from 'react';
+import $ from 'jquery';
+import {login} from './auth.jsx'
+// import validator from 'validator';
+
 
 var LoginForm = React.createClass({
     getInitialState: function() {
@@ -49,7 +53,7 @@ var LoginForm = React.createClass({
           data: {'username': this.state.username,
                  'password': this.state.password},
           success: function(data) {
-              // TODO: handle success redirect
+              login(this.state.username, this.state.password);
               browserHistory.push('/admin');
           }.bind(this),
           error: function(xhr, status, err) {
@@ -82,11 +86,4 @@ var LoginForm = React.createClass({
     }
 });
 
-render(
-  <LoginForm />,
-  document.getElementById('login-wrapper')
-);
-
-export {LoginForm};
-
-
+export default LoginForm;

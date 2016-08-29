@@ -39,9 +39,8 @@ class AuthTokenView(web.View):
                 return web.json_response(content_type='application/json',
                                          text=convert_json({'login': 'false'}),
                                          status=401)
-            data['user_id'] = user['_id']
-            token = Token(db=self.request.db, data=data).get_or_create()
-            return web.json_response(content_type='application/json', text=convert_json({'token': token}))
+            token = await Token(db=self.request.db, data={'user_id': user['_id']}).get_or_create()
+            return web.json_response(content_type='application/json', text=convert_json({'token': token['key']}))
 
 
 class Login(web.View):

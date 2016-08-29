@@ -12,18 +12,18 @@ from middlewares import authorize, db_handler
 
 async def init(loop):
 
+    # maybe later add authorize middleware
     app = web.Application(loop=loop,middlewares=[
         session_middleware(EncryptedCookieStorage(SECRET_KEY)),
-        authorize,
         db_handler,
         ])
     handler = app.make_handler()
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
     # route part
+    app.router.add_static('/static', 'static', name='static')
     for route in routes:
         app.router.add_route(route[0], route[1], route[2], name=route[3])
-    app.router.add_static('/static', 'static', name='static')
     # end route part
     # db connect
     app.client = ma.AsyncIOMotorClient(MONGO_HOST)

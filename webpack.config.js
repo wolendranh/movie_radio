@@ -10,8 +10,8 @@ var config = {
   devtool: 'source-map',
   context: APP_DIR,
   entry:{
-      app: [APP_DIR + '/app.jsx', APP_DIR + '/barmaglot_player.jsx'],
-      vendors: ['react']
+      app: [APP_DIR + '/index.jsx'],
+      admin: [APP_DIR + '/admin_app.jsx']
   },
   output: {
     path: BUILD_DIR,
