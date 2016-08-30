@@ -11,7 +11,12 @@ var LoginForm = React.createClass({
         return {username: 'Ваша Бармаглот пошта',
                 password: 'Ваш Бармаглот пароль',
                 passwordError: false,
-                usernameError: false};
+                usernameError: false,
+                loginError: undefined};
+    },
+
+    componentWillMount: function(){
+        document.body.style.backgroundColor = "white";
     },
 
     handlePasswordChange: function(e) {
@@ -58,6 +63,7 @@ var LoginForm = React.createClass({
           }.bind(this),
           error: function(xhr, status, err) {
             // TODO: handle setting correct server side error into UI
+            this.setState({loginError: err.toString()});
             console.error(this.props.route.url, status, err.toString());
           }.bind(this)
         });
@@ -79,7 +85,11 @@ var LoginForm = React.createClass({
               { this.state.passwordError ? <label className="control-label" for="password">Занадто короткий</label> :null }
           </div>
 
-          <button className="btn btn-lg btn-primary btn-block" id="submit" type="submit">Login</button>
+          { this.state.loginError ? <div className="form-group has-error'">
+              <label className="control-label" for="password">{this.state.loginError}</label>
+          </div> :null }
+
+          <button type="submit" className="btn btn-lg btn-primary btn-block">Увійти</button>
         </form>
         </div>
        )

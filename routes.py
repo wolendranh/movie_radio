@@ -10,7 +10,9 @@ from admin.views import (
 
 API_ROUTES = [
     ('POST', '/api/get-auth-token', AuthTokenView, 'get-token'),
+    ('GET', '/api/track_stream', push_current_track, 'track_stream'),
     ('*', '/api/quotes', Collection, 'quote_collection'),
+    ('*', '/api/streams', Collection, 'stream_collection'),
     ('POST',   '/login',   Login,     'login'),
 ]
 

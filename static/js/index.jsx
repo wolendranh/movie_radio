@@ -5,8 +5,7 @@ import { Router, IndexRoute, Route, browserHistory, hashHistory} from 'react-rou
 
 // import components
 import Player from './player.jsx';
-import LoginForm from './loginForm.jsx';
-import Name from './Name.jsx';
+import LoginForm from './login_form.jsx';
 import AdminComponent from './admin.jsx';
 import FooterComponent from './footer.jsx';
 
@@ -30,7 +29,6 @@ render((
             <IndexRoute component={FooterComponent} />
         </Route>
         <Route path="/login" url="/login" component={ LoginForm }/>
-        <Route path="/name" component={ Name }/>
         <Route path="/admin" component={ AdminComponent } onEnter={requireAuth}/>
     </Router>)
 , document.getElementById('app'));

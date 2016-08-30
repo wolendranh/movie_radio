@@ -52,11 +52,17 @@ class Collection(web.View):
     async def get(self):
         quote = Quote(db=self.request.db, data={})
         all_quotes = await quote.all()
-        return web.Response(status=200, body=self.encode(data={'quotes': all_quotes}), content_type='application/json')
+        return web.Response(status=200,
+                            body=self.encode(
+                                data={'quotes': all_quotes}),
+                            content_type='application/json')
 
     async def post(self):
         data = await self.request.post()
         quote = Quote(self.request.db, data)
         result = await quote.create_quote()
         all_quotes = await quote.all()
-        return web.Response(status=200, body=self.encode(data={'quotes': all_quotes}), content_type='application/json')
+        return web.Response(status=200,
+                            body=self.encode(
+                                data={'quotes': all_quotes}),
+                            content_type='application/json')
