@@ -1,6 +1,5 @@
 import {render} from 'react-dom';
 import React from 'react';
-import {Link} from 'react-router';
 
 var Player = React.createClass({
 
@@ -71,9 +70,7 @@ var Player = React.createClass({
   render: function() {
     return (
           <div>
-              <li><Link to="/login">Login</Link></li>
               <Controls getPlayerRef={ this.getPlayer }/>
-
               <div className="row player-container">
                   <div className="col-sm-4 col-sm-offset-4 player">
                       <audio id="barmaglot-player" preload="none" ref="audio">
@@ -82,7 +79,9 @@ var Player = React.createClass({
                   </div>
                   <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>
               </div>
+              <span>{this.props.children || <FooterComponent/>}</span>
           </div>
+
     )
   }
 });
@@ -172,10 +171,5 @@ var Volume = React.createClass({
     )
   }
 });
-
-// render(
-//   <Player />,
-//   document.getElementById('barmaglot-player')
-// );
 
 export default Player;

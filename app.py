@@ -1,3 +1,5 @@
+import logging
+
 import asyncio
 import aiohttp_jinja2
 from aiohttp import web
@@ -13,11 +15,12 @@ from middlewares import authorize, db_handler
 
 async def init(loop):
 
+    logging.basicConfig(level=logging.DEBUG)
     # maybe later add authorize middleware
     app = web.Application(loop=loop,middlewares=[
         session_middleware(EncryptedCookieStorage(SECRET_KEY)),
         db_handler,
-        ])
+        ],debug=True)
     aiohttp_debugtoolbar.setup(app)
     handler = app.make_handler()
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))

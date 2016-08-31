@@ -1,4 +1,7 @@
 import $ from 'jquery';
+import React from "react";
+import { browserHistory} from 'react-router';
+import {render} from "react-dom"
 
 var self = module.exports = {
     login: function(username, pass, cb) {
@@ -17,7 +20,9 @@ var self = module.exports = {
     },        
     
     logout: function() {
-        delete localStorage.token
+        delete localStorage.token;
+        browserHistory.push('/login');
+
     },
 
     loggedIn: function() {

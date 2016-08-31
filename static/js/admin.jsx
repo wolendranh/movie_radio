@@ -4,7 +4,8 @@ import $ from 'jquery';
 import {render} from "react-dom"
 
 import QuoteBox from "./quote.jsx";
-import {logout} from "./auth.jsx"
+import LogoutButton from "./logout.jsx"
+import StreamAddressForm from "./streaming.jsx"
 
 var AdminComponent = React.createClass({
    getInitialState: function() {
@@ -15,13 +16,8 @@ var AdminComponent = React.createClass({
         this.loadUserData()
     },
 
-    // contextTypes: {
-    //     router: React.PropTypes.object.isRequired
-    // },
-
-    logoutHandler: function() {
-        logout();
-        browserHistory.push('/admin');
+    componentWillMount: function(){
+        document.body.style.backgroundColor = "white";
     },
 
     loadUserData: function() {
@@ -40,14 +36,13 @@ var AdminComponent = React.createClass({
 
 
    render: function(){
-       return (<div><QuoteBox url="/api/quotes" pollInterval={2000} />
+       return (<div>
+                    <LogoutButton />
+                    <StreamAddressForm />
+                    <QuoteBox url="/api/quotes" pollInterval={2000} />
                </div>)
    }
 });
 
-// render(
-//   <AdminComponent />,
-//   document.getElementById('quota-admin')
-// );
 
 export default AdminComponent;
