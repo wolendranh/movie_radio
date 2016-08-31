@@ -1,6 +1,6 @@
 from bson.json_util import dumps
 from aiohttp import web
-from radio.models import Quote
+from admin.models import Quote
 
 
 class Collection(web.View):
@@ -18,6 +18,7 @@ class Collection(web.View):
 
     async def post(self):
         data = await self.request.post()
+        quote = await self.request.db['quotes'].find_one({'text': 'fdvdd'})
         quote = Quote(self.request.db, data)
         result = await quote.create_quote()
         all_quotes = await quote.all()

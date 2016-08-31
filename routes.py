@@ -1,18 +1,13 @@
 from radio.views import HomeView, push_current_track
 from auth.views import Login, SignOut, AuthTokenView
-from admin.views import (
-    AdminListView,
-    QuoteAdminListView,
-    QuoteAdminNewView,
-    Collection
-)
+from admin.views import quote, stream
 
 
 API_ROUTES = [
     ('POST', '/api/get-auth-token', AuthTokenView, 'get-token'),
     ('GET', '/api/track_stream', push_current_track, 'track_stream'),
-    ('*', '/api/quotes', Collection, 'quote_collection'),
-    ('*', '/api/streams', Collection, 'stream_collection'),
+    ('*', '/api/quotes', quote.Collection, 'quote_collection'),
+    ('*', '/api/streams', stream.Collection, 'stream_collection'),
     ('POST',   '/login',   Login,     'login'),
 ]
 

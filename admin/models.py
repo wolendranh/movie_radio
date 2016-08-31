@@ -2,27 +2,20 @@ from datetime import datetime
 from settings import STREAM_COLLECTION, QUOTE_COLLECTION
 from bson.objectid import ObjectId
 
+from radio_db.models import BaseModel
 
-class Stream:
-    def __init__(self, db, data, **kwargs):
+
+
+
+class Stream(BaseModel):
+    
+    def __init__(self, db, data):
+        super().__init__(collection=db[STREAM_COLLECTION])
         self.db = db
-        self.collection = self.db[STREAM_COLLECTION]
         self.stream_ip = data.get('stream_ip')
         self.name = data.get('name')
         self.id = data.get('id')
         self.user_id = ObjectId(data.get('user_id'))
-        self.created = datetime.now()
-
-    async def get_or_create(self, *args, **kwargs):
-        stream = await get_stream(collection=self.collection, user_id=self.user_id, name=self.name)
-        if stream:
-            return stream
-        return await self.save()
-
-    async def save(self, *args, **kwargs):
-
-        stream_data = {'user': self.user_id, 'created': self.created, 'key': self.key}
-        return await create_stream(collection=self.collection, stream_data=stream_data)
 
 
 class Quote:
