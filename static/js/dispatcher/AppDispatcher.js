@@ -1,5 +1,9 @@
 import { Dispatcher } from "flux";
 
+
+/**
+ * Dispatcher class inherited from Flux default Dispatcher
+*/
 class DispatcherClass extends Dispatcher {
 
   handleViewAction(action) {

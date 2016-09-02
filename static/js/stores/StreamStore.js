@@ -36,6 +36,11 @@ function create(host_address, active) {
     });
 }
 
+
+/**
+ * Stream store class that is ingerited from node JS EventEmitter
+ * to be able to emit events
+*/
 class StreamStoreBaseClass extends EventEmitter {
   /**
    * Get the entire collection of streams.
@@ -45,11 +50,16 @@ class StreamStoreBaseClass extends EventEmitter {
     return _actions;
   }
 
+  /**
+   * Emit change to give ability to do some actions after subscribing for it
+   * @return {object}
+   */
   emitChange() {
     this.emit(CHANGE_EVENT);
   }
 
   /**
+   * Subscribe for 'change-event'
    * @param {function} callback
    */
   addChangeListener(callback) {
@@ -57,6 +67,7 @@ class StreamStoreBaseClass extends EventEmitter {
   }
 
   /**
+   * * Un subscribe from 'change-event'
    * @param {function} callback
    */
   removeChangeListener(callback) {
@@ -64,6 +75,7 @@ class StreamStoreBaseClass extends EventEmitter {
   }
 }
 
+// create new instance of store
 const StreamStore = new StreamStoreBaseClass();
 
 // Register callback to handle all updates

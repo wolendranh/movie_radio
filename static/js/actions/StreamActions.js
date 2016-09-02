@@ -2,7 +2,9 @@ import AppDispatcher from "../dispatcher/AppDispatcher.js"
 import StreamConstants from "../constants/StreamConstants.js"
 
 var StreamActions = {
+
   /**
+   * Dispatch an create type event using Dispatcher
    * @param  {string} host_address
    * @param  {string} active
    */
