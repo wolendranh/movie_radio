@@ -42,7 +42,8 @@ class BaseModel:
         return await self.collection.insert(parameters)
 
     async def save(self, parameters):
-        return await self.create_object(parameters=parameters)
+        object_id =  await self.create_object(parameters=parameters)
+        return await self.get(collection=self.collection, parameters={'_id': object_id})
 
     async def all(self):
         result = self.collection.find()
