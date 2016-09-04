@@ -3,7 +3,7 @@ aiohttp-jinja2==0.7.0
 aiohttp-session==0.5.0
 aioredis==0.2.7
 aiohttp_debugtoolbar
-bson==1.1.0
+bson
 cffi==1.7.0
 chardet==2.3.0
 cryptography==1.4
