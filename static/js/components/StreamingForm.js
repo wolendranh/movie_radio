@@ -20,9 +20,9 @@ var StreamAddressForm = React.createClass({
            </div>
        )
     },
-    _onSave: function(stream_host) {
+    _onSave: function(stream_host, active) {
     if (stream_host.trim()){
-      StreamActions.create(stream_host, 'false');
+      StreamActions.create(stream_host, active);
     }
 
     }
@@ -82,7 +82,8 @@ var Stream = React.createClass({
        return (
            <div key={stream_host.id}>
                <span>{ stream_host.stream_ip }</span>
-               <button onClick={ this._delete } value={ stream_host.id } >delete</button>
+               { stream_host.active ? <label>Активний</label> :null }
+               <button onClick={() => this._delete(stream_host.id)} value={ stream_host.id } >delete</button>
            </div>
        )
    },

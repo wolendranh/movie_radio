@@ -25,8 +25,12 @@ next line is for working python 3 terminal interpreter
 3. npm install
 4. ln -s /usr/bin/nodejs /usr/bin/node
 ```
-(to omit issue with /usr/bin/env: node: No such file or directory) 
-
+(to omit issue with /usr/bin/env: node: No such file or directory)
+ 
+ #####Install icecast2 server
+```
+sudo apt-get install icecast2
+```
 To run project
 
 In case if you do not  have Python 3.5:

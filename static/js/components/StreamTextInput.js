@@ -15,7 +15,8 @@ var StreamTextInput = React.createClass({
 
   getInitialState: function() {
     return {
-      value: this.props.value || ''
+      value: this.props.value || '',
+      active: this.props.active || ''
     };
   },
 
@@ -29,11 +30,16 @@ var StreamTextInput = React.createClass({
             className={this.props.className}
             id={this.props.id}
             placeholder={this.props.placeholder}
-            onBlur={this._save}
             onChange={this._onChange}
             onKeyDown={this._onKeyDown}
             value={this.state.value}
             autoFocus={true}
+        />
+        <input type="checkbox"
+            className={this.props.className}
+            onChange={this.__onChangeActive}
+            autoFocus={true}
+            checked={this.state.active}
         />
         </div>
     );
@@ -44,9 +50,10 @@ var StreamTextInput = React.createClass({
    * used in different ways.
    */
   _save: function() {
-    this.props.onSave(this.state.value);
+    this.props.onSave(this.state.value, this.state.active);
     this.setState({
-      value: ''
+      value: '',
+      active: ''
     });
   },
 
@@ -57,6 +64,12 @@ var StreamTextInput = React.createClass({
     this.setState({
       value: event.target.value
     });
+  },
+
+  __onChangeActive: function (event) {
+    this.setState({
+      active: event.target.checked
+    })
   },
 
   /**

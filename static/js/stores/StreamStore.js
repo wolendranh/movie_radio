@@ -135,7 +135,7 @@ AppDispatcher.register(function(action) {
     switch (action.actionType) {
         case constants.STREAM_CREATE:
             host_address = action.host_address.trim();
-            active = action.active.trim();
+            active = action.active;
             if (host_address !== '') {
                 create(host_address, active);
             }

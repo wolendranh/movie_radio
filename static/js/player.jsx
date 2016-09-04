@@ -1,16 +1,39 @@
 import {render} from 'react-dom';
 import React from 'react';
+import PlayerStore from "./stores/PlayerStore.js"
+import PlayerActions from "./actions/PlayerActions.js"
+
+function getActiveStream() {
+  return PlayerStore.getActive()
+}
+
+
 
 var Player = React.createClass({
 
   componentDidMount: function() {
+    PlayerStore.addChangeListener(this._onChange);
     this.refs.audio.volume = 0.4;
+    PlayerActions.get();
     this.mountEventStream();
   },
+    componentWillUnmount: function() {
+        PlayerStore.removeChangeListener(this._onChange);
+    },
 
   getInitialState: function() {
-      return {currentSong: 'Barmaglot ...'}
+      return {
+          currentSong: 'Barmaglot ...',
+          stream: getActiveStream()
+      }
   },
+
+  _onChange: function() {
+    this.setState({
+        stream: getActiveStream()
+    });
+    this.loadPlayer();
+   },
 
   testMe: function(f, e){
       console.log(e);
@@ -33,8 +56,6 @@ var Player = React.createClass({
     eventSource.onmessage = function (event, shit) {
       console.log(event, shit)
     };
-
-      
 
     var makeListener = function(f) {
         return {
@@ -63,6 +84,11 @@ var Player = React.createClass({
     }
   },
 
+  loadPlayer: function () {
+    var audio = this.getPlayer();
+    audio.load();
+  },
+
   getPlayer: function(){
     return this.refs.audio;
   },
@@ -74,7 +100,7 @@ var Player = React.createClass({
               <div className="row player-container">
                   <div className="col-sm-4 col-sm-offset-4 player">
                       <audio id="barmaglot-player" preload="none" ref="audio">
-                          <source src="http://195.248.234.62:8000/radioskovoroda" type="audio/mpeg"/>
+                          <source src={ this.state.stream.stream_ip } type="audio/mpeg"/>
                       </audio>
                   </div>
                   <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>

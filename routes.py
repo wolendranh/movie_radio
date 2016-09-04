@@ -8,6 +8,7 @@ API_ROUTES = [
     ('GET', '/api/track_stream', push_current_track, 'track_stream'),
     ('*', '/api/quotes', quote.Collection, 'quote_collection'),
     ('*', '/api/streams', stream.Collection, 'stream_collection'),
+    ('GET', '/api/stream', stream.One, 'stream_one'),
     ('POST',   '/login',   Login,     'login'),
 ]
 
