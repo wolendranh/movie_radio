@@ -31,6 +31,7 @@ next line is for working python 3 terminal interpreter
 ```
 sudo apt-get install icecast2
 ```
+(default icecast config is here /etc/icecast2/icecast.xml)
 To run project
 
 In case if you do not  have Python 3.5:

@@ -66,8 +66,8 @@
 
     <!-- You may have multiple <listener> elements -->
     <listen-socket>
-        <port>8000</port>
-        <!-- <bind-address>127.0.0.1</bind-address> -->
+        <port>20000</port>
+        <bind-address>0.0.0.0</bind-address>
         <!-- <shoutcast-mount>/stream</shoutcast-mount> -->
     </listen-socket>
     <!--
