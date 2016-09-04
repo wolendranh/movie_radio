@@ -6,7 +6,10 @@
   "dependencies": {
     "webpack": "^1.13.1",
     "remarkable": "*",
-    "validator-js": "*"
+    "validator-js": "*",
+    "flux": "^2.0.1",
+    "events": "*"
+
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
