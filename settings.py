@@ -1,5 +1,5 @@
 SITE_PORT = '8080'
-SITE_HOST = '127.0.0.1'
+SITE_HOST = '0.0.0.0'
 STREAM_HOST = 'http://barmaglot.com'
 
 MONGO_DB_NAME = 'barmaglot'
