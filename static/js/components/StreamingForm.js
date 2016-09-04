@@ -35,7 +35,7 @@ export default StreamAddressForm;
 
 function getStreamState() {
   return {
-    allStreams: StreamStore.getAll()
+      allStreams: StreamStore.getAll()
   };
 }
 
@@ -47,6 +47,7 @@ var StreamList = React.createClass({
 
     componentDidMount: function() {
         StreamStore.addChangeListener(this._onChange);
+        StreamActions.fetch();
     },
 
     componentWillUnmount: function() {
@@ -68,6 +69,7 @@ var StreamList = React.createClass({
     },
 
     _onChange: function() {
+        console.log('change event');
         this.setState(getStreamState());
     }
 
@@ -80,7 +82,12 @@ var Stream = React.createClass({
        return (
            <div key={stream_host.id}>
                <span>{ stream_host.stream_ip }</span>
+               <button onClick={ this._delete } value={ stream_host.id } >delete</button>
            </div>
        )
+   },
+
+   _delete: function (e) {
+       StreamActions.delete(e);
    }
 });

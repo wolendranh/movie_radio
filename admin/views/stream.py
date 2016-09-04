@@ -27,3 +27,14 @@ class Collection(web.View):
                             body=self.encode(
                                 data={'stream': stream}),
                             content_type='application/json')
+
+    async def delete(self):
+        data = await self.request.post()
+        stream_data = {'_id': data['stream_id']}
+        stream = Stream(self.request.db,
+                        data=stream_data)
+        result = await stream.delete(parameters=stream_data)
+        return web.Response(status=200,
+                            body=self.encode(
+                                data={'result': result}),
+                            content_type='application/json')

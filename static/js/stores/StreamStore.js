@@ -28,14 +28,63 @@ function create(host_address, active) {
               id: data.stream._id.$oid,
               stream_ip: data.stream.stream_ip,
               active: data.stream.active
-          }
+          };
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.route.url, status, err.toString());
+      },
+      // hack to emit only after ajax was completer TODO: think about promises
+      complete: function(){
+          StreamStore.emitChange();
       }
     });
 }
 
+
+function remove(stream_id){
+    "use strict";
+    $.ajax({
+      url: '/api/streams',
+      type: 'DELETE',
+      data: {
+          stream_id: stream_id
+      },
+      success: function(data) {
+         delete _actions[stream_id];
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.route.url, status, err.toString());
+      },
+      // hack to emit only after ajax was completer TODO: think about promises
+      complete: function(){
+          StreamStore.emitChange();
+      }
+    });
+}
+
+function fetch(){
+    "use strict";
+    $.ajax({
+      url: '/api/streams',
+      type: 'GET',
+      success: function(data) {
+          data.streams.map(function(stream){
+              _actions[stream._id.$oid] = {
+                  id: stream._id.$oid,
+                  stream_ip: stream.stream_ip,
+                  active: stream.active
+              }
+          })
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.route.url, status, err.toString());
+      },
+      // hack to emit only after ajax was completer TODO: think about promises
+      complete: function(){
+          StreamStore.emitChange();
+      }
+    });
+}
 
 /**
  * Stream store class that is ingerited from node JS EventEmitter
@@ -89,8 +138,13 @@ AppDispatcher.register(function(action) {
             active = action.active.trim();
             if (host_address !== '') {
                 create(host_address, active);
-                StreamStore.emitChange();
             }
+            break;
+        case constants.STREAM_FETCH:
+            fetch();
+            break;
+        case constants.STREAM_DELETE:
+            remove(action._id);
             break;
     }
 });

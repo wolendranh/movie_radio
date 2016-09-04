@@ -27,6 +27,7 @@ async def init(loop):
 
     # route part
     app.router.add_static('/static', 'static', name='static')
+    app.router.add_static('/node_modules', 'node_modules', name='static_dist')
     for api_route in API_ROUTES:
         app.router.add_route(api_route[0], api_route[1], api_route[2], name=api_route[3])
     for route in routes:
