@@ -1,8 +1,9 @@
 # movie_radio
 simple radio page, that will play stream from Icecast server
 
-to install project on clean VM:
+#####to install project on clean VM:
 (Python related stuff)
+```
 1. sudo apt-get install git
 2. sudo apt-get install python-pip
 next line is for working python 3 terminal interpreter
@@ -14,14 +15,17 @@ next line is for working python 3 terminal interpreter
 7. pip install virtualenv
 8. virtualenv -p python3.5 env
 9. pip install - r requirments.txt
- 
-to install project on clean VM:
+```
+#####to install project on clean VM:
 (JS related stuff)
+
+```
 1. sudo apt-get install nodejs
 2. sudo apt-get install npm
 3. npm install
-4. ln -s /usr/bin/nodejs /usr/bin/node (to omit issue with /usr/bin/env: node: No such file or directory)
- 
+4. ln -s /usr/bin/nodejs /usr/bin/node
+```
+(to omit issue with /usr/bin/env: node: No such file or directory) 
 
 To run project
 
