@@ -6,9 +6,11 @@ import constants from "../constants/PlayerConstants.js";
 
 var CHANGE_EVENT = 'player_change';
 
+// variable that will hold active stream
 var _stream = '';
 
 /**
+ * Fetches one stream from database which is currently active
  * 
  */
 function fetchOneStream(){
@@ -24,13 +26,14 @@ function fetchOneStream(){
       },
       // hack to emit only after ajax was completer TODO: think about promises
       complete: function(){
+          // fire change event
           PlayerStore.emitChange();
       }
     });
 }
 
 /**
- * Stream store class that is ingerited from node JS EventEmitter
+ * Stream store class that is inherited from node JS EventEmitter
  * to be able to emit events
 */
 class PlayerStoreBaseClass extends EventEmitter {

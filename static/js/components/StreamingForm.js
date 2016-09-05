@@ -20,9 +20,9 @@ var StreamAddressForm = React.createClass({
            </div>
        )
     },
-    _onSave: function(stream_host, active) {
+    _onSave: function(stream_host, active, description) {
     if (stream_host.trim()){
-      StreamActions.create(stream_host, active);
+      StreamActions.create(stream_host, active, description);
     }
 
     }
