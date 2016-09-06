@@ -5,7 +5,6 @@ __pycache__/
 # MAC OS
 .DS_Store
 
-*.xml.swp
 
 # C extensions
 *.so
@@ -18,11 +17,7 @@ static/bower_components/
 
 
 # Redis
-redis-stable
 *.rdb
-
-# temp compressed archives
-*.tar.gz
 
 # Distribution / packaging
 .Python
@@ -42,11 +37,6 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# Funcking Node stuff
-node_modules/
-static/webpack/
-
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

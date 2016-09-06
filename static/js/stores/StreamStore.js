@@ -12,22 +12,25 @@ var _actions = {};
  * Create a Stream item.
  * @param  {string} host_address address of host from where stream will come
  * @param  {string} active indicate if stream is active
+ * @param  {string} description small notes about tye of stream
  */
 
-function create(host_address, active) {
+function create(host_address, active, description) {
     $.ajax({
       url: '/api/streams',
       type: 'POST',
       data: {
             stream_ip: host_address,
-            active: active
+            active: active,
+            description: description
 
       },
       success: function(data) {
           _actions[data.stream._id.$oid] = {
               id: data.stream._id.$oid,
               stream_ip: data.stream.stream_ip,
-              active: data.stream.active
+              active: data.stream.active,
+              description: data.stream.description
           };
       }.bind(this),
       error: function(xhr, status, err) {
@@ -72,7 +75,8 @@ function fetch(){
               _actions[stream._id.$oid] = {
                   id: stream._id.$oid,
                   stream_ip: stream.stream_ip,
-                  active: stream.active
+                  active: stream.active,
+                  description: stream.description
               }
           })
       }.bind(this),
@@ -130,14 +134,16 @@ const StreamStore = new StreamStoreBaseClass();
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
     var host_address,
-        active;
+        active,
+        description;
 
     switch (action.actionType) {
         case constants.STREAM_CREATE:
             host_address = action.host_address.trim();
             active = action.active;
+            description = action.description.trim();
             if (host_address !== '') {
-                create(host_address, active);
+                create(host_address, active, description);
             }
             break;
         case constants.STREAM_FETCH:
