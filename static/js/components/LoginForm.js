@@ -4,9 +4,11 @@ import React from 'react';
 import $ from 'jquery';
 import {login} from './auth.jsx'
 // import validator from 'validator';
+// TODO: replace validator or make it accessible from import statement
 
 
 var LoginForm = React.createClass({
+    // TODO: divide into smaller reusable components(form, field etc.)
     getInitialState: function() {
         return {username: 'Ваша Бармаглот пошта',
                 password: 'Ваш Бармаглот пароль',

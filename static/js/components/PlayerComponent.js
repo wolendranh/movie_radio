@@ -1,12 +1,16 @@
 import {render} from 'react-dom';
 import React from 'react';
+
 import PlayerStore from "./stores/PlayerStore.js"
 import PlayerActions from "./actions/PlayerActions.js"
+import Controls from "./PlayerControls.js"
+import Volume from "./PlayerVolume.js"
+import FooterComponent from "./FooterComponent.js"
+
 
 function getActiveStream() {
   return PlayerStore.getActive()
 }
-
 
 
 var Player = React.createClass({
@@ -108,92 +112,6 @@ var Player = React.createClass({
               <span>{this.props.children || <FooterComponent/>}</span>
           </div>
 
-    )
-  }
-});
-
-
-var Controls = React.createClass({
-  getInitialState: function() {
-      return { showPause: false, showPlay: true };
-  },
-  displayPause: function(e){
-    this.setState({ showPause: true , showPlay: false });
-    var player = this.props.getPlayerRef();
-    player.play();
-  },
-  displayPlay: function(e){
-    this.setState({ showPause: false , showPlay: true });
-    var player = this.props.getPlayerRef();
-    player.pause();
-  },
-  render: function() {
-    return (
-      <div className="row player-controlls">
-              <div className="col-sm-4 col-sm-offset-4 shake">
-                  { this.state.showPause ? <div onClick={this.displayPlay } className="playback-pause center-block"></div> : null }
-
-                  { this.state.showPlay ? <div onClick={ this.displayPause } className="playback-play center-block"></div> : null }
-              </div>
-      </div>
-    )
-  }
-});
-
-var Volume = React.createClass({
-
-  propTypes: {
-      classes: React.PropTypes.array,
-      volumes: React.PropTypes.object
-  },
-
-  getDefaultProps: function() {
-    // sets default array of props
-    return {
-      classes: ['one', 'two', 'three', 'four', 'five'],
-      volumes: {'one': 0.2, 'two': 0.4, 'three': 0.6, 'four': 0.8, 'five': 1}
-    };
-  },
-
-  soundHandler: function(bar, event) {
-    var soundValue = this.props.volumes[bar];
-    // call method of parent component (Player)
-    this.props.setVolumeHandle(soundValue);
-    this.forceUpdate();
-  },
-
-  getClass: function(i){
-      var volume = this.props.getVolumeHandle();
-      var barVolume = this.props.volumes[i];
-      if (barVolume <= volume){
-        return 'volume-bar red ' + i;
-      }
-      return 'volume-bar ' + i;
-
-  },
-
-  render: function () {
-
-    var _this = this, bars = this.props.classes.map(function(i) {
-      return <div onClick={ _this.soundHandler.bind(event, i) } className={ _this.getClass(i)}></div>;
-    });
-
-    return (
-    <div className="track-and-volume-wrapper">
-
-        <div className="trackInfoWrapper">
-            <div className="trackInfo marquee">
-                   <p className="current-song">{this.props.song }</p>
-            </div>
-        </div>
-
-        <div className="volume-bars-wrapper">
-            <div className="volume-bars">
-              {bars}
-            </div>
-        </div>
-
-    </div>
     )
   }
 });

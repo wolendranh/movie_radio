@@ -4,10 +4,10 @@ import { render } from 'react-dom';
 import { Router, IndexRoute, Route, browserHistory, hashHistory} from 'react-router';
 
 // import components
-import Player from './player.jsx';
-import LoginForm from './login_form.jsx';
-import AdminComponent from './admin.jsx';
-import FooterComponent from './footer.jsx';
+import Player from './components/PlayerComponent.js';
+import LoginForm from './components/LoginForm.js';
+import AdminComponent from './components/AdminComponent.js';
+import FooterComponent from './components/FooterComponent.js';
 
 // import helpers
 import { loggedIn } from './auth.jsx';
