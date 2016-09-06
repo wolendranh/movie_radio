@@ -1,8 +1,8 @@
 import {render} from 'react-dom';
 import React from 'react';
 
-import PlayerStore from "./stores/PlayerStore.js"
-import PlayerActions from "./actions/PlayerActions.js"
+import PlayerStore from "../stores/PlayerStore.js"
+import PlayerActions from "../actions/PlayerActions.js"
 import Controls from "./PlayerControls.js"
 import Volume from "./PlayerVolume.js"
 import FooterComponent from "./FooterComponent.js"

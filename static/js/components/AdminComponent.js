@@ -5,8 +5,8 @@ import {render} from "react-dom"
 
 // TODO fix imports
 import QuoteBox from "./QuoteBoxComponent.js";
-import LogoutButton from "./logout.jsx"
-import StreamAddressForm from "./components/StreamingForm.js"
+import LogoutButton from "../logout.jsx"
+import StreamAddressForm from "../components/StreamingForm.js"
 
 var AdminComponent = React.createClass({
    getInitialState: function() {

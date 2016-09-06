@@ -2,7 +2,7 @@ import { Router, Link, browserHistory} from 'react-router';
 import {render} from 'react-dom';
 import React from 'react';
 import $ from 'jquery';
-import {login} from './auth.jsx'
+import {login} from '../auth.jsx'
 // import validator from 'validator';
 // TODO: replace validator or make it accessible from import statement
 
