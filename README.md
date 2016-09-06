@@ -3,6 +3,8 @@ simple radio page, that will play stream from Icecast server
 
 #####to install project on clean VM:
 (Python related stuff)
+
+
 ```
 1. sudo apt-get install git
 2. sudo apt-get install python-pip
@@ -12,10 +14,23 @@ next line is for working python 3 terminal interpreter
 4. apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev
 5. sudo apt-get install build-essential python-dev python-setuptools python-pip python-smbus
 6. sudo apt-get install libffi-dev
-7. pip install virtualenv
-8. virtualenv -p python3.5 env
-9. pip install - r requirments.txt
+7. Install python >=3.5 (see Install Python Section)
+8. pip install virtualenv
+9. virtualenv -p python3.5 env
+10. pip install - r requirments.txt
 ```
+#####Install python(if not already installed)
+In case if you do not  have Python 3.5:
+```
+    wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
+    tar xf Python-3.5.1.tar.xz
+    cd Python-3.5.1.tar.xz
+    ./configure
+    make
+    make altinstall
+```
+
+
 #####to install project on clean VM:
 (JS related stuff)
 
@@ -27,32 +42,30 @@ next line is for working python 3 terminal interpreter
 ```
 (to omit issue with /usr/bin/env: node: No such file or directory)
  
- #####Install icecast2 server
+#####Install icecast2 server
 ```
 sudo apt-get install icecast2
 ```
 (default icecast config is here /etc/icecast2/icecast.xml)
-To run project
 
-In case if you do not  have Python 3.5:
+#####Production related
 ```
-    wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
-    tar xf Python-3.5.1.tar.xz
-    cd Python-3.5.1.tar.xz
-    ./configure
-    make
-    make altinstall
+1. sudo apt-get install nginx
+2. setup nginx conf file in sites-available(and simlink to sites enabled)
+3. sudo apt-et install supervisor  
 ```
-2. Install Prerequisites required for the packages this project uses:
+#####Setup Nginx
+...
+#####Setup Supervisor
+...
+
+To run project in dev env
 
 ```
-    sudo apt-get install libreadline-dev 
-    sudo apt-get install python3-dev    # debian / Ubuntu
+virtualenv env/bin/activate
+python app.py
 ```
-
-
-- go to your project dir
-- activate your virtual env
-(source env/bin/activate)
-- python app.py
- 
+#####TODO:
+ - add setup of streaming
+ - add setup on production
+ - pack this all monster into setup script, ansible, docker, anything...
