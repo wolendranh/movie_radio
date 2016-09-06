@@ -21,7 +21,7 @@ class BaseModel:
         self.collection = collection
         self.created = datetime.now()
 
-    async def get(self, collection, parameters):
+    async def get(self, parameters):
         """
         Args:
             collection: mongo DB collection
@@ -30,10 +30,10 @@ class BaseModel:
         Returns: result of Mongo DB query
 
         """
-        return await collection.find_one(parameters)
+        return await self.collection.find_one(parameters)
 
     async def get_or_create(self, parameters):
-        db_object = await self.get(collection=self.collection, parameters=parameters)
+        db_object = await self.get(parameters=parameters)
         if db_object:
             return db_object
         return await self.save(parameters)
@@ -43,7 +43,7 @@ class BaseModel:
 
     async def save(self, parameters):
         object_id =  await self.create_object(parameters=parameters)
-        return await self.get(collection=self.collection, parameters={'_id': object_id})
+        return await self.get(parameters={'_id': object_id})
 
     async def all(self):
         result = self.collection.find()
@@ -52,5 +52,9 @@ class BaseModel:
     async def filter(self, parameters):
         result = self.collection.find(parameters)
         return await result.to_list(length=None)
+
+    async def delete(self, parameters):
+        result = await self.collection.remove(parameters)
+        return result
 
 

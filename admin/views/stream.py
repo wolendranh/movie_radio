@@ -1,6 +1,7 @@
 from bson.json_util import dumps
 from aiohttp import web
 from admin.models import Stream
+from bson.objectid import ObjectId
 
 
 class Collection(web.View):
@@ -26,4 +27,29 @@ class Collection(web.View):
         return web.Response(status=200,
                             body=self.encode(
                                 data={'stream': stream}),
+                            content_type='application/json')
+
+    async def delete(self):
+        data = await self.request.post()
+        stream_data = {'_id': ObjectId(data['stream_id'])}
+        stream = Stream(self.request.db,
+                        data=stream_data)
+        result = await stream.delete(parameters=stream_data)
+        return web.Response(status=200,
+                            body=self.encode(
+                                data={'result': result}),
+                            content_type='application/json')
+
+
+class One(web.View):
+
+    def encode(self, data):
+        return dumps(data, indent=4).encode('utf-8')
+
+    async def get(self):
+        stream = Stream(db=self.request.db, data={})
+        stream_object = await stream.get(parameters={'active': 'true'})
+        return web.Response(status=200,
+                            body=self.encode(
+                                data={'stream': stream_object}),
                             content_type='application/json')

@@ -1,9 +1,25 @@
 # movie_radio
 simple radio page, that will play stream from Icecast server
 
+#####to install project on clean VM:
+(Python related stuff)
 
-To run project
 
+```
+1. sudo apt-get install git
+2. sudo apt-get install python-pip
+next line is for working python 3 terminal interpreter
+3. sudo apt-get install libreadline-dev
+ SSL related dev libs
+4. apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev
+5. sudo apt-get install build-essential python-dev python-setuptools python-pip python-smbus
+6. sudo apt-get install libffi-dev
+7. Install python >=3.5 (see Install Python Section)
+8. pip install virtualenv
+9. virtualenv -p python3.5 env
+10. pip install - r requirments.txt
+```
+#####Install python(if not already installed)
 In case if you do not  have Python 3.5:
 ```
     wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
@@ -13,16 +29,43 @@ In case if you do not  have Python 3.5:
     make
     make altinstall
 ```
-2. Install Prerequisites required for the packages this project uses:
+
+
+#####to install project on clean VM:
+(JS related stuff)
 
 ```
-    sudo apt-get install libreadline-dev
-    sudo apt-get install python3-dev    # debian / Ubuntu
+1. sudo apt-get install nodejs
+2. sudo apt-get install npm
+3. npm install
+4. ln -s /usr/bin/nodejs /usr/bin/node
 ```
-
-
-- go to your project dir
-- activate your virtual env
-(source env/bin/activate)
-- python app.py
+(to omit issue with /usr/bin/env: node: No such file or directory)
  
+#####Install icecast2 server
+```
+sudo apt-get install icecast2
+```
+(default icecast config is here /etc/icecast2/icecast.xml)
+
+#####Production related
+```
+1. sudo apt-get install nginx
+2. setup nginx conf file in sites-available(and simlink to sites enabled)
+3. sudo apt-et install supervisor  
+```
+#####Setup Nginx
+...
+#####Setup Supervisor
+...
+
+To run project in dev env
+
+```
+virtualenv env/bin/activate
+python app.py
+```
+#####TODO:
+ - add setup of streaming
+ - add setup on production
+ - pack this all monster into setup script, ansible, docker, anything...

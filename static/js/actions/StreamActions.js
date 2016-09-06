@@ -8,12 +8,27 @@ var StreamActions = {
    * @param  {string} host_address
    * @param  {string} active
    */
-  create: function(host_address, active) {
+  create: function(host_address, active, description) {
     AppDispatcher.dispatch({
       actionType: StreamConstants.STREAM_CREATE,
       host_address: host_address,
-      active: active
+      active: active,
+      description: description
     });
+  },
+
+  delete: function (_id) {
+    AppDispatcher.dispatch({
+        actionType: StreamConstants.STREAM_DELETE,
+        _id: _id
+    })
+  },
+  
+  fetch: function () {
+    AppDispatcher.dispatch({
+      actionType: StreamConstants.STREAM_FETCH
+    })
+    
   }
 
 };
