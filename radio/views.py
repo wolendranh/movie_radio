@@ -1,6 +1,10 @@
+import json
+
 import aiohttp_jinja2
 from aiohttp import web
 from aioredis import create_redis
+from etc.ice_fetcher import get_current_song
+from config.settings import STREAM_HOST, STREAM_PORT
 
 
 class HomeView(web.View):
@@ -22,6 +26,11 @@ async def push_current_track(request):
     response.prepare(request)
     redis = await create_redis(('localhost', 6379))
     channel = (await redis.subscribe('CHANNEL'))[0]
+
+    current_song = await get_current_song(host=STREAM_HOST, port=STREAM_PORT)
+    response.start(request)
+    response.write(b'event: track_update\r\n')
+    response.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
 
     while await channel.wait_message():
         message = await channel.get()
