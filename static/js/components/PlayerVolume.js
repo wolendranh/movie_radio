@@ -34,9 +34,9 @@ var Volume = React.createClass({
   },
 
   render: function () {
-
-    var _this = this, bars = this.props.classes.map(function(i) {
-      return <div onClick={ _this.soundHandler.bind(event, i) } className={ _this.getClass(i)}></div>;
+    //_this.props.classes.indexOf(i)
+    var _this = this, bars = this.props.classes.map((i, index) => {
+      return <div key={index} className={this.getClass(i)} onClick={(evt) => this.soundHandler(i, evt)}></div>;
     });
 
     return (

@@ -53,6 +53,7 @@ var Player = React.createClass({
     };
   },
 
+  // TODO: remove ugly "bind this" workarounds and move to arrow functions
   mountEventStream: function(){
     var eventSource = new EventSource("/api/track_stream");
     var that = this;
