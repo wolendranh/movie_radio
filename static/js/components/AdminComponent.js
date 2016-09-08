@@ -3,9 +3,10 @@ import { browserHistory} from 'react-router';
 import $ from 'jquery';
 import {render} from "react-dom"
 
-import QuoteBox from "./quote.jsx";
-import LogoutButton from "./logout.jsx"
-import StreamAddressForm from "./components/StreamingForm.js"
+// TODO fix imports
+import QuoteBox from "./QuoteBoxComponent.js";
+import LogoutButton from "../logout.jsx"
+import StreamAddressForm from "../components/StreamingForm.js"
 
 var AdminComponent = React.createClass({
    getInitialState: function() {

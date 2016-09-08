@@ -1,6 +1,8 @@
 SITE_PORT = '8080'
 SITE_HOST = '127.0.0.1'
-STREAM_HOST = 'http://barmaglot.com'
+
+STREAM_HOST = 'http://www.radiobarmaglot.com'
+STREAM_PORT = '20000'
 
 MONGO_DB_NAME = 'barmaglot'
 MONGO_HOST = 'localhost'
