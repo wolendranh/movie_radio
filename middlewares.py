@@ -1,6 +1,6 @@
 from aiohttp import web
 from aiohttp_session import get_session
-from settings import *
+from config.settings import *
 
 
 async def db_handler(app, handler):

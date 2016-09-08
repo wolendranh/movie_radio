@@ -10,7 +10,7 @@ import jinja2
 from motor import motor_asyncio as ma
 
 from routes import routes, API_ROUTES
-from settings import *
+from config.settings import *
 from middlewares import authorize, db_handler
 
 async def init(loop):

@@ -1,10 +1,7 @@
-from datetime import datetime
-from settings import STREAM_COLLECTION, QUOTE_COLLECTION
+from config.settings import STREAM_COLLECTION, QUOTE_COLLECTION
 from bson.objectid import ObjectId
 
 from radio_db.models import BaseModel
-
-
 
 
 class Stream(BaseModel):
