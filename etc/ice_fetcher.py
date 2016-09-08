@@ -7,7 +7,7 @@ import getopt
 
 import aiohttp
 from aioredis import create_redis
-from settings import STREAM_PORT, STREAM_HOST
+from config.settings import STREAM_PORT, STREAM_HOST
 
 METADATA_FILE = 'status-json.xsl'
 
