@@ -37,7 +37,6 @@ async def get_current_song(host, port):
         title = body['icestats']['source'].get('title')
     except KeyError:
         return None
-    await asyncio.sleep(5)
     return title
 
 
