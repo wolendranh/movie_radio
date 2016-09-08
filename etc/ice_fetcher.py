@@ -57,8 +57,8 @@ if __name__ == '__main__':
         logging.info('Using settings from sys args')
     else:
         try:
-            from movie_radio.settings import SITE_PORT, SITE_HOST
-            host, port = SITE_HOST, SITE_PORT
+            from movie_radio.settings import STREAM_PORT, STREAM_HOST
+            host, port = STREAM_HOST, STREAM_PORT
             logging.info('Using imported settings')
         except ImportError:
             host, port = 'http://barmaglot.com', '8000'

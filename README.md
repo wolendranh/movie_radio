@@ -48,6 +48,18 @@ sudo apt-get install icecast2
 ```
 (default icecast config is here /etc/icecast2/icecast.xml)
 
+#####Install Redis
+```
+wget http://download.redis.io/releases/redis-stable.tar.gz
+tar xzf redis-stable.tar.gz
+cd redis-stable
+make
+make install
+cd utils
+sudo ./install_server.sh
+```
+
+
 #####Production related
 ```
 1. sudo apt-get install nginx
