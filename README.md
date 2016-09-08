@@ -54,6 +54,14 @@ sudo apt-get install icecast2
 2. setup nginx conf file in sites-available(and simlink to sites enabled)
 3. sudo apt-et install supervisor  
 ```
+#####Install Redis(for pub sub)
+```
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+```
+
 #####Setup Nginx
 ...
 #####Setup Supervisor
