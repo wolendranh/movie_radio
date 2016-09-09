@@ -28,7 +28,6 @@ async def push_current_track(request):
     stream.headers['Content-Type'] = 'text/event-stream'
     stream.headers['Cache-Control'] = 'no-cache'
     stream.headers['Connection'] = 'keep-alive'
-    stream.enable_chunked_encoding()
 
     await stream.prepare(request)
 
