@@ -9,6 +9,11 @@ async def db_handler(app, handler):
             response = await handler(request)
             return response
 
+        response = await handler(request)
+        if not isinstance(response, web.Response):
+            # most likely we got here an Stream or WebSocket
+            return response
+
         request.db = app.db
         response = await handler(request)
         return response

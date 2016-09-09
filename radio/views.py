@@ -1,4 +1,5 @@
 import logging
+import re
 
 from concurrent.futures import CancelledError
 
@@ -23,23 +24,29 @@ async def push_current_track(request):
     if request.headers['Accept'] != 'text/event-stream':
         raise web.HTTPFound('/')
 
-    response = web.StreamResponse(status=200, headers={
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
-    })
+    stream = web.StreamResponse()
+    stream.headers['Content-Type'] = 'text/event-stream'
+    stream.headers['Cache-Control'] = 'no-cache'
+    stream.headers['Connection'] = 'keep-alive'
+    stream.enable_chunked_encoding()
+
+    await stream.prepare(request)
+
     redis = await create_redis(('localhost', 6379))
     channel = (await redis.subscribe('CHANNEL'))[0]
     try:
-        response.start(request)
         current_song = await get_current_song(host=STREAM_HOST, port=STREAM_PORT)
-        response.write(b'event: track_update\r\n')
-        response.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
-        while await channel.wait_message():
+        stream.write(b'event: track_update\r\n')
+        stream.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
+        await stream.drain()
+        while (await channel.wait_message()):
                 message = await channel.get()
-                response.write(b'event: track_update\r\n')
-                response.write(b'data: ' + message + b'\r\n\r\n')
+                stream.write(b'event: track_update\r\n')
+                stream.write(b'data: ' + message + b'\r\n\r\n')
+                await stream.drain()
     except (ClientOSError, CancelledError) as e:
         server_logger.warning('Error occurred while reading from Redis, next song {}!'.format(str(e)))
-    return response
+
+    await stream.write_eof()
+    return stream
 

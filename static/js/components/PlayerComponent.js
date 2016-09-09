@@ -39,8 +39,7 @@ var Player = React.createClass({
     this.loadPlayer();
    },
 
-  testMe: function(f, e){
-      console.log(e);
+  updateSong: function(f, e){
       this.setState({currentSong: f.data})
 
   },
@@ -58,17 +57,13 @@ var Player = React.createClass({
     var eventSource = new EventSource("/api/track_stream");
     var that = this;
 
-    eventSource.onmessage = function (event, shit) {
-      console.log(event, shit)
-    };
-
     var makeListener = function(f) {
         return {
             handleEvent: f
           };
         };
 
-    eventSource.addEventListener("track_update", makeListener(this.testMe));
+    eventSource.addEventListener("track_update", makeListener(this.updateSong));
 
     eventSource.onerror = function(event){
         console.log(event);

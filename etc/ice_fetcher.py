@@ -20,7 +20,7 @@ def main(host, port):
         new_title = loop.run_until_complete(get_current_song(host, port))
         if new_title != title:
             redis = loop.run_until_complete(create_redis(('localhost', 6379)))
-            loop.run_until_complete(redis.publish('CHANNEL', json.dumps(title)))
+            loop.run_until_complete(redis.publish('CHANNEL', new_title))
             title = new_title
     loop.close()
     return False
