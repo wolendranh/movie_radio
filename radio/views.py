@@ -38,14 +38,13 @@ async def push_current_track(request):
         await response.drain()
     except (ClientOSError, CancelledError) as e:
         server_logger.warning('Error occurred while reading from Redis, current song {}!'.format(str(e)))
-        while True:
-            while await channel.wait_message():
-                try:
-                    message = await channel.get()
-                    response.write(b'event: track_update\r\n')
-                    response.write(b'data: ' + message + b'\r\n\r\n')
-                except CancelledError as e:
-                    server_logger.warning('Error occurred while reading from Redis, next song {}!'.format(str(e)))
-            await response.drain()
+        while await channel.wait_message():
+            try:
+                message = await channel.get()
+                response.write(b'event: track_update\r\n')
+                response.write(b'data: ' + message + b'\r\n\r\n')
+            except CancelledError as e:
+                server_logger.warning('Error occurred while reading from Redis, next song {}!'.format(str(e)))
+        await response.drain()
     return response
 
