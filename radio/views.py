@@ -30,16 +30,15 @@ async def push_current_track(request):
     })
     redis = await create_redis(('localhost', 6379))
     channel = (await redis.subscribe('CHANNEL'))[0]
-    while True:
-        response.start(request)
-        try:
-            current_song = await get_current_song(host=STREAM_HOST, port=STREAM_PORT)
-            response.write(b'event: track_update\r\n')
-            response.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
-            await response.drain()
-        except (ClientOSError, CancelledError) as e:
-            server_logger.warning('Error occurred while reading from Redis, current song {}!'.format(str(e)))
-
+    response.start(request)
+    try:
+        current_song = await get_current_song(host=STREAM_HOST, port=STREAM_PORT)
+        response.write(b'event: track_update\r\n')
+        response.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
+        await response.drain()
+    except (ClientOSError, CancelledError) as e:
+        server_logger.warning('Error occurred while reading from Redis, current song {}!'.format(str(e)))
+        while True:
             while await channel.wait_message():
                 try:
                     message = await channel.get()
