@@ -37,6 +37,7 @@ async def get_current_song(host, port):
         body = await response.json()
     except Exception as e:
         server_logger.error('Error occurred while getting response from icecast {}!'.format(str(e)))
+        return None
     try:
         title = body['icestats']['source'].get('title')
     except KeyError:
