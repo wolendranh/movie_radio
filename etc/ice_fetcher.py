@@ -11,9 +11,10 @@ from config.settings import STREAM_PORT, STREAM_HOST
 
 METADATA_FILE = 'status-json.xsl'
 
+server_logger = logging.getLogger('aiohttp.server')
 
 def main(host, port):
-    logging.info('Got params connection host {0}, port {1}'.format(host, port))
+    server_logger.info('Got params connection host {0}, port {1}'.format(host, port))
     loop = asyncio.get_event_loop()
     title = None
     while True:
@@ -30,9 +31,12 @@ async def get_current_song(host, port):
     if port:
         host = ':'.join([host, port])
     host = '/'.join([host, METADATA_FILE])
-    with aiohttp.ClientSession() as client:
-        response = await client.request('GET', host)
-    body = await response.json()
+    try:
+        with aiohttp.ClientSession() as client:
+            response = await client.request('GET', host)
+        body = await response.json()
+    except Exception as e:
+        server_logger.error('Error occurred while getting response from icecast {}!'.format(str(e)))
     try:
         title = body['icestats']['source'].get('title')
     except KeyError:
