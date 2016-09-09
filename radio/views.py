@@ -32,12 +32,12 @@ async def push_current_track(request):
         response.prepare(request)
         response.write(b'event: track_update\r\n')
         response.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
-        return response
+        await resp.drain()
 
     while await channel.wait_message():
         message = await channel.get()
         response.prepare(request)
         response.write(b'event: track_update\r\n')
         response.write(b'data: ' + message + b'\r\n\r\n')
-
+    await response.drain()
     return response
