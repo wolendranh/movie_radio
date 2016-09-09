@@ -28,13 +28,15 @@ async def push_current_track(request):
     channel = (await redis.subscribe('CHANNEL'))[0]
 
     current_song = await get_current_song(host=STREAM_HOST, port=STREAM_PORT)
-    response.start(request)
-    response.write(b'event: track_update\r\n')
-    response.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
+    if current_song:
+        response.prepare(request)
+        response.write(b'event: track_update\r\n')
+        response.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
+        return response
 
     while await channel.wait_message():
         message = await channel.get()
-        response.start(request)
+        response.prepare(request)
         response.write(b'event: track_update\r\n')
         response.write(b'data: ' + message + b'\r\n\r\n')
 
