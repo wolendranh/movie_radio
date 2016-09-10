@@ -44,7 +44,6 @@ async def push_current_track(request):
                 stream.write(b'event: track_update\r\n')
                 stream.write(b'data: ' + message + b'\r\n\r\n')
                 print("wrote message {}".format(message))
-                await stream.drain()
     except (ClientOSError, CancelledError) as e:
         raise e
         # server_logger.warning('Error occurred while reading from Redis, next song {}!'.format(str(e)))
