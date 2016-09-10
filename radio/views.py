@@ -37,7 +37,6 @@ async def push_current_track(request):
         current_song = await get_current_song(host=STREAM_HOST, port=STREAM_PORT)
         stream.write(b'event: track_update\r\n')
         stream.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
-        await stream.drain()
         while (await channel.wait_message()):
                 message = await channel.get()
                 print ("new message {}".format(message))
