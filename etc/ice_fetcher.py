@@ -42,6 +42,7 @@ async def get_current_song(host, port):
         return None
     try:
         title = body['icestats']['source'].get('title')
+        print('got response to {}'.format(host))
     except KeyError:
         return None
     return title

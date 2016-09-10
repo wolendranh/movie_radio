@@ -40,8 +40,10 @@ async def push_current_track(request):
         await stream.drain()
         while (await channel.wait_message()):
                 message = await channel.get()
+                print ("new message {}".format(message))
                 stream.write(b'event: track_update\r\n')
                 stream.write(b'data: ' + message + b'\r\n\r\n')
+                print("wrote message {}".format(message))
                 await stream.drain()
     except (ClientOSError, CancelledError) as e:
         raise e
