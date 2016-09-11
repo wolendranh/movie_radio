@@ -37,7 +37,7 @@ async def get_current_song(icecast_host, icecast_port):
     Returns: current song if it is possible, None if not
 
     """
-    if port:
+    if icecast_port:
         icecast_host = ':'.join([icecast_host, icecast_port])
     icecast_host = '/'.join([icecast_host, METADATA_FILE])
     try:
