@@ -52,19 +52,23 @@ async def push_current_track(request):
             pass
 
     except Exception as e:
+        server_logger.error('got error while getting current song {}'.format(e))
 
-        # going into loop to get updates fro redis
-        while await channel.wait_message():
-                message = await channel.get()
-                if message:
-                    # it is possible that there will be no song playing
-                    # so we check it. In other case Client will kill server with
-                    # every 3 second request for new song.
-                    stream.write(b'event: track_update\r\n')
-                    stream.write(b'data: ' + message + b'\r\n\r\n')
-                else:
-                    continue
-
+    # going into loop to get updates fro redis
+    while await channel.wait_message():
+        try:
+            message = await channel.get()
+            if message:
+                # it is possible that there will be no song playing
+                # so we check it. In other case Client will kill server with
+                # every 3 second request for new song.
+                stream.write(b'event: track_update\r\n')
+                stream.write(b'data: ' + message + b'\r\n\r\n')
+            else:
+                continue
+        except Exception as e:
+            server_logger.error('got error while getting next song {}'.format(e))
+            continue
     # here we mark that response processing is finished
     # After write_eof() call any manipulations with the response object are forbidden.
     await stream.write_eof()
