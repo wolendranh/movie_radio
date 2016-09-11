@@ -8,6 +8,7 @@ import aiohttp
 from aioredis import create_redis
 from config.settings import STREAM_PORT, STREAM_HOST
 
+
 # icacast metadata file location
 METADATA_FILE = 'status-json.xsl'
 
@@ -18,10 +19,10 @@ def main(host, port):
     server_logger.info('Got params connection host {0}, port {1}'.format(host, port))
     loop = asyncio.get_event_loop()
     title = None
+    redis = loop.run_until_complete(create_redis(('localhost', 6379)))
     while True:
         new_title = loop.run_until_complete(get_current_song(host, port))
         if new_title != title:
-            redis = loop.run_until_complete(create_redis(('localhost', 6379)))
             loop.run_until_complete(redis.publish('CHANNEL', new_title))
             title = new_title
     loop.close()
