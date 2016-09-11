@@ -63,8 +63,8 @@ async def push_current_track(request):
                 else:
                     continue
 
-    except (ClientOSError, CancelledError) as e:
-        server_logger.warning('Error occurred while reading from Redis, next song {}!'.format(str(e)))
+    except Exception as e:
+        server_logger.error('Error occurred while reading from Redis, next song {}!'.format(str(e)))
 
     # here we mark that response processing is finished
     # After write_eof() call any manipulations with the response object are forbidden.
