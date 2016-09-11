@@ -21,6 +21,13 @@ class HomeView(web.View):
 
 
 async def push_current_track(request):
+    """
+    Args:
+        request: HTTP request (aiohttp.web_reqrep.Request)
+
+    View that handle SSE updates of current track obtained from Icecast server
+    using keep-alive text/event-stream Response
+    """
     if request.headers['Accept'] != 'text/event-stream':
         raise web.HTTPFound('/')
 

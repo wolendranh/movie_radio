@@ -1,4 +1,3 @@
-import json
 import os
 import logging
 import asyncio
@@ -9,9 +8,11 @@ import aiohttp
 from aioredis import create_redis
 from config.settings import STREAM_PORT, STREAM_HOST
 
+# icacast metadata file location
 METADATA_FILE = 'status-json.xsl'
 
 server_logger = logging.getLogger('aiohttp.server')
+
 
 def main(host, port):
     server_logger.info('Got params connection host {0}, port {1}'.format(host, port))
@@ -27,24 +28,30 @@ def main(host, port):
     return False
 
 
-async def get_current_song(host, port):
+async def get_current_song(icecast_host, icecast_port):
+    """
+    Args:
+        icecast_host: host where Icecast 2 server running
+        icecast_port: port of Icecast 2 server
+
+    Returns: current song if it is possible, None if not
+
+    """
     if port:
-        host = ':'.join([host, port])
-    host = '/'.join([host, METADATA_FILE])
-    print ('making request to {}'.format(host))
+        icecast_host = ':'.join([icecast_host, icecast_port])
+    icecast_host = '/'.join([icecast_host, METADATA_FILE])
     try:
         with aiohttp.ClientSession() as client:
-            response = await client.request('GET', host)
+            response = await client.request('GET', icecast_host)
         body = await response.json()
     except Exception as e:
-        print('making request to {}'.format(host))
         server_logger.error('Error occurred while getting response from icecast {}!'.format(str(e)))
         return None
     try:
         title = body['icestats']['source'].get('title')
-        print('got response to {}'.format(host))
     except KeyError:
         return None
+
     return title
 
 
