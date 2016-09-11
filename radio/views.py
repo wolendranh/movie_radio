@@ -51,6 +51,8 @@ async def push_current_track(request):
             # pass because no song available, will wait for next one from Redis
             pass
 
+    except Exception as e:
+
         # going into loop to get updates fro redis
         while await channel.wait_message():
                 message = await channel.get()
@@ -62,9 +64,6 @@ async def push_current_track(request):
                     stream.write(b'data: ' + message + b'\r\n\r\n')
                 else:
                     continue
-
-    except Exception as e:
-        server_logger.error('Error occurred while reading from Redis, next song {}!'.format(str(e)))
 
     # here we mark that response processing is finished
     # After write_eof() call any manipulations with the response object are forbidden.
