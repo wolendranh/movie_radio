@@ -42,7 +42,8 @@ async def push_current_track(request):
     redis = await create_redis(('localhost', 6379))
     channel = (await redis.subscribe('CHANNEL'))[0]
     try:
-        current_song = await get_current_song(host=STREAM_HOST, port=STREAM_PORT)
+        current_song = await get_current_song(icecast_host=STREAM_HOST,
+                                              icecast_port=STREAM_PORT)
         if current_song:
             stream.write(b'event: track_update\r\n')
             stream.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
