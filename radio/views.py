@@ -1,12 +1,12 @@
 import logging
-import re
-
 from concurrent.futures import CancelledError
 
 import aiohttp_jinja2
 from aiohttp.errors import ClientOSError
 from aiohttp import web
 from aioredis import create_redis
+
+
 from etc.ice_fetcher import get_current_song
 from config.settings import STREAM_HOST, STREAM_PORT
 
@@ -24,6 +24,7 @@ async def push_current_track(request):
     if request.headers['Accept'] != 'text/event-stream':
         raise web.HTTPFound('/')
 
+    # Construct Stream Response for SSE
     stream = web.StreamResponse()
     stream.headers['Content-Type'] = 'text/event-stream'
     stream.headers['Cache-Control'] = 'no-cache'
@@ -35,28 +36,30 @@ async def push_current_track(request):
     channel = (await redis.subscribe('CHANNEL'))[0]
     try:
         current_song = await get_current_song(host=STREAM_HOST, port=STREAM_PORT)
-        print ('===' * 10)
-        print("new message current song {}".format(current_song))
-        print('===' * 10)
-        stream.write(b'event: track_update\r\n')
-        stream.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
-        print ('===' * 10)
-        print("Write  message current song {}".format(current_song))
-        print('===' * 10)
-        while (await channel.wait_message()):
+        if current_song:
+            stream.write(b'event: track_update\r\n')
+            stream.write(b'data: ' + str.encode(current_song) + b'\r\n\r\n')
+        else:
+            # pass because no song available, will wait for next one from Redis
+            pass
+
+        # going into loop to get updates fro redis
+        while await channel.wait_message():
                 message = await channel.get()
-                print('===' * 10)
-                print("new song recieved  message new song {}".format(message))
-                print('===' * 10)
-                stream.write(b'event: track_update\r\n')
-                stream.write(b'data: ' + message + b'\r\n\r\n')
-                print('===' * 10)
-                print("ne song Write message new song {}".format(message))
-                print('===' * 10)
+                if message:
+                    # it is possible that there will be no song playing
+                    # so we check it. In other case Client will kill server with
+                    # every 3 second request for new song.
+                    stream.write(b'event: track_update\r\n')
+                    stream.write(b'data: ' + message + b'\r\n\r\n')
+                else:
+                    continue
+
     except (ClientOSError, CancelledError) as e:
-        raise e
-        # server_logger.warning('Error occurred while reading from Redis, next song {}!'.format(str(e)))
+        server_logger.warning('Error occurred while reading from Redis, next song {}!'.format(str(e)))
 
+    # here we mark that response processing is finished
+    # After write_eof() call any manipulations with the response object are forbidden.
     await stream.write_eof()
-    return stream
 
+    return stream

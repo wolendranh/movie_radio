@@ -12,6 +12,7 @@ async def db_handler(app, handler):
         response = await handler(request)
         if not isinstance(response, web.Response):
             # most likely we got here an Stream or WebSocket
+            # example: radio.views.push_current_track
             return response
 
         request.db = app.db
