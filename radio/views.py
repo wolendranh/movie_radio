@@ -40,7 +40,7 @@ async def push_current_track(request):
     await stream.prepare(request)
 
     redis = await create_redis(('localhost', 6379))
-    channel = (await redis.subscribe('CHANNEL'))[0]
+    channel, _ = await redis.subscribe('CHANNEL', '')
     try:
         current_song = await get_current_song(icecast_host=STREAM_HOST,
                                               icecast_port=STREAM_PORT)
@@ -57,9 +57,9 @@ async def push_current_track(request):
     # going into loop to get updates fro redis
     try:
         try:
-            while await channel.wait_message():
+            async for message in channel.iter():
                 try:
-                    message = await channel.get()
+                    # message = await channel.get()
                     if message:
                         # it is possible that there will be no song playing
                         # so we check it. In other case Client will kill server with
