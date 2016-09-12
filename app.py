@@ -25,7 +25,7 @@ async def init(loop):
         db_handler,
         ], debug=True)
     aiohttp_debugtoolbar.setup(app)
-    handler = app.make_handler(keep_alive=20)
+    handler = app.make_handler(keep_alive=600, keep_alive_on=True)
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
     # route part
