@@ -24,8 +24,8 @@ async def init(loop):
         session_middleware(EncryptedCookieStorage(SECRET_KEY)),
         db_handler,
         ], debug=True)
-    # aiohttp_debugtoolbar.setup(app)
-    handler = app.make_handler()
+    aiohttp_debugtoolbar.setup(app)
+    handler = app.make_handler(keep_alive=20)
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
     # route part
