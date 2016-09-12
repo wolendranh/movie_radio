@@ -56,20 +56,26 @@ async def push_current_track(request):
 
     # going into loop to get updates fro redis
     try:
-        while await channel.wait_message():
-            try:
-                message = await channel.get()
-                if message:
-                    # it is possible that there will be no song playing
-                    # so we check it. In other case Client will kill server with
-                    # every 3 second request for new song.
-                    stream.write(b'event: track_update\r\n')
-                    stream.write(b'data: ' + message + b'\r\n\r\n')
-                else:
+        try:
+            while await channel.wait_message():
+                try:
+                    message = await channel.get()
+                    if message:
+                        # it is possible that there will be no song playing
+                        # so we check it. In other case Client will kill server with
+                        # every 3 second request for new song.
+                        stream.write(b'event: track_update\r\n')
+                        stream.write(b'data: ' + message + b'\r\n\r\n')
+                    else:
+                        continue
+                except Exception as e:
+                    server_logger.error('got error while getting next song {}'.format(e))
                     continue
-            except Exception as e:
-                server_logger.error('got error while getting next song {}'.format(e))
-                continue
+        except Exception as e:
+            import traceback
+            server_logger.error('Connection with redis broken? {}'.format(e))
+            traceback.print_exc()
+
     except CancelledError as e:
         server_logger.error('Feature got canceled {}'.format(e))
     # here we mark that response processing is finished
