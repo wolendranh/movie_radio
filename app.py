@@ -10,8 +10,11 @@ import jinja2
 from motor import motor_asyncio as ma
 
 from routes import routes, API_ROUTES
-from settings import *
+from config.settings import *
 from middlewares import authorize, db_handler
+
+#TODO: FIX FUCKING MIDDLEWARES FOR STREAM RESPONSE !!!
+
 
 async def init(loop):
 
@@ -20,7 +23,7 @@ async def init(loop):
     app = web.Application(loop=loop,middlewares=[
         session_middleware(EncryptedCookieStorage(SECRET_KEY)),
         db_handler,
-        ],debug=True)
+        ], debug=True)
     aiohttp_debugtoolbar.setup(app)
     handler = app.make_handler()
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))

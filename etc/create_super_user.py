@@ -2,7 +2,7 @@ import argparse
 import asyncio
 from auth.models import User
 from motor import motor_asyncio as ma
-from settings import MONGO_HOST, MONGO_DB_NAME
+from config.settings import MONGO_HOST, MONGO_DB_NAME
 
 
 async def create_super_user(*args, **kwargs):

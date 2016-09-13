@@ -1,12 +1,18 @@
 from aiohttp import web
 from aiohttp_session import get_session
-from settings import *
+from config.settings import *
 
 
 async def db_handler(app, handler):
     async def middleware(request):
         if request.path.startswith('/static/') or request.path.startswith('/_debugtoolbar'):
             response = await handler(request)
+            return response
+
+        response = await handler(request)
+        if not isinstance(response, web.Response):
+            # most likely we got here an Stream or WebSocket
+            # example: radio.views.push_current_track
             return response
 
         request.db = app.db

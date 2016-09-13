@@ -1,5 +1,5 @@
 from auth.utils import check_password, get_hashed_password
-from settings import USER_COLLECTION
+from config.settings import USER_COLLECTION
 
 async def create_user(collection, user_data):
     # here will iteraction on storing user with hashing pass into Mongo

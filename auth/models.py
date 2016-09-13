@@ -2,7 +2,7 @@ import os
 import binascii
 from datetime import datetime
 from bson.objectid import ObjectId
-from settings import USER_COLLECTION, TOKEN_COLLECTION
+from config.settings import USER_COLLECTION, TOKEN_COLLECTION
 from auth.services import (
     get_user,
     create_user,

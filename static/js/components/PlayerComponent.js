@@ -1,8 +1,8 @@
 import {render} from 'react-dom';
 import React from 'react';
 
-import PlayerStore from "./stores/PlayerStore.js"
-import PlayerActions from "./actions/PlayerActions.js"
+import PlayerStore from "../stores/PlayerStore.js"
+import PlayerActions from "../actions/PlayerActions.js"
 import Controls from "./PlayerControls.js"
 import Volume from "./PlayerVolume.js"
 import FooterComponent from "./FooterComponent.js"
@@ -39,8 +39,7 @@ var Player = React.createClass({
     this.loadPlayer();
    },
 
-  testMe: function(f, e){
-      console.log(e);
+  updateSong: function(f, e){
       this.setState({currentSong: f.data})
 
   },
@@ -53,13 +52,10 @@ var Player = React.createClass({
     };
   },
 
+  // TODO: remove ugly "bind this" workarounds and move to arrow functions
   mountEventStream: function(){
     var eventSource = new EventSource("/api/track_stream");
     var that = this;
-
-    eventSource.onmessage = function (event, shit) {
-      console.log(event, shit)
-    };
 
     var makeListener = function(f) {
         return {
@@ -67,7 +63,7 @@ var Player = React.createClass({
           };
         };
 
-    eventSource.addEventListener("track_update", makeListener(this.testMe));
+    eventSource.addEventListener("track_update", makeListener(this.updateSong));
 
     eventSource.onerror = function(event){
         console.log(event);

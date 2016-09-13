@@ -1,15 +1,5 @@
-import os
-import binascii
 from datetime import datetime
-from bson.objectid import ObjectId
-from settings import USER_COLLECTION, TOKEN_COLLECTION
-from auth.services import (
-    get_user,
-    create_user,
-    check_user_auth,
-    create_token,
-    get_token
-)
+
 
 class BaseModel:
     """

@@ -48,12 +48,32 @@ sudo apt-get install icecast2
 ```
 (default icecast config is here /etc/icecast2/icecast.xml)
 
+#####Install Redis
+```
+wget http://download.redis.io/releases/redis-stable.tar.gz
+tar xzf redis-stable.tar.gz
+cd redis-stable
+make
+make install
+cd utils
+sudo ./install_server.sh
+```
+
+
 #####Production related
 ```
 1. sudo apt-get install nginx
 2. setup nginx conf file in sites-available(and simlink to sites enabled)
 3. sudo apt-et install supervisor  
 ```
+#####Install Redis(for pub sub)
+```
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+```
+
 #####Setup Nginx
 ...
 #####Setup Supervisor
