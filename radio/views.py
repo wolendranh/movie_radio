@@ -1,10 +1,10 @@
 import logging
 from concurrent.futures import CancelledError
 
+import asyncio
 import aiohttp_jinja2
-from aiohttp.errors import ClientOSError
 from aiohttp import web
-from aioredis import create_redis, create_reconnecting_redis
+from aioredis import create_redis
 
 
 from etc.ice_fetcher import get_current_song
@@ -57,20 +57,21 @@ async def push_current_track(request):
     # going into loop to get updates fro redis
     try:
         try:
-            async for message in channel.iter():
-                try:
-                    # message = await channel.get()
-                    if message:
-                        # it is possible that there will be no song playing
-                        # so we check it. In other case Client will kill server with
-                        # every 3 second request for new song.
-                        stream.write(b'event: track_update\r\n')
-                        stream.write(b'data: ' + message + b'\r\n\r\n')
-                    else:
-                        continue
-                except Exception as e:
-                    server_logger.error('got error while getting next song {}'.format(e))
-                    continue
+            while True:
+                # check the channel queue size
+                if channel._queue.qsize() > 0:
+                    for msg in range(channel._queue.qsize()):
+                        message = await channel.get()
+                        if message:
+                            # it is possible that there will be no song playing
+                            # so we check it. In other case Client will kill server with
+                            # every 3 second request for new song.
+                            stream.write(b'event: track_update\r\n')
+                            stream.write(b'data: ' + message + b'\r\n\r\n')
+                else:
+                    stream.write(b'event: ping\r\n')
+                    stream.write(b'data: ' + b'waiting...' + b'\r\n\r\n')
+                    await asyncio.sleep(10, loop=request.app.loop)
         except Exception as e:
             import traceback
             server_logger.error('Connection with redis broken? {}'.format(e))
