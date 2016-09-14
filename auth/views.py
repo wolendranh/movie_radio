@@ -67,14 +67,3 @@ class Login(web.View):
                                      status=200)
         else:
             return web.json_response(content_type='application/json', text=convert_json({'login': 'false'}), status=401)
-
-
-class SignOut(web.View):
-
-    async def get(self, **kw):
-        session = await get_session(self.request)
-        if session.get('user'):
-            del session['user']
-            redirect(self.request, 'login')
-        else:
-            raise web.HTTPForbidden(body=b'Forbidden')
