@@ -9,7 +9,8 @@
     "validator-js": "*",
     "flux": "^2.0.1",
     "events": "*",
-    "bootstrap": "*"
+    "bootstrap": "*",
+    "node-schedule": "1.1.1"
 
   },
   "devDependencies": {

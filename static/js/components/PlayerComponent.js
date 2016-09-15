@@ -8,6 +8,8 @@ import Volume from "./PlayerVolume.js"
 import FooterComponent from "./FooterComponent.js"
 
 
+import { schedule } from '../time.js';
+
 function getActiveStream() {
   return PlayerStore.getActive()
 }
@@ -20,6 +22,7 @@ var Player = React.createClass({
     this.refs.audio.volume = 0.4;
     PlayerActions.get();
     this.mountEventStream();
+    schedule();
   },
     componentWillUnmount: function() {
         PlayerStore.removeChangeListener(this._onChange);

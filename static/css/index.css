@@ -53,12 +53,3 @@
   -webkit-animation-timing-function: linear;
 }
 
-/*<script>*/
-    /*$( document ).ready(function() {*/
-        /*$( "body" ).toggleClass( "morning-day" );*/
-        /*setTimeout(function() {}, 30000);*/
-        /*$( "body.morning-day" ).toggleClass( "day-evening" );*/
-        /*setTimeout(function() {}, 30000);*/
-        /*$( "body.day-evening" ).toggleClass( "evening-morning" );*/
-    /*});*/
-/*</script>*/
