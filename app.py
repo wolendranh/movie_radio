@@ -11,6 +11,7 @@ from motor import motor_asyncio as ma
 
 from routes import routes, API_ROUTES
 from config.settings import *
+import config.settings
 from middlewares import authorize, db_handler
 
 #TODO: FIX FUCKING MIDDLEWARES FOR STREAM RESPONSE !!!
@@ -39,6 +40,7 @@ async def init(loop):
     # db connect
     app.client = ma.AsyncIOMotorClient(MONGO_HOST)
     app.db = app.client[MONGO_DB_NAME]
+    app.settings = config.settings
     # end db connect
     serv_generator = loop.create_server(handler, SITE_HOST, SITE_PORT)
     return serv_generator, handler, app

@@ -10,6 +10,12 @@ var PlayerActions = {
     AppDispatcher.dispatch({
       actionType: PlayerConstants.PLAYER_GET_STREAM
     });
+  },
+  
+  getTrack: function () {
+    AppDispatcher.dispatch({
+      actionType: PlayerConstants.PLAYER_GET_TRACK
+    });    
   }
 };
 
