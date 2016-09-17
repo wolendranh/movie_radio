@@ -10,8 +10,8 @@ import jinja2
 from motor import motor_asyncio as ma
 
 from routes import routes, API_ROUTES
-from config.settings import *
-import config.settings
+
+import config.settings as settings
 from middlewares import authorize, db_handler
 
 #TODO: FIX FUCKING MIDDLEWARES FOR STREAM RESPONSE !!!
@@ -38,11 +38,13 @@ async def init(loop):
         app.router.add_route(route[0], route[1], route[2], name=route[3])
     # end route part
     # db connect
-    app.client = ma.AsyncIOMotorClient(MONGO_HOST)
-    app.db = app.client[MONGO_DB_NAME]
-    app.settings = config.settings
+    app.client = ma.AsyncIOMotorClient(settings.MONGO_HOST)
+    app.db = app.client[settings.MONGO_DB_NAME]
+    app.settings = settings
     # end db connect
-    serv_generator = loop.create_server(handler, SITE_HOST, SITE_PORT)
+    serv_generator = loop.create_server(handler,
+                                        settings.SITE_HOST,
+                                        settings.SITE_PORT)
     return serv_generator, handler, app
 
 loop = asyncio.get_event_loop()
