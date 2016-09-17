@@ -5,9 +5,11 @@ import AppDispatcher from "../dispatcher/AppDispatcher.js";
 import constants from "../constants/PlayerConstants.js";
 
 var CHANGE_EVENT = 'player_change';
+var TRACK_UPDATE_EVENT = 'track_update';
 
 // variable that will hold active stream
 var _stream = '';
+var _track = '';
 
 /**
  * Fetches one stream from database which is currently active
@@ -30,7 +32,29 @@ function fetchOneStream(){
           PlayerStore.emitChange();
       }
     });
+    
 }
+
+
+function fetchTrack(){
+    "use strict";
+    $.ajax({
+      url: '/api/track_info',
+      type: 'GET',
+      success: function(data) {
+        _track = data.track
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.route.url, status, err.toString());
+      },
+      complete: function(){
+          // fire change event
+          PlayerStore.emitTrackUpdate();
+      }
+    });
+    
+}
+
 
 /**
  * Stream store class that is inherited from node JS EventEmitter
@@ -44,6 +68,10 @@ class PlayerStoreBaseClass extends EventEmitter {
   getActive() {
     return _stream;
   }
+    
+  getTrack() {
+    return _track;
+  }    
 
   /**
    * Emit change to give ability to do some actions after subscribing for it
@@ -52,7 +80,28 @@ class PlayerStoreBaseClass extends EventEmitter {
   emitChange() {
     this.emit(CHANGE_EVENT);
   }
+    
+  emitTrackUpdate(){
+      this.emit(TRACK_UPDATE_EVENT);
+  }  
 
+  /**
+   * Subscribe for 'change-event'
+   * @param {function} callback
+   */
+  addTrackListener(callback) {
+    this.on(TRACK_UPDATE_EVENT, callback);
+  }
+
+  /**
+   * * Un subscribe from 'change-event'
+   * @param {function} callback
+   */
+  removeTrackListener(callback) {
+    this.removeListener(TRACK_UPDATE_EVENT, callback);
+  }
+    
+    
   /**
    * Subscribe for 'change-event'
    * @param {function} callback
@@ -79,6 +128,10 @@ AppDispatcher.register(function(action) {
         case constants.PLAYER_GET_STREAM:
             fetchOneStream();
             break;
+        case constants.PLAYER_GET_TRACK:
+            fetchTrack();
+            break;
+            
     }
 });
 

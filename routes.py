@@ -1,11 +1,12 @@
-from radio.views import HomeView, push_current_track
-from auth.views import Login, SignOut, AuthTokenView
+from radio.views import home, track_info, track_info_sse
+from auth.views import Login, AuthTokenView
 from admin.views import quote, stream
 
 
 API_ROUTES = [
     ('POST', '/api/get-auth-token', AuthTokenView, 'get-token'),
-    ('GET', '/api/track_stream', push_current_track, 'track_stream'),
+    ('GET', '/api/track_stream', track_info_sse.push_current_track, 'track_stream'),
+    ('GET', '/api/track_info', track_info.IcecastTrackView, 'track_info'),
     ('*', '/api/quotes', quote.Collection, 'quote_collection'),
     ('*', '/api/streams', stream.Collection, 'stream_collection'),
     ('GET', '/api/stream', stream.One, 'stream_one'),
@@ -13,21 +14,5 @@ API_ROUTES = [
 ]
 
 routes = [
-    ('GET', '/{tail:.*}', HomeView,  'home')
+    ('GET', '/{tail:.*}', home.HomeView,  'home')
 ]
-
-# routes.extend(API_ROUTES)
-
-
-
-# routes = [
-#     ('GET', '/api/track_stream', push_current_track, 'track_stream'),
-#     ('GET', '/', HomeView,  'home'),
-#     ('*',   '/signout', SignOut,   'signout'),
-#     ('*', '/admin', AdminListView, 'admin'),
-#     # ('*', '/admin/quote', QuoteAdminListView, 'quote_list'),
-#     # # ('*', '/admin/quote/add', QuoteAdminNewView, 'quote_new'),
-# ]
-#
-
-#

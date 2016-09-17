@@ -2,7 +2,6 @@ import logging
 from concurrent.futures import CancelledError
 
 import asyncio
-import aiohttp_jinja2
 from aiohttp import web
 from aioredis import create_redis
 
@@ -11,13 +10,6 @@ from etc.ice_fetcher import get_current_song
 from config.settings import STREAM_HOST, STREAM_PORT
 
 server_logger = logging.getLogger('aiohttp.server')
-
-
-class HomeView(web.View):
-
-    @aiohttp_jinja2.template('radio/landing.html')
-    async def get(self):
-        return {}
 
 
 async def push_current_track(request):
