@@ -230,11 +230,10 @@ p{
   }
   .track-and-volume-wrapper{
     width: 430px;
-    margin: 0 auto;
     position: absolute;
     top: 91%;
     height: 100px;
-    margin-top: -50px;
+    margin: -50px auto 0;
     left: 34%;
   }
 
@@ -252,6 +251,24 @@ p{
     left: 41%;
   }
 
+}
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 430px;
+    left: 45%;
+  }
+
+  .track-and-volume-wrapper{
+    width: 430px;
+    position: absolute;
+    top: 91%;
+    height: 100px;
+    margin: -50px auto 0;
+    left: 36%;
+  }
 }
 
 .trackInfo{
