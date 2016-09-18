@@ -34,12 +34,11 @@ var AdminComponent = React.createClass({
         })
     },
 
-
+    // render also rendered a Quote Component, so far we do not need it
    render: function(){
        return (<div>
                     <LogoutButton />
                     <StreamAddressForm />
-                    <QuoteBox url="/api/quotes" pollInterval={2000} />
                </div>)
    }
 });

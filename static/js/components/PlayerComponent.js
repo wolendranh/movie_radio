@@ -8,7 +8,7 @@ import Volume from "./PlayerVolume.js"
 import FooterComponent from "./FooterComponent.js"
 
 
-import { schedule } from '../time.js';
+import {scheduleFilters} from "../filters.js"
 
 function getActiveStream() {
   return PlayerStore.getActive()
@@ -22,43 +22,44 @@ function getCurrentTrack(){
 
 var Player = React.createClass({
 
-  componentDidMount: function() {
-    PlayerStore.addChangeListener(this._onChange);
-    PlayerStore.addTrackListener(this._onTrackUpdate);  
-    this.refs.audio.volume = 0.4;
-    PlayerActions.get();
-    setInterval(PlayerActions.getTrack, 3000);
-  },
+    componentDidMount: function() {
+        PlayerStore.addChangeListener(this._onChange);
+        PlayerStore.addTrackListener(this._onTrackUpdate);
+        this.refs.audio.volume = 0.4;
+        PlayerActions.get();
+        scheduleFilters();
+        setInterval(PlayerActions.getTrack, 3000);
+    },
+
     componentWillUnmount: function() {
-        PlayerStore.removeChangeListener(this._onChange);
         PlayerStore.removeChangeListener(this._onChange);
         PlayerStore.removeTrackListener(this._onTrackUpdate);
     },
 
-  getInitialState: function() {
-      return {
+    getInitialState: function() {
+        return {
           currentSong: 'Barmaglot ...',
           stream: getActiveStream()
-      }
-  },
+        }
+    },
 
-  _onTrackUpdate: function (){
-      "use strict";
-      var track = getCurrentTrack();
-      if (track != null){
-        this.setState({currentSong: track});
-      }else{
-          this.setState({currentSong: 'Barmaglot ...'})
-      }
+    _onTrackUpdate: function (){
+        "use strict";
+        var track = getCurrentTrack();
+        if (track != null){
+            this.setState({currentSong: track});
+        }else{
+            this.setState({currentSong: 'Barmaglot ...'})
+        }
 
-  },  
+    },
     
-  _onChange: function() {
-    this.setState({
-        stream: getActiveStream()
-    });
-    this.loadPlayer();
-   },
+    _onChange: function() {
+        this.setState({
+            stream: getActiveStream()
+        });
+        this.loadPlayer();
+    },
 
   getDefaultProps: function() {
     // sets default array of props
