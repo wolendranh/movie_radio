@@ -66,4 +66,6 @@ class Login(web.View):
                                      data=convert_json({'login': 'true'}),
                                      status=200)
         else:
-            return web.json_response(content_type='application/json', text=convert_json({'login': 'false'}), status=401)
+            return web.json_response(content_type='application/json',
+                                     text=convert_json({'login': 'false'}),
+                                     status=401)

@@ -10,22 +10,26 @@ import jinja2
 from motor import motor_asyncio as ma
 
 from routes import routes, API_ROUTES
-
 import config.settings as settings
 from middlewares import authorize, db_handler
 
-#TODO: FIX FUCKING MIDDLEWARES FOR STREAM RESPONSE !!!
 
+server_logger = logging.getLogger('aiohttp.server')
+
+async def shutdown(serv, app, handler):
+    server_logger.info('Closing connection to Mongo...')
+    app.db.connection.close()
+    server_logger.info('Connection to Mongo was closed.')
 
 async def init(loop):
 
     logging.basicConfig(level=logging.DEBUG)
     # maybe later add authorize middleware
     app = web.Application(loop=loop,middlewares=[
-        session_middleware(EncryptedCookieStorage(SECRET_KEY)),
+        session_middleware(EncryptedCookieStorage(settings.SECRET_KEY)),
         db_handler,
         ], debug=True)
-    aiohttp_debugtoolbar.setup(app)
+
     handler = app.make_handler()
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
@@ -40,7 +44,14 @@ async def init(loop):
     # db connect
     app.client = ma.AsyncIOMotorClient(settings.MONGO_HOST)
     app.db = app.client[settings.MONGO_DB_NAME]
+
+    # bypass settings into app
     app.settings = settings
+    app.in_debug = settings.DEBUG
+
+    if app.in_debug:
+        aiohttp_debugtoolbar.setup(app)
+
     # end db connect
     serv_generator = loop.create_server(handler,
                                         settings.SITE_HOST,
@@ -50,12 +61,13 @@ async def init(loop):
 loop = asyncio.get_event_loop()
 serv_generator, handler, app = loop.run_until_complete(init(loop))
 serv = loop.run_until_complete(serv_generator)
-print('start server %s' % str(serv.sockets[0].getsockname()))
+
+server_logger.info('start server %s' % str(serv.sockets[0].getsockname()))
 try:
     loop.run_forever()
 except KeyboardInterrupt:
-    print('Stop server begin')
+    server_logger.info('Closing server ...')
 finally:
     loop.run_until_complete(shutdown(serv, app, handler))
     loop.close()
-print('Stop server end')
+    server_logger.info('Server is off')

@@ -19,7 +19,6 @@ async def create_super_user(*args, **kwargs):
     params = parser.parse_args()
     mongo_client = ma.AsyncIOMotorClient(MONGO_HOST)
     mongo_db = mongo_client[MONGO_DB_NAME]
-    print('params', params)
     user = await User(db=mongo_db, data={'password': params.password,
                                          'email': params.email}).create_user()
     return user
