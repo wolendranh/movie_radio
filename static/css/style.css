@@ -399,7 +399,8 @@ p{
 
 .playback-play {
   filter: drop-shadow(4px 7px 10px rgb(0,0,0));
-  /*-webkit-filter: drop-shadow(4px 7px 10px rgb(0,0,0));*/
+  /* somehow filter is nit working in CH */
+  -webkit-filter: none;
 }
 /* play button end */
 
