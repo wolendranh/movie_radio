@@ -12,7 +12,7 @@ __pycache__/
 
 
 # local settings of project
-local_settings.py
+config/local_settings.py
 
 # Static files
 static/bower_components/
