@@ -39,28 +39,15 @@ var Volume = React.createClass({
           }
           return false;
       });
-      $( function() {
-        // $( "#clipped" ).slider({
-        //   slide: function (event, ui) {
-        //     if (event.type == 'slide' && ui.value == 100){return}
-        //     var x = ui.value / 100;
-        //     console.log(ui.value, 'shit');
-        //     var liquid= document.querySelector('.liquid');
-        //     liquid.setAttribute("width", ui.value + '%');
-        //   }
-        // });
-
-        $( "#phantom" ).slider({
-          slide: function (event, ui) {
-            if (event.type == 'slide' && ui.value == 100){return}
-            var x = ui.value / 100;
-            console.log(ui.value, 'Phantom!!!!');
-            var liquid= document.querySelector('.liquid');
-            liquid.setAttribute("width", ui.value + '%');
-          }
-        });
-
-      });
+    $( "#phantom" ).slider({
+      slide: function (event, ui) {
+        if (event.type == 'slide' && ui.value == 100){return}
+        var newVolume = ui.value / 100;
+        var liquid= document.querySelector('.liquid');
+        liquid.setAttribute("width", ui.value + '%');
+        this.props.setVolumeHandle(newVolume);
+      }.bind(this)
+    })
   },
 
   getDefaultProps: function() {
