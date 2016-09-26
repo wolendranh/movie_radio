@@ -10,7 +10,8 @@
     "flux": "^2.0.1",
     "events": "*",
     "bootstrap": "*",
-    "node-schedule": "1.1.1"
+    "node-schedule": "1.1.1",
+    "jquery-ui": "*"
 
   },
   "devDependencies": {
