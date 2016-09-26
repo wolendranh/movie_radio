@@ -49,8 +49,8 @@ async def init(loop):
     app.settings = settings
     app.in_debug = settings.DEBUG
 
-    if app.in_debug:
-        aiohttp_debugtoolbar.setup(app)
+    # if app.in_debug:
+    #     aiohttp_debugtoolbar.setup(app)
 
     # end db connect
     serv_generator = loop.create_server(handler,
