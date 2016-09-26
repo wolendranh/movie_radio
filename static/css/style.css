@@ -7,15 +7,16 @@ body {
   overflow: hidden;
 }
 
-body:after {
-    content:"";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    border-left: 2px dotted #444; /*change these values to suit your liking*/
-}
+/* CENTER LINE FOR TESTS */
+/*body:after {*/
+    /*content:"";*/
+    /*position: absolute;*/
+    /*z-index: -1;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 50%;*/
+    /*border-left: 2px dotted #444; !*change these values to suit your liking*!*/
+/*}*/
 
 
 /*.test-back{*/
@@ -377,29 +378,29 @@ only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 1025p
   border-radius: 2px;
 }
 
-.volume-bar.one {
-  top: 58%;
-  height: 42%;
-}
+/*.volume-bar.one {*/
+  /*top: 58%;*/
+  /*height: 42%;*/
+/*}*/
 
-.volume-bar.two {
-  top: 44%;
-  height: 55.5%;
-}
+/*.volume-bar.two {*/
+  /*top: 44%;*/
+  /*height: 55.5%;*/
+/*}*/
 
-.volume-bar.three {
-  top: 31%;
-  height: 69%;
-}
+/*.volume-bar.three {*/
+  /*top: 31%;*/
+  /*height: 69%;*/
+/*}*/
 
-.volume-bar.four {
-  top: 17.5%;
-  height: 82.5%;
-}
+/*.volume-bar.four {*/
+  /*top: 17.5%;*/
+  /*height: 82.5%;*/
+/*}*/
 
-.volume-bar.five {
-  height: 100%;
-}
+/*.volume-bar.five {*/
+  /*height: 100%;*/
+/*}*/
 
 .volume-bar:hover{
   opacity: 1;
@@ -416,25 +417,33 @@ svg{
   position: absolute;
 }
 
-.slider {
-  opacity: 0.5;
-  background-color: white;
-  height: 60px;
-  width: 70px;
-  clip-path:url(#volume);
-  -webkit-clip-path:url(#volume);
+/*.slider {*/
+  /*opacity: 0.5;*/
+  /*background-color: white;*/
+  /*height: 60px;*/
+  /*width: 70px;*/
+  /*clip-path:url(#volume);*/
+  /*-webkit-clip-path:url(#volume);*/
+/*}*/
+#phantom{
+  width: 77px;
+  height: 125px;
+}
+#clipped {
+  background: white;
+  opacity: 0.4;
 }
 
-.liquid {
-  z-index:-1;
-  transition: width 0.1s;
-  position: absolute;
-  height: 100%;
-  width: 0%;
-  background: red;
-  -webkit-clip-path:url(#volume);
-  clip-path:url(#volume);
-}
+/*.liquid {*/
+  /*z-index:-1;*/
+  /*transition: width 0.1s;*/
+  /*position: absolute;*/
+  /*height: 100%;*/
+  /*width: 0%;*/
+  /*background: red;*/
+  /*-webkit-clip-path:url(#volume);*/
+  /*clip-path:url(#volume);*/
+/*}*/
 
 
 /* play button  */
