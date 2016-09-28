@@ -6,13 +6,20 @@ import 'jquery-ui/ui/widgets/draggable';
 
 var Volume = React.createClass({
 
-  propTypes: {
-      classes: React.PropTypes.array,
-      volumes: React.PropTypes.object
+  setInitialVolume: function(){
+      "use strict";
+        var liquid= document.querySelector('.liquid');
+        liquid.setAttribute("width", 50 + '%');
+        this.props.setVolumeHandle(0.5);
   },
 
   componentDidMount: function () {
     'use strict';
+
+     // set volume on start of app
+     this.setInitialVolume();
+
+
      $('#phantom').on('mousewheel DOMMouseScroll', function (e) {
           var delta = 0, element = $(this), value, result, oe;
           oe = e.originalEvent; // for jQuery >=1.7
@@ -50,32 +57,6 @@ var Volume = React.createClass({
     })
   },
 
-  getDefaultProps: function() {
-    // sets default array of props
-    return {
-      classes: ['one', 'two', 'three', 'four', 'five'],
-      volumes: {'one': 0.2, 'two': 0.4, 'three': 0.6, 'four': 0.8, 'five': 1}
-    };
-  },
-
-
-  soundHandler: function(bar, event) {
-    var soundValue = this.props.volumes[bar];
-    // call method of parent component (Player)
-    this.props.setVolumeHandle(soundValue);
-    this.forceUpdate();
-  },
-
-  getClass: function(i){
-      var volume = this.props.getVolumeHandle();
-      var barVolume = this.props.volumes[i];
-      if (barVolume <= volume){
-        return 'volume-bar red ' + i;
-      }
-      return 'volume-bar ' + i;
-
-  },
-
   render: function () {
       // svg styles
       var style = {
@@ -104,7 +85,7 @@ var Volume = React.createClass({
               </clipPath>
               <rect x="0" y="0" width="0" height="120" className='liquid'
                     clipPath="url(#volume)"/>
-              <rect id='clipped' x="0" y="0" width="75" height="120" className='slider'
+              <rect id='clipped' x="0" y="0" width="78" height="120" className='slider'
                     clipPath="url(#volume)"/>
               <foreignObject x="0" y="0" width="75" height="120">
                 <div id='phantom' xmlns="http://www.w3.org/1999/xhtml"></div>
