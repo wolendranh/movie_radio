@@ -61,7 +61,7 @@ var self = module.exports = {
             // });
 
             setTimeout(function() {
-                
+
                 filter.morningToDay();
                 console.log($('body').attr("class").toString().split(' '))
             }, 1000);
@@ -70,11 +70,11 @@ var self = module.exports = {
             setTimeout(function() {
                 filter.dayToEvening();
                 console.log($('body').attr("class").toString().split(' '))
-            }, 30000);
+            }, 40000);
             setTimeout(function() {
                 filter.eveningToMorning();
                 console.log($('body').attr("class").toString().split(' '))
-            }, 30000);
+            }, 80000);
 
         });
     }
