@@ -53,3 +53,16 @@
   -webkit-animation-timing-function: linear;
 }
 
+
+.day {
+    background-image: url('../img/day.png');
+}
+
+.evening {
+    background-image: url('../img/evening.png');
+}
+
+.morning {
+    background-image: url('../img/morn.png');
+}
+

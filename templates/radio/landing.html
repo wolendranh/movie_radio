@@ -5,10 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ app.router.static.url(filename='css/filter.css') }}" />
 {% endblock %}
 {% block content %}
-    {% if current_time %}
-        <h1>{{ current_time }}</h1>
-    {% endif %}
-    <body class="">
+    <body class={{ filter_class }}>
             <div id=app></div>
             <script src="{{ app.router.static.url(filename='webpack/app.js') }}"></script>
     </body>

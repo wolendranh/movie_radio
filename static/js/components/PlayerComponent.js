@@ -27,7 +27,7 @@ var Player = React.createClass({
         PlayerStore.addTrackListener(this._onTrackUpdate);
         this.refs.audio.volume = 0.4;
         PlayerActions.get();
-        scheduleFilters();
+        // scheduleFilters();
         setInterval(PlayerActions.getTrack, 3000);
     },
 
