@@ -37,44 +37,44 @@ var self = module.exports = {
             var dayRule = new schedule.RecurrenceRule();
             var eveningRule = new schedule.RecurrenceRule();
 
-            morningRule.hours = 11;
-            morningRule.minutes = 58;
+            morningRule.hours = 6;
+            morningRule.minutes = 0;
 
-            dayRule.hours = 11;
-            dayRule.minutes = 59;
+            dayRule.hours = 12;
+            dayRule.minutes = 0;
 
-            eveningRule.hours = 12;
-            // eveningRule.minutes = 56;
+            eveningRule.hours = 1;
+            eveningRule.minutes = 13;
 
             var filter = new Filter();
 
-            // schedule.scheduleJob(morningRule, function(){
-            //    filter.morningToDay();
-            // });
-            //
-            // schedule.scheduleJob(dayRule, function(){
-            //     filter.dayToEvening();
-            // });
-            //
-            // schedule.scheduleJob(eveningRule, function(){
-            //     filter.eveningToMorning();
-            // });
-
-            setTimeout(function() {
-
-                filter.morningToDay();
-                console.log($('body').attr("class").toString().split(' '))
-            }, 1000);
-
-            // filter.morningToDay();
-            setTimeout(function() {
+            schedule.scheduleJob(morningRule, function(){
+               filter.morningToDay();
+            });
+            
+            schedule.scheduleJob(dayRule, function(){
                 filter.dayToEvening();
-                console.log($('body').attr("class").toString().split(' '))
-            }, 40000);
-            setTimeout(function() {
+            });
+
+            schedule.scheduleJob(eveningRule, function(){
                 filter.eveningToMorning();
-                console.log($('body').attr("class").toString().split(' '))
-            }, 80000);
+            });
+
+            // setTimeout(function() {
+            //
+            //     filter.morningToDay();
+            //     console.log($('body').attr("class").toString().split(' '))
+            // }, 1000);
+            //
+            // // filter.morningToDay();
+            // setTimeout(function() {
+            //     filter.dayToEvening();
+            //     console.log($('body').attr("class").toString().split(' '))
+            // }, 40000);
+            // setTimeout(function() {
+            //     filter.eveningToMorning();
+            //     console.log($('body').attr("class").toString().split(' '))
+            // }, 80000);
 
         });
     }
