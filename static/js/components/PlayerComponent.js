@@ -26,8 +26,10 @@ var Player = React.createClass({
         PlayerStore.addChangeListener(this._onChange);
         PlayerStore.addTrackListener(this._onTrackUpdate);
         this.refs.audio.volume = 0.4;
+
+        // run filters as this component is loaded on main page
         PlayerActions.get();
-        // scheduleFilters();
+        scheduleFilters();
         setInterval(PlayerActions.getTrack, 3000);
     },
 
