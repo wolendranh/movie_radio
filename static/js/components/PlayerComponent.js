@@ -8,7 +8,7 @@ import Volume from "./PlayerVolume.js"
 import FooterComponent from "./FooterComponent.js"
 
 // TODO: fix filters
-import {scheduleFilters} from "../filters.js"
+import {triggerChange} from "../filters.js"
 
 function getActiveStream() {
   return PlayerStore.getActive()
@@ -17,6 +17,11 @@ function getActiveStream() {
 function getCurrentTrack(){
     "use strict";
     return PlayerStore.getTrack()
+}
+
+function getCurrentDatetime(){
+    "use strict";
+    return PlayerStore.getDaytime()
 }
 
 
@@ -29,7 +34,7 @@ var Player = React.createClass({
 
         // run filters as this component is loaded on main page
         PlayerActions.get();
-        scheduleFilters();
+
         setInterval(PlayerActions.getTrack, 3000);
     },
 
@@ -48,6 +53,9 @@ var Player = React.createClass({
     _onTrackUpdate: function (){
         "use strict";
         var track = getCurrentTrack();
+        var dayTime = getCurrentDatetime();
+        console.log(dayTime);
+        triggerChange(dayTime);
         if (track != null){
             this.setState({currentSong: track});
         }else{

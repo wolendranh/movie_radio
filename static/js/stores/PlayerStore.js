@@ -10,6 +10,7 @@ var TRACK_UPDATE_EVENT = 'track_update';
 // variable that will hold active stream
 var _stream = '';
 var _track = '';
+var _datetime = null;
 
 /**
  * Fetches one stream from database which is currently active
@@ -42,7 +43,8 @@ function fetchTrack(){
       url: '/api/track_info',
       type: 'GET',
       success: function(data) {
-        _track = data.track
+        _track = data.track;
+        _datetime = data.datetime;
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.route.url, status, err.toString());
@@ -71,7 +73,11 @@ class PlayerStoreBaseClass extends EventEmitter {
     
   getTrack() {
     return _track;
-  }    
+  }
+  
+  getDaytime() {
+    return _datetime;   
+  }  
 
   /**
    * Emit change to give ability to do some actions after subscribing for it

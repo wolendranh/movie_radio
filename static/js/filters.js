@@ -1,5 +1,10 @@
-import schedule from 'node-schedule';
 import $ from 'jquery';
+
+const MORNING = 'morning';
+const DAY = 'day';
+const EVENING = 'evening';
+
+var DAY_TIME = '';
 
 
 var Filter = class Filter {
@@ -28,55 +33,25 @@ var Filter = class Filter {
 };
 
 
-
-//#TODO: create scheduler for CSS animation
 var self = module.exports = {
-    scheduleFilters: function () {
-        $( document ).ready(function() {
-            var morningRule = new schedule.RecurrenceRule();
-            var dayRule = new schedule.RecurrenceRule();
-            var eveningRule = new schedule.RecurrenceRule();
-
-            morningRule.hours = 6;
-            morningRule.minutes = 0;
-
-            dayRule.hours = 12;
-            dayRule.minutes = 0;
-
-            eveningRule.hours = 1;
-            eveningRule.minutes = 13;
-
-            var filter = new Filter();
-
-            schedule.scheduleJob(morningRule, function(){
-               filter.morningToDay();
-            });
-            
-            schedule.scheduleJob(dayRule, function(){
-                filter.dayToEvening();
-            });
-
-            schedule.scheduleJob(eveningRule, function(){
+    triggerChange: function (dayTime) {
+        var filter = new Filter();
+        switch (dayTime) {
+            case DAY_TIME:
+                break;
+            case MORNING:
+                DAY_TIME = MORNING;
                 filter.eveningToMorning();
-            });
-
-            // setTimeout(function() {
-            //
-            //     filter.morningToDay();
-            //     console.log($('body').attr("class").toString().split(' '))
-            // }, 1000);
-            //
-            // // filter.morningToDay();
-            // setTimeout(function() {
-            //     filter.dayToEvening();
-            //     console.log($('body').attr("class").toString().split(' '))
-            // }, 40000);
-            // setTimeout(function() {
-            //     filter.eveningToMorning();
-            //     console.log($('body').attr("class").toString().split(' '))
-            // }, 80000);
-
-        });
+                break;
+            case EVENING:
+                DAY_TIME = EVENING;
+                filter.dayToEvening();
+                break;
+            case DAY:
+                DAY_TIME = DAY;
+                filter.morningToDay();
+                break;
+        }
     }
 };
 
