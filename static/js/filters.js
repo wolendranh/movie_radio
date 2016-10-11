@@ -34,7 +34,15 @@ var Filter = class Filter {
 
 
 var self = module.exports = {
-    triggerChange: function (dayTime) {
+    triggerChange: function (dayTime, FIRST_LOAD) {
+
+        // in case if it is first load of page stick to Server side returned style
+        if (FIRST_LOAD == true){
+            DAY_TIME = dayTime;
+            return true;
+        }
+
+        // in case if it is AJAX call check if we need to call transition of filters
         var filter = new Filter();
         switch (dayTime) {
             case DAY_TIME:
