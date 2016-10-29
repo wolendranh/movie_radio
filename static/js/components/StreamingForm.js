@@ -1,6 +1,5 @@
 import React from "react";
 import { browserHistory} from 'react-router';
-import $ from 'jquery';
 
 import StreamStore from "../stores/StreamStore.js";
 import StreamTextInput from "./StreamTextInput.js"

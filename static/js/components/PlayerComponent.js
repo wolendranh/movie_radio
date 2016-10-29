@@ -8,7 +8,12 @@ import Volume from "./PlayerVolume.js"
 import FooterComponent from "./FooterComponent.js"
 
 // TODO: fix filters
-import {scheduleFilters} from "../filters.js"
+import {triggerChange} from "../filters.js"
+
+
+// define variable that will indicate if this is 'reload' of page or AJAX call
+var FIRST_LOAD = false;
+
 
 function getActiveStream() {
   return PlayerStore.getActive()
@@ -19,6 +24,11 @@ function getCurrentTrack(){
     return PlayerStore.getTrack()
 }
 
+function getCurrentDatetime(){
+    "use strict";
+    return PlayerStore.getDaytime()
+}
+
 
 var Player = React.createClass({
 
@@ -27,9 +37,12 @@ var Player = React.createClass({
         PlayerStore.addTrackListener(this._onTrackUpdate);
         this.refs.audio.volume = 0.4;
 
-        // run filters as this component is loaded on main page
+        // component if mounted only one time so we can assume that it is 'initial'
+        // load of page
+        FIRST_LOAD = true;
+
         PlayerActions.get();
-        scheduleFilters();
+
         setInterval(PlayerActions.getTrack, 3000);
     },
 
@@ -48,6 +61,12 @@ var Player = React.createClass({
     _onTrackUpdate: function (){
         "use strict";
         var track = getCurrentTrack();
+        var dayTime = getCurrentDatetime();
+
+        // triggering change of filters(filter module will decide himself weather it is needed or not)
+        triggerChange(dayTime, FIRST_LOAD);
+        FIRST_LOAD = false;
+
         if (track != null){
             this.setState({currentSong: track});
         }else{
