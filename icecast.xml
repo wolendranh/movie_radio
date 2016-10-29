@@ -142,7 +142,7 @@
         <http-headers>
                 <header name="foo" value="bar" />
         </http-headers>
-        <charset>UTF-8</charset>
+        <charset>Latin1</charset>
     </mount>
    
 
