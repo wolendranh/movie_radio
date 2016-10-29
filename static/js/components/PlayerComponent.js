@@ -118,8 +118,7 @@ var Player = React.createClass({
               <Controls getPlayerRef={ this.getPlayer }/>
               <div className="row player-container">
                   <div className="col-sm-4 col-sm-offset-4 player">
-                      <audio id="barmaglot-player" preload="none" ref="audio">
-                          <source src={ this.state.stream.stream_ip } type="audio/mpeg"/>
+                      <audio id="barmaglot-player" preload="none" ref="audio" src={ this.state.stream.stream_ip }>
                       </audio>
                   </div>
                   <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>
