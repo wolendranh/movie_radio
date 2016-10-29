@@ -16,6 +16,6 @@ class IcecastTrackView(web.View):
 
         # workaround so far to apply filter
         # FIXME: add separate endpoint for this. Possible - query every 10, 15 mins?
-        # FIXME: resolve issue with first load....
+
         datetime = get_day_time()
         return web.json_response({'track': current_track, 'datetime': datetime})
