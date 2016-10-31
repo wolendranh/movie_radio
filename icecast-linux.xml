@@ -48,6 +48,7 @@
          wanted or an extension is required
         -->
     <shoutcast-mount>/barmaglot</shoutcast-mount>
+    <charset>UTF-8</charset>
 
 
     <!-- Uncomment this if you want directory listings -->
