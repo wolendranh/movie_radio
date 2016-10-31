@@ -2,19 +2,24 @@ import {render} from 'react-dom';
 import React from 'react';
 
 var Controls = React.createClass({
+
+
   getInitialState: function() {
-      return { showPause: false, showPlay: true };
+      return { showPause: false, showPlay: true , src: ''};
   },
   displayPause: function(e){
-      console.log('pause');
     this.setState({ showPause: true , showPlay: false });
     var player = this.props.getPlayerRef();
+    if(this.state.src != ''){
+        player.src = this.state.src;
+    }
     player.play();
   },
   displayPlay: function(e){
-      console.log('play');
-    this.setState({ showPause: false , showPlay: true });
     var player = this.props.getPlayerRef();
+    // save current source to imitate Stop as browser API will literally 'pause' stream
+    this.setState({ showPause: false , showPlay: true, src: player.src});
+    player.src = '';
     player.pause();
   },
   render: function() {

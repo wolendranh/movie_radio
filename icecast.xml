@@ -131,7 +131,7 @@
 
     <!-- Default settings for all mounts that don't have a specific <mount type="normal">.
     -->
-    
+
     <mount type="default">
         <public>0</public>
         <intro>/server-wide-intro.ogg</intro>
@@ -142,7 +142,7 @@
         <http-headers>
                 <header name="foo" value="bar" />
         </http-headers>
-        <charset>Latin1</charset>
+        <charset>LATIN1</charset>
     </mount>
    
 

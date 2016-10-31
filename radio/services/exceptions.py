@@ -1,0 +1,2 @@
+class DecodeServiceError(Exception):
+    pass
