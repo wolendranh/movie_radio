@@ -1,3 +1,6 @@
+
+/* TODO: fix animation for FF*/
+
 @-webkit-keyframes morning-day {
     0% {
         background-image: url('../img/morn.png');

@@ -1,5 +1,6 @@
 import {render} from 'react-dom';
 import React from 'react';
+import $ from 'jquery';
 
 import PlayerStore from "../stores/PlayerStore.js"
 import PlayerActions from "../actions/PlayerActions.js"
@@ -46,7 +47,7 @@ var Player = React.createClass({
         FIRST_LOAD = false;
         PlayerActions.get();
 
-        setInterval(PlayerActions.getTrack, 10000);
+        setInterval(PlayerActions.getTrack, 3000);
     },
 
     componentWillUnmount: function() {
