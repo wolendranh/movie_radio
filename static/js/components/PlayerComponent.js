@@ -12,7 +12,7 @@ import {triggerChange} from "../filters.js"
 
 
 // define variable that will indicate if this is 'reload' of page or AJAX call
-var FIRST_LOAD = false;
+var FIRST_LOAD;
 
 
 function getActiveStream() {
@@ -39,11 +39,14 @@ var Player = React.createClass({
 
         // component if mounted only one time so we can assume that it is 'initial'
         // load of page
-        FIRST_LOAD = true;
+        var dayTime = $('body').attr('class');
+        console.log('mounted', dayTime);
 
+        triggerChange(dayTime, true);
+        FIRST_LOAD = false;
         PlayerActions.get();
 
-        setInterval(PlayerActions.getTrack, 3000);
+        setInterval(PlayerActions.getTrack, 10000);
     },
 
     componentWillUnmount: function() {
