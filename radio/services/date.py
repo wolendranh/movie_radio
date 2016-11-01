@@ -1,18 +1,36 @@
 import pytz
 from pytz import timezone
 from datetime import datetime
+import time as python_time
 
 MORNING = 'morning'
 DAY = 'day'
 EVENING = 'evening'
 
 
-def get_day_time():
+def get_day_time(day_time={}):
     """
     Discover part of the day based on zone and hour
     Returns: `str`
 
     """
+    if day_time.get('day_time'):
+        time = day_time.get('day_time')
+        if time == MORNING:
+            day_time['day_time'] = DAY
+        elif time == DAY:
+            day_time['day_time'] = EVENING
+        elif time == EVENING:
+            day_time['day_time'] = MORNING
+    else:
+        day_time['day_time'] = 'morning'
+
+
+    print('==' * 80)
+    print(day_time['day_time'])
+    print('==' * 80)
+    return day_time['day_time']
+
     zone = timezone(pytz.country_timezones['ua'][0])
     hour = zone.localize(datetime.now()).hour
 
