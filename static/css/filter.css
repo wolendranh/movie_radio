@@ -1,6 +1,13 @@
 
 /* TODO: fix animation for FF*/
 
+/* preload hack for images used in filters */
+body:after{
+    position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+    content: url('../img/morn.png') url('../img/day.png') url('../img/evening.png');
+}
+
+
 @-webkit-keyframes morning-day {
     0% {
         background-image: url('../img/morn.png');
