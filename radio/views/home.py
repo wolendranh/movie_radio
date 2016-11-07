@@ -1,6 +1,7 @@
 import aiohttp_jinja2
 from aiohttp import web
 from radio.services.date import get_day_time
+import config.settings as settings
 
 
 class HomeView(web.View):
@@ -10,4 +11,4 @@ class HomeView(web.View):
 
     @aiohttp_jinja2.template('radio/landing.html')
     async def get(self):
-        return {'filter_class': get_day_time()}
+        return {'filter_class': get_day_time(), 'DEBUG': settings.DEBUG}

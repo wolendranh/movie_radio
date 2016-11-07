@@ -1,6 +1,13 @@
 
 /* TODO: fix animation for FF*/
 
+/* preload hack for images used in filters */
+body:after{
+    position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+    content: url('../img/morn.png') url('../img/day.png') url('../img/evening.png');
+}
+
+
 @-webkit-keyframes morning-day {
     0% {
         background-image: url('../img/morn.png');
@@ -32,7 +39,7 @@
 .morning-day {
   -webkit-animation-name: morning-day;
   animation-fill-mode: forwards;
-  -webkit-animation-duration: 10s;
+  -webkit-animation-duration: 30s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-direction: alternate;
   -webkit-animation-timing-function: linear;
@@ -41,7 +48,7 @@
 .day-evening {
   -webkit-animation-name: day-evening;
   animation-fill-mode: forwards;
-  -webkit-animation-duration: 10s;
+  -webkit-animation-duration: 30s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-direction: alternate;
   -webkit-animation-timing-function: linear;
@@ -50,7 +57,7 @@
 .evening-morning {
   -webkit-animation-name: evening-morning;
   animation-fill-mode: forwards;
-  -webkit-animation-duration: 10s;
+  -webkit-animation-duration: 30s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-direction: alternate;
   -webkit-animation-timing-function: linear;

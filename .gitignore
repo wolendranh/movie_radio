@@ -49,7 +49,9 @@ var/
 
 # Funcking Node stuff
 node_modules/
-static/webpack/
+# Skip webpack dev bundles
+static/webpack/dev_bundle.js
+static/webpack/dev_bundle.js.map
 
 
 # PyInstaller

@@ -37,7 +37,6 @@ var self = module.exports = {
     triggerChange: function (dayTime, FIRST_LOAD) {
 
         // in case if it is first load of page stick to Server side returned style
-        console.log(FIRST_LOAD, dayTime, DAY_TIME);
         if (FIRST_LOAD == true){
             DAY_TIME = dayTime;
             return true;
@@ -50,18 +49,15 @@ var self = module.exports = {
                 break;
             case MORNING:
                 DAY_TIME = MORNING;
-                console.log(DAY_TIME, 'evening-morning');
                 filter.eveningToMorning();
                 break;
             case EVENING:
 
                 DAY_TIME = EVENING;
-                console.log(DAY_TIME, 'day-evening');
                 filter.dayToEvening();
                 break;
             case DAY:
                 DAY_TIME = DAY;
-                console.log(DAY_TIME, 'morning-day');
                 filter.morningToDay();
                 break;
         }
