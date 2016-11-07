@@ -7,8 +7,12 @@
 {% block content %}
     <body class={{ filter_class }}>
             <div id=app></div>
-            <script src="{{ app.router.static.url(filename='webpack/common.js') }}"></script>
-            <script src="{{ app.router.static.url(filename='webpack/bundle.js') }}"></script>
+            {% if DEBUG %}
+                <script src="{{ app.router.static.url(filename='webpack/dev_bundle.js') }}"></script>
+            {% else %}
+                <script src="{{ app.router.static.url(filename='webpack/common.js') }}"></script>
+                <script src="{{ app.router.static.url(filename='webpack/bundle.js') }}"></script>
+            {% endif %}
     </body>
 {% endblock %}
 

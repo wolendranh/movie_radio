@@ -41,7 +41,6 @@ var Player = React.createClass({
         // component if mounted only one time so we can assume that it is 'initial'
         // load of page
         var dayTime = $('body').attr('class');
-        console.log('mounted', dayTime);
 
         triggerChange(dayTime, true);
         FIRST_LOAD = false;

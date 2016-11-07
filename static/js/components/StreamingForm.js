@@ -68,7 +68,6 @@ var StreamList = React.createClass({
     },
 
     _onChange: function() {
-        console.log('change event');
         this.setState(getStreamState());
     }
 

@@ -8,14 +8,13 @@ var APP_DIR = path.resolve(__dirname, 'static/js');
 //./node_modules/webpack/bin/webpack.js -p --config ./webpack-prod.config.js - add this to build script
 
 var config = {
-    devtool: 'source-map',
     context: APP_DIR,
     entry:{
       bundle: [APP_DIR + '/index.jsx']
     },
     output: {
         path: BUILD_DIR,
-        filename: '[name].js'
+        filename: 'bundle.js'
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('common.js'),
