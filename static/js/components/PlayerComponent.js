@@ -126,11 +126,11 @@ var Player = React.createClass({
                   </div>
                   <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>
               </div>
-              <span>{this.props.children || <FooterComponent/>}</span>
+              
           </div>
 
     )
   }
 });
 
-export default Player;
+module.exports =  Player;

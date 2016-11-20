@@ -22,4 +22,4 @@ var FooterComponent = React.createClass({
     }
 });
 
-export default FooterComponent;
+module.exports =  FooterComponent;
