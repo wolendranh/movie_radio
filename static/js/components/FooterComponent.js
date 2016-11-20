@@ -5,7 +5,7 @@ import {render} from "react-dom"
 var FooterComponent = React.createClass({
     render: function(){
         return(<footer className="footer row-fluid">
-                    <div className="col-sm-4 col-sm-offset-4">
+                    <div className="col-sm-offset-4">
                         <div className="row">
                             <a className="social-button col-xs-4 col-sm-4 shake" href="https://www.facebook.com/barmaglot.radio" target="_blank">
                                 <img src="https://rawgit.com/wolendranh/movie_radio/master/static/img/social/fb.png" className="img-responsive"></img>
