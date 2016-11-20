@@ -11,20 +11,20 @@ simple radio page, that will play stream from Icecast server
 next line is for working python 3 terminal interpreter
 3. sudo apt-get install libreadline-dev
  SSL related dev libs
-4. apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev
+4. sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev
 5. sudo apt-get install build-essential python-dev python-setuptools python-pip python-smbus
 6. sudo apt-get install libffi-dev
 7. Install python >=3.5 (see Install Python Section)
 8. pip install virtualenv
 9. virtualenv -p python3.5 env
-10. pip install - r requirments.txt
+10. pip install -r requirments.txt
 ```
 #####Install python(if not already installed)
 In case if you do not  have Python 3.5:
 ```
     wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
     tar xf Python-3.5.1.tar.xz
-    cd Python-3.5.1.tar.xz
+    cd Python-3.5.1
     ./configure
     make
     make altinstall
@@ -64,7 +64,7 @@ sudo ./install_server.sh
 ```
 1. sudo apt-get install nginx
 2. setup nginx conf file in sites-available(and simlink to sites enabled)
-3. sudo apt-et install supervisor  
+3. sudo apt-get install supervisor
 ```
 #####Install Redis(for pub sub)
 ```
@@ -82,7 +82,7 @@ make
 To run project in dev env
 
 ```
-virtualenv env/bin/activate
+source env/bin/activate
 python app.py
 ```
 #####TODO:
