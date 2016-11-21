@@ -17,7 +17,9 @@ next line is for working python 3 terminal interpreter
 7. Install python >=3.5 (see Install Python Section)
 8. pip install virtualenv
 9. virtualenv -p python3.5 env
-10. pip install -r requirments.txt
+Activate virtual env
+10.source env/bin/activate
+11.pip install -r requirments.txt
 ```
 #####Install python(if not already installed)
 In case if you do not  have Python 3.5:
@@ -39,6 +41,7 @@ In case if you do not  have Python 3.5:
 2. sudo apt-get install npm
 3. npm install
 4. ln -s /usr/bin/nodejs /usr/bin/node
+5. ./build_js.sh
 ```
 (to omit issue with /usr/bin/env: node: No such file or directory)
  
@@ -48,30 +51,12 @@ sudo apt-get install icecast2
 ```
 (default icecast config is here /etc/icecast2/icecast.xml)
 
-#####Install Redis
-```
-wget http://download.redis.io/releases/redis-stable.tar.gz
-tar xzf redis-stable.tar.gz
-cd redis-stable
-make
-make install
-cd utils
-sudo ./install_server.sh
-```
-
 
 #####Production related
 ```
 1. sudo apt-get install nginx
 2. setup nginx conf file in sites-available(and simlink to sites enabled)
 3. sudo apt-get install supervisor
-```
-#####Install Redis(for pub sub)
-```
-wget http://download.redis.io/redis-stable.tar.gz
-tar xvzf redis-stable.tar.gz
-cd redis-stable
-make
 ```
 
 #####Setup Nginx
@@ -82,7 +67,6 @@ make
 To run project in dev env
 
 ```
-source env/bin/activate
 python app.py
 ```
 #####TODO:
