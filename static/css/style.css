@@ -7,26 +7,6 @@ body {
   overflow: hidden;
 }
 
-/* CENTER LINE FOR TESTS */
-/*body:after {*/
-/*content:"";*/
-/*position: absolute;*/
-/*z-index: -1;*/
-/*top: 0;*/
-/*bottom: 0;*/
-/*left: 50%;*/
-/*border-left: 2px dotted #444; !*change these values to suit your liking*!*/
-/*}*/
-
-/*.test-back{*/
-/*background:*/
-/*linear-gradient(rgb(214, 196, 171) 5%, rgb(221, 189, 164) 95%),*/
-/*url("../img/background.png") center center / cover no-repeat fixed;*/
-
-/*background-blend-mode: hue;*/
-/*overflow: hidden;*/
-/*}*/
-
 .default-background {
   background:
   url("../img/background.png") no-repeat center center fixed;
@@ -145,10 +125,10 @@ p{
 }
 
 
-.col-sm-4.col-sm-offset-4.shake{
+.col-sm-offset-4.shake{
   position: absolute;
-  top: 40%;
-  height: 300px;
+  top: 51%;
+  height: 100px;
   margin-top: -50px;
   left: 40%;
   width: 430px;
@@ -174,99 +154,51 @@ p{
 }
 
 /*Track info bar*/
-.player-container .col-sm-4{
+.player-container .col-sm-offset-4{
   margin: 0 15%;
 }
 
 /* ================ Media query goes here ================ */
 
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
+  .track-and-volume-wrapper{
+    width: 100%;
+    margin-left: 0;
+    position: absolute;
+    top: 80%;
+    margin: 0 auto;
+  }
+  .col-sm-offset-4.shake{
+    width: 100%;
+    left: -8px;
+  }
 
-/* Iphone 5 */
-/* Portrait */
-@media only screen
-and (min-device-width: 320px)
-and (max-device-width: 568px)
-and (-webkit-min-device-pixel-ratio: 2)
-and (orientation: portrait) {
+  .trackInfoWrapper{
+    width: 291px;
+    margin: 0 auto;
+  }
+
+  .volume-bars-wrapper{
+    width:70px;
+    float:left;
+  }
+  body footer.footer .col-sm-offset-4{
+    width: 233px;
+    left: 5%;
+    position: relative;
+  }
 }
 
-/*end of iphone 5 */
+@media only screen and (min-width: 1024px) {
 
-
-
-/*@media only screen and (min-width: 480px) and (max-width: 767px) {*/
-
-/*.track-and-volume-wrapper{*/
-/*width: 363px;*/
-/*margin-left: 0;*/
-/*left: 20%;*/
-/*position: absolute;*/
-/*top: 87%;*/
-/*}*/
-/*.col-sm-4.col-sm-offset-4.shake{*/
-/*width: 363px;*/
-/*left: 20%;*/
-/*}*/
-/*.trackInfoWrapper{*/
-/*width: 291px;*/
-/*float: left;*/
-/*}*/
-
-/*.volume-bars-wrapper{*/
-/*width:70px;*/
-/*float:left;*/
-/*}*/
-/*footer.footer .col-sm-4.col-sm-offset-4{*/
-/*width: 363px;*/
-/*left: 22%;*/
-/*}*/
-/*}*/
-
-/*@media only screen and (min-width: 320px) and (max-width: 479px) {*/
-
-/*.col-sm-4.col-sm-offset-4.shake{*/
-/*width: 285px;*/
-/*left: 6%;*/
-/**/
-/*}*/
-/**/
-/*.track-and-volume-wrapper{*/
-/*width: 285px;*/
-/*left: 10%;*/
-/*position: absolute;*/
-/*top: 91%;*/
-/*height: 100px;*/
-/*margin-top: -50px;*/
-/*}*/
-
-/*.trackInfoWrapper{*/
-/*width: 70%;*/
-/*float: left;*/
-/*}*/
-
-/*.volume-bars-wrapper{ */
-/*width: 26%;*/
-/*float: left;*/
-/*}*/
-/*footer.footer .col-sm-4.col-sm-offset-4{*/
-/*width: 285px;*/
-/*left: 11%;*/
-/*}*/
-
-/*}*/
-
-@media only screen and (min-width: 768px) {
-  .col-sm-4.col-sm-offset-4.shake{
-    left: 34%;
-
-  }
   .track-and-volume-wrapper{
     width: 430px;
+    margin: 0 auto;
     position: absolute;
     top: 91%;
     height: 100px;
-    margin: -50px auto 0;
-    left: 34%;
+    margin-top: -50px;
+    left: 40%;
   }
 
   .trackInfoWrapper{
@@ -278,49 +210,11 @@ and (orientation: portrait) {
     width: 70px;
     float: left;
   }
-  footer.footer .col-sm-4.col-sm-offset-4{
+  footer.footer .col-sm-offset-4{
     width: 430px;
-    left: 44%;
+    left: 42%;
   }
 
-}
-
-@media only screen and (min-width: 1920px) {
-  .col-sm-4.col-sm-offset-4.shake{
-    left: 38%;
-
-  }
-  .track-and-volume-wrapper{
-    left: 38%;
-  }
-  footer.footer .col-sm-4.col-sm-offset-4{
-    width: 430px;
-    left: 45.5%;
-  }
-
-}
-
-/* retina */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 1025px){
-  .col-sm-4.col-sm-offset-4.shake{
-    left: 32.5%;
-
-  }
-
-  footer.footer .col-sm-4.col-sm-offset-4{
-    width: 430px;
-    left: 43.5%;
-  }
-
-  .track-and-volume-wrapper{
-    width: 430px;
-    position: absolute;
-    top: 91%;
-    height: 100px;
-    margin: -50px auto 0;
-    left: 36%;
-  }
 }
 
 /* ================ Media query end ================ */
@@ -511,20 +405,18 @@ body .row .social-button.col-xs-4.col-sm-4.shake{
   padding-right: 10px;
   width: 4em;
 }
-footer.footer .col-sm-4.col-sm-offset-4{
+footer.footer .col-sm-offset-4{
   margin: 0 auto;
   position: absolute;
 }
 
-
-@media
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-  /* Retina-specific stuff here */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
 
 }
-
-
 
 @keyframes windshiver {
   0% { transform: rotate(3deg); }
