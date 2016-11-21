@@ -3,10 +3,100 @@ html, body {
 }
 
 body {
-  background: url("../img/background.png") no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
 }
+
+/* CENTER LINE FOR TESTS */
+/*body:after {*/
+/*content:"";*/
+/*position: absolute;*/
+/*z-index: -1;*/
+/*top: 0;*/
+/*bottom: 0;*/
+/*left: 50%;*/
+/*border-left: 2px dotted #444; !*change these values to suit your liking*!*/
+/*}*/
+
+/*.test-back{*/
+/*background:*/
+/*linear-gradient(rgb(214, 196, 171) 5%, rgb(221, 189, 164) 95%),*/
+/*url("../img/background.png") center center / cover no-repeat fixed;*/
+
+/*background-blend-mode: hue;*/
+/*overflow: hidden;*/
+/*}*/
+
+.default-background {
+  background:
+  url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.morning-background {
+  background:
+  linear-gradient(to bottom,rgba(228, 182, 158, 0.1) 5%, rgba(140, 53,1, 0.5) 95%),
+  url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  background-blend-mode: color-burn;
+}
+
+
+/*.morning-background {*/
+/*background:*/
+/*linear-gradient(to bottom,rgb(228, 182, 158) 5%, rgb(140, 53,1) 95%),*/
+/*url("../img/background.png") no-repeat center center fixed;*/
+/*background-size: cover;*/
+/*overflow: hidden;*/
+/*background-blend-mode: hue;*/
+/*}*/
+
+.day-background {
+  background:
+  linear-gradient(to bottom, rgba(198, 213, 186, 0.1) 30%, rgba(198, 213, 186, 0.73) 60%),
+  url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  background-blend-mode: color-burn;
+}
+
+
+.evening-background {
+  background:
+  linear-gradient(to bottom, rgba(233, 99, 0, 0.1) 30%, rgba(233, 99, 0, 0.7) 60%),
+  url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  background-blend-mode: color-burn;
+}
+
+body {
+  background: linear-gradient(to bottom, rgba(228, 182, 158, 0.88) 5%, rgb(140, 53, 1) 95%),
+  url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  background-blend-mode: hue;
+}
+
+body:before{
+  background:
+  linear-gradient(to bottom, rgba(198, 213, 186, 0.1) 30%, rgba(198, 213, 186, 0.73) 60%),
+  url("../img/background.png") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  background-blend-mode: color-burn;
+  opacity: 0;
+
+}
+
+body:hover:before{
+  opacity: 0;
+}
+
+
+
 
 p{
   margin: 0px;
@@ -28,27 +118,37 @@ p{
   margin: 4% 0 0 4%;
 }
 
+.logo-img {
+  max-width: 77%;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 60px;
 
-} 
+}
 
 
 .daily-quote {
   font-family: gogol;
-  font-size: 3.5vw;
+  font-size: 2.5vw;
   color: #ca0600;
 }
 
 /* Player Section */
 
-.col-sm-offset-4.shake{
+/* Player clickable area */
+.clickable-player-area{
+  height: 100%;
+}
+
+
+.col-sm-4.col-sm-offset-4.shake{
   position: absolute;
-  top: 51%;
-  height: 100px;
+  top: 40%;
+  height: 300px;
   margin-top: -50px;
   left: 40%;
   width: 430px;
@@ -74,49 +174,99 @@ p{
 }
 
 /*Track info bar*/
-.player-container .col-sm-offset-4{
+.player-container .col-sm-4{
   margin: 0 15%;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 1024px) {
-  .track-and-volume-wrapper{
-    width: 100%;
-    margin-left: 0;
-    position: absolute;
-    top: 80%;
-    margin: 0 auto;
-  }
-  .col-sm-offset-4.shake{
-    width: 100%;
-    left: -8px;
-  }
-  
-  .trackInfoWrapper{
-    width: 291px;
-    margin: 0 auto;
-  }
+/* ================ Media query goes here ================ */
 
-  .volume-bars-wrapper{
-    width:70px;
-    float:left;
-  }
-  body footer.footer .col-sm-offset-4{
-    width: 363px;
-    left: 5%;
-    position: relative;
-  }
+
+/* Iphone 5 */
+/* Portrait */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait) {
 }
 
-@media only screen and (min-width: 1024px) {
+/*end of iphone 5 */
 
+
+
+/*@media only screen and (min-width: 480px) and (max-width: 767px) {*/
+
+/*.track-and-volume-wrapper{*/
+/*width: 363px;*/
+/*margin-left: 0;*/
+/*left: 20%;*/
+/*position: absolute;*/
+/*top: 87%;*/
+/*}*/
+/*.col-sm-4.col-sm-offset-4.shake{*/
+/*width: 363px;*/
+/*left: 20%;*/
+/*}*/
+/*.trackInfoWrapper{*/
+/*width: 291px;*/
+/*float: left;*/
+/*}*/
+
+/*.volume-bars-wrapper{*/
+/*width:70px;*/
+/*float:left;*/
+/*}*/
+/*footer.footer .col-sm-4.col-sm-offset-4{*/
+/*width: 363px;*/
+/*left: 22%;*/
+/*}*/
+/*}*/
+
+/*@media only screen and (min-width: 320px) and (max-width: 479px) {*/
+
+/*.col-sm-4.col-sm-offset-4.shake{*/
+/*width: 285px;*/
+/*left: 6%;*/
+/**/
+/*}*/
+/**/
+/*.track-and-volume-wrapper{*/
+/*width: 285px;*/
+/*left: 10%;*/
+/*position: absolute;*/
+/*top: 91%;*/
+/*height: 100px;*/
+/*margin-top: -50px;*/
+/*}*/
+
+/*.trackInfoWrapper{*/
+/*width: 70%;*/
+/*float: left;*/
+/*}*/
+
+/*.volume-bars-wrapper{ */
+/*width: 26%;*/
+/*float: left;*/
+/*}*/
+/*footer.footer .col-sm-4.col-sm-offset-4{*/
+/*width: 285px;*/
+/*left: 11%;*/
+/*}*/
+
+/*}*/
+
+@media only screen and (min-width: 768px) {
+  .col-sm-4.col-sm-offset-4.shake{
+    left: 34%;
+
+  }
   .track-and-volume-wrapper{
     width: 430px;
-    margin: 0 auto;
     position: absolute;
     top: 91%;
     height: 100px;
-    margin-top: -50px;
-    left: 40%;
+    margin: -50px auto 0;
+    left: 34%;
   }
 
   .trackInfoWrapper{
@@ -128,12 +278,52 @@ p{
     width: 70px;
     float: left;
   }
-  footer.footer .col-sm-offset-4{
+  footer.footer .col-sm-4.col-sm-offset-4{
     width: 430px;
-    left: 42%;
+    left: 44%;
   }
 
 }
+
+@media only screen and (min-width: 1920px) {
+  .col-sm-4.col-sm-offset-4.shake{
+    left: 38%;
+
+  }
+  .track-and-volume-wrapper{
+    left: 38%;
+  }
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 430px;
+    left: 45.5%;
+  }
+
+}
+
+/* retina */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 1025px){
+  .col-sm-4.col-sm-offset-4.shake{
+    left: 32.5%;
+
+  }
+
+  footer.footer .col-sm-4.col-sm-offset-4{
+    width: 430px;
+    left: 43.5%;
+  }
+
+  .track-and-volume-wrapper{
+    width: 430px;
+    position: absolute;
+    top: 91%;
+    height: 100px;
+    margin: -50px auto 0;
+    left: 36%;
+  }
+}
+
+/* ================ Media query end ================ */
 
 .trackInfo{
   background: rgba(00, 00, 00, 0.5);
@@ -146,6 +336,35 @@ p{
   font-weight: bold;
   text-align: center;
   padding-top: 6px;
+}
+
+.marquee {
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee p {
+  display: block;
+  width: 200%;
+
+  position: absolute;
+  overflow: hidden;
+
+  animation: marquee 8s linear infinite;
+}
+
+.marquee span {
+  float: left;
+  width: 50%;
+}
+
+.marquee p:hover {
+  animation-play-state: paused
+}
+
+@keyframes marquee {
+  0%   { text-indent: 27.5em }
+  100% { text-indent: -260% }
 }
 
 /* Volume bars */
@@ -164,36 +383,33 @@ p{
   border-radius: 2px;
 }
 
-.volume-bar.one {
-  top: 58%;
-  height: 42%;
-}
-
-.volume-bar.two {
-  top: 44%;
-  height: 55.5%;
-}
-
-.volume-bar.three {
-  top: 31%;
-  height: 69%;
-}
-
-.volume-bar.four {
-  top: 17.5%;
-  height: 82.5%;
-}
-
-.volume-bar.five {
-  height: 100%;
-}
-
 .volume-bar:hover{
   opacity: 1;
 }
 .volume-bar.red{
   background-color: #fa0000;
+}
+
+.volume-bar.red:hover {
   opacity: 1;
+}
+
+svg{
+  position: absolute;
+}
+
+#phantom{
+  width: 77px;
+  height: 125px;
+}
+#clipped {
+  background: white;
+  opacity: 0.3;
+}
+
+.liquid {
+  fill: #fa0000;
+  opacity: 0.6;
 }
 
 /* play button  */
@@ -202,7 +418,7 @@ p{
   background-color: white;
   opacity: 0.7;
   text-align: left;
-  top: 0.5em;
+  top: 7.5em;
 }
 .playback-play:before,
 .playback-play:after {
@@ -231,7 +447,8 @@ p{
 
 .playback-play {
   filter: drop-shadow(4px 7px 10px rgb(0,0,0));
-  -webkit-filter: drop-shadow(4px 7px 10px rgb(0,0,0));
+  /* somehow filter is nit working in CH */
+  -webkit-filter: none;
 }
 /* play button end */
 
@@ -240,33 +457,34 @@ p{
 
 .playback-pause {
   position: relative;
-  width: 1px; 
+  width: 1px;
   height: 6.5em;
-  background-color: transparent; 
+  background-color: transparent;
   opacity: 0.7;
+  top: 7.5em;
 }
 
 .playback-pause:before {
-    width: 1.7em;
-    height: 6.5em;
-    background: #fff;
-    position: absolute;
-    border-radius: 9px;
-    content: "";
-    left: 9px;
+  width: 1.7em;
+  height: 6.5em;
+  background: #fff;
+  position: absolute;
+  border-radius: 9px;
+  content: "";
+  left: 9px;
 }
 
 .playback-pause:after {
-    width: 1.7em;
-    height: 6.5em;
-    background: #fff;
-    position: absolute;
-    border-radius: 9px;
-    content: "";
-    right: 9px;
+  width: 1.7em;
+  height: 6.5em;
+  background: #fff;
+  position: absolute;
+  border-radius: 9px;
+  content: "";
+  right: 9px;
 }
 
-.playback-pause:before, 
+.playback-pause:before,
 .playback-pause:after,
 .playback-pause {
   filter: drop-shadow(4px 7px 20px rgb(0,0,0));
@@ -276,9 +494,9 @@ p{
 /* pause button end */
 
 .pull-bottom {
-    display: inline-block;
-    vertical-align: bottom;
-    float: none;
+  display: inline-block;
+  vertical-align: bottom;
+  float: none;
 }
 
 .pull-left {
@@ -288,18 +506,42 @@ p{
   float: right !important;
 }
 
-body .row .social-button.col-xs-4.shake{
-  width: 89px;
+body .row .social-button.col-xs-4.col-sm-4.shake{
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 4em;
 }
-footer.footer .col-sm-offset-4{
+footer.footer .col-sm-4.col-sm-offset-4{
   margin: 0 auto;
   position: absolute;
 }
 
-.playback-play {
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  /* Retina-specific stuff here */
 
 }
 
+
+
+@keyframes windshiver {
+  0% { transform: rotate(3deg); }
+  10% { transform: rotate(5deg); }
+  20% { transform: rotate(7deg); }
+  30% { transform: rotate(9deg); }
+  40% { transform: rotate(11deg); }
+  50% { transform: rotate(13deg); }
+  60% { transform: rotate(15deg); }
+  70% { transform: rotate(13deg); }
+  80% { transform: rotate(5deg); }
+  /*90% { transform: rotate(-2deg); }*/
+  /*90% { transform: rotate(-6deg); }*/
+}
+
+
+/* Leaves and bugs END */
 /* Animation */
 
 @keyframes spaceboots {
@@ -324,9 +566,9 @@ footer.footer .col-sm-offset-4{
   animation-timing-function: linear;
 }
 
-/* Fonts */ 
+/* Fonts */
 
 @font-face {
-    font-family: gogol;
-    src: url("../fonts/gogol_font.ttf");
+  font-family: gogol;
+  src: url("../fonts/gogol_font.ttf");
 }
