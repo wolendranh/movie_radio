@@ -11,7 +11,7 @@ def send_simple_message(sender, body):
     Returns: http code
 
     """
-
+    # TODO: get rid of requests here. Because it is sync
     return requests.post(
         MAIL_GUN_API_URL,
         auth=("api", MAIL_GUN_API_KEY),
