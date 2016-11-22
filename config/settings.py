@@ -18,7 +18,7 @@ SECRET_KEY = b'\xf4cx\xae\x97P\xff*Kj\xe1\xf1\xa4\x1a\xad\xb7\xcb~\xe44PDq\xf4\x
 
 
 # 3-rd Party API settings
-MAIL_GUN_API_KEY = "key-e910f7758dea095e7b8b784ca670fb41"
+MAIL_GUN_API_KEY = None
 MAIL_GUN_API_URL = "https://api.mailgun.net/v3/sandbox634f2c973aa64b688e61e82dba4f72f1.mailgun.org/messages"
 
 
