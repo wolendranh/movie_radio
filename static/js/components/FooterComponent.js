@@ -1,6 +1,6 @@
 import React from "react";
 import {render} from "react-dom"
-import EmailModal from "./ModalComponent"
+import EmailModal from "./EmailModalComponent"
 
 
 var FooterComponent = React.createClass({
