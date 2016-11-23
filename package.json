@@ -10,7 +10,7 @@
     "jquery-ui": "*",
     "react-bootstrap": "^0.30.6",
     "remarkable": "*",
-    "validator-js": "*",
+    "validator": "6.1.0 ",
     "webpack": "^1.13.1"
   },
   "devDependencies": {

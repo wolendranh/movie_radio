@@ -1,7 +1,40 @@
 import React from "react";
-import { Modal, Popover, Tooltip, Button, OverlayTrigger, FormGroup, ControlLabel, FormControl, FieldGroup, HelpBlock} from 'react-bootstrap';
+import {
+    Modal,
+    Button,
+    FormGroup,
+    ControlLabel,
+    FormControl,
+    HelpBlock
+} from 'react-bootstrap';
+import validator from 'validator';
+
 
 import EmailModalActions from "../actions/EmailModalActions"
+
+
+const ERROR_MAPPING = {
+    'email': 'Ввeдіть валідну електронну адресу!',
+    'body': 'Текст повідомлення занадто короткий!'
+};
+
+
+function ErrorMessage(props){
+    /**
+     * Base on props pased (see props param for possible input) show or hide error message on form.
+     * @param {object} props - possible fields of this object are 'error' and 'field'. Error - indicate weather field
+     * is valid or in current moment of time. Field - field for which error will/not be shown
+     */
+    var errorMessage;
+    if (props.error == null || props.error == true) {
+        return null;
+    }
+    errorMessage = ERROR_MAPPING[props.field];
+
+    return (
+        <ControlLabel>{ errorMessage }</ControlLabel>
+    );
+}
 
 
 
@@ -10,30 +43,57 @@ const EmailModal = React.createClass({
    * Modal class that is used to show Bootstrap modal for the email feedback submission purpose
    */    
     getInitialState() {
-    return { showModal: false };
+    return { showModal: false , emailValid: null, textValid: null};
     },
 
     handleEmailChange: function(e) {
-     this.setState({email: e.target.value});
-     console.log(e.target.value);
+        this.setState({email: e.target.value});
+        this.validateInput('emailValid', e.target.value, validator.isEmail);
 
     },
     handleMessageChange: function(e) {
-     this.setState({body: e.target.value});
-     console.log(e.target.value);
+        this.setState({body: e.target.value});
+        this.validateInput('textValid', e.target.value, validator.isLength, {min: 20, max: 300});
+    },
+
+
+    getEmailValidationState: function(){
+        var valid = this.state.emailValid;
+        if(valid == true) return 'success';
+        else if(valid == null) return null;
+        else return 'error'
+    },
+
+    getTextValidationState: function(){
+        var valid = this.state.textValid;
+        if(valid == true) return 'success';
+        else if(valid == null) return null;
+        else return 'error'
+    },
+
+    validateInput: function(stateItem, value, validator, options){
+        var _getStateObject = function(stateItem, value, validator, options) {
+            /**
+             * Helper method to construct state property from passed values
+             */
+          var returnObj = {};
+          if(options) returnObj[stateItem] = validator(value, options);
+          else returnObj[stateItem] = validator(value);
+          return returnObj;
+        };
+        this.setState(_getStateObject(stateItem, value, validator, options));
     },
 
     close() {
-    this.setState({ showModal: false });
+        this.setState({ showModal: false });
     },
 
     open() {
-    this.setState({ showModal: true });
+        this.setState({ showModal: true });
     },
 
     submit(e){
-    console.log(this.state.email, this.state.body);
-    EmailModalActions.post(this.state.email, this.state.body)
+        EmailModalActions.post(this.state.email, this.state.body)
     },
 
     render() {
@@ -51,13 +111,13 @@ const EmailModal = React.createClass({
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.submit}>
-            <FormGroup controlId="formInlineEmail">
-                <ControlLabel>Електронна адреса</ControlLabel>
+            <FormGroup controlId="formInlineEmail" validationState={this.getEmailValidationState()}>
+                <ErrorMessage error={this.state.emailValid} field="email"/>
                 <FormControl onChange={this.handleEmailChange} type="email" placeholder="john.doe@radiobarmaglot.com" />
                 <HelpBlock>Поле для Вашої електронної адреси.</HelpBlock>
             </FormGroup>
-            <FormGroup controlId="formControlsTextarea">
-                <ControlLabel>Текст повідомлення</ControlLabel>
+            <FormGroup controlId="formControlsTextarea" validationState={this.getTextValidationState()}>
+                <ErrorMessage error={this.state.textValid} field="body"/>
                 <FormControl onChange={this.handleMessageChange} componentClass="textarea" placeholder="Привіт! Бармашлот дуже кльове радіо!" />
                 <HelpBlock>Поле для Вашого відгуку.</HelpBlock>
             </FormGroup>
@@ -77,8 +137,5 @@ const EmailModal = React.createClass({
     );
     }
 });
-
-
-
 
 module.exports =  EmailModal;
