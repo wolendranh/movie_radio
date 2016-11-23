@@ -8,8 +8,8 @@ var CHANGE_EVENT = 'change';
 
 /**
  * 
- * @param {string} sender email address
- * @param {string} text email body 
+ * @param {string} senderEmail email address
+ * @param {string} body email body
  */
 function sendMail(senderEmail, body) {
     $.ajax({
@@ -71,8 +71,9 @@ const EmailStore = new EmailModalStoreBaseClass();
 AppDispatcher.register(function(action) {
     var senderEmail,
         body;
-    
+    console.log('store');
     switch (action.actionType) {
+
         case constants.SUBMIT_MAIL:
             senderEmail = action.senderEmail.trim();
             body = action.body.trim();
@@ -81,4 +82,5 @@ AppDispatcher.register(function(action) {
     }
 });
 
-export default EmailStore;
+
+module.exports = EmailStore;

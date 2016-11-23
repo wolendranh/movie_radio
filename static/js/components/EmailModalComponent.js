@@ -9,13 +9,16 @@ import {
 } from 'react-bootstrap';
 import validator from 'validator';
 
+//TODO: investigate why Actions are not properly dispatched without this redundand import
+import EmailModalStore from "../stores/EmailModalStore"
+
 
 import EmailModalActions from "../actions/EmailModalActions"
 
 
 const ERROR_MAPPING = {
-    'email': 'Ввeдіть валідну електронну адресу!',
-    'body': 'Текст повідомлення занадто короткий!'
+    'email': 'Ввeдіть коректну електронну адресу!',
+    'body': 'Текст повідомлення занадто короткий!(коротше за 20 символів)'
 };
 
 
@@ -43,7 +46,7 @@ const EmailModal = React.createClass({
    * Modal class that is used to show Bootstrap modal for the email feedback submission purpose
    */    
     getInitialState() {
-    return { showModal: false , emailValid: null, textValid: null};
+        return { showModal: false , emailValid: null, textValid: null};
     },
 
     handleEmailChange: function(e) {
@@ -56,6 +59,9 @@ const EmailModal = React.createClass({
         this.validateInput('textValid', e.target.value, validator.isLength, {min: 20, max: 300});
     },
 
+    sendButtonDisabled: function(){
+        return !(this.state.emailValid && this.state.textValid);
+    },
 
     getEmailValidationState: function(){
         var valid = this.state.emailValid;
@@ -92,8 +98,10 @@ const EmailModal = React.createClass({
         this.setState({ showModal: true });
     },
 
-    submit(e){
-        EmailModalActions.post(this.state.email, this.state.body)
+    submit(){
+        EmailModalActions.post(this.state.email, this.state.body);
+        // close modal as user does'nt have any clue about errors and so on
+        this.close();
     },
 
     render() {
@@ -127,7 +135,7 @@ const EmailModal = React.createClass({
             <h4>Дякуємо за Ваш відгук!</h4>
           </Modal.Body>
           <Modal.Footer>
-            <Button type="submit" onClick={this.submit}>
+            <Button type="submit" onClick={this.submit} disabled={ this.sendButtonDisabled() }>
               Надіслати
             </Button>
             <Button onClick={this.close}>Закрити</Button>
