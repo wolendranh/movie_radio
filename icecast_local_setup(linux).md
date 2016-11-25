@@ -1,9 +1,8 @@
 # ICECAST + ICES2 Local Server configuration
 
 ##### Edit Icecast2 configuration
-
-	Open the file /etc/icecast2/icecast.xml as root in an editor.
-	For security reasons you should setup passwords in the <authentication> section:
+Open the file /etc/icecast2/icecast.xml as root in an editor.
+For security reasons you should setup passwords in the <authentication> section:
 
 ```
 <admin-user>admin</admin-user>
