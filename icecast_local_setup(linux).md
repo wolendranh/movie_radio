@@ -42,7 +42,13 @@ ENABLE=true
 **Server admin is available on http://localhost:8000/admin/**
 
 
-### Ices2 Install ices2 for streaming OGG Vorbis audio from a local soundcard
+### Ices2 
+
+**Install ices2 for streaming OGG Vorbis audio from a local soundcard**
+
+```
+sudo apt-get install ices2
+```
 
 **Make directories for Ices2**
 
