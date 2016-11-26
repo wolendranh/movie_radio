@@ -23,16 +23,6 @@ body {
   background-blend-mode: color-burn;
 }
 
-
-/*.morning-background {*/
-/*background:*/
-/*linear-gradient(to bottom,rgb(228, 182, 158) 5%, rgb(140, 53,1) 95%),*/
-/*url("../img/background.png") no-repeat center center fixed;*/
-/*background-size: cover;*/
-/*overflow: hidden;*/
-/*background-blend-mode: hue;*/
-/*}*/
-
 .day-background {
   background:
   linear-gradient(to bottom, rgba(198, 213, 186, 0.1) 30%, rgba(198, 213, 186, 0.73) 60%),
@@ -200,6 +190,14 @@ p{
     margin-top: -50px;
     left: 40%;
   }
+  
+  .clickable-player-area.play{
+    float: left;
+    margin-left: 160px;
+  }
+  .col-sm-offset-4 .row{
+    margin-left: 107px;
+  }
 
   .trackInfoWrapper{
     width: 360px;
@@ -212,7 +210,7 @@ p{
   }
   footer.footer .col-sm-offset-4{
     width: 430px;
-    left: 42%;
+    left: 40%;
   }
 
 }
