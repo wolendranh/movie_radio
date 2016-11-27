@@ -7,8 +7,6 @@ import {
     ControlLabel,
     FormControl,
     HelpBlock,
-    Tooltip,
-    OverlayTrigger
 } from 'react-bootstrap';
 import validator from 'validator';
 

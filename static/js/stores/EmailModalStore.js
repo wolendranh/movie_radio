@@ -20,13 +20,11 @@ function sendMessage(senderEmail, body) {
             body: body
       },
       success: function(data) {
-        console.log(data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.route.url, status, err.toString());
       },
       complete: function(){
-          console.log('complete')
       }
     });
 }
