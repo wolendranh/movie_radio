@@ -1,4 +1,13 @@
 import React from "react";
+import {
+    Button,
+    FormGroup,
+    ControlLabel,
+    FormControl,
+    HelpBlock,
+    Checkbox
+} from 'react-bootstrap';
+
 var ReactPropTypes = React.PropTypes;
 
 var ENTER_KEY_CODE = 13;
@@ -16,7 +25,7 @@ var StreamTextInput = React.createClass({
   getInitialState: function() {
     return {
       value: this.props.value || '',
-      active: this.props.active || ''
+      active: this.props.active || false
     };
   },
 
@@ -26,27 +35,34 @@ var StreamTextInput = React.createClass({
   render: function() /*object*/ {
     return (
         <div>
-        <input
-            className={this.props.className}
-            id={this.props.id}
-            placeholder={this.props.placeholder}
-            onChange={this._onChange}
-            onKeyDown={this._onKeyDown}
-            value={this.state.value}
-            autoFocus={true}
-        />
-        <input type="checkbox"
-            className={this.props.className}
-            onChange={this._onChangeActive}
-            autoFocus={true}
-            checked={this.state.active}
-        />
-        <input type="textarea"
-            className={this.props.className}
-            onChange={this._onChangeDescription}
-            autoFocus={true}
-            checked={this.state.description}
-        />
+          <form>
+            <FormGroup controlId="formInlineEmail">
+                <FormControl
+                    className={this.props.className}
+                    id={this.props.id}
+                    onChange={this._onChange}
+                    type="text"
+                    placeholder="stream"
+                    onKeyDown={this._onKeyDown}
+                    value={this.state.value}
+                />
+                <HelpBlock>enter stream</HelpBlock>
+                <Checkbox
+                    checked={this.state.active}
+                    onChange={this._onChangeActive}>
+                    Active?
+                </Checkbox>
+            </FormGroup>
+
+            <FormGroup controlId="formControlsTextarea">
+              <ControlLabel>Description</ControlLabel>
+              <FormControl
+                  componentClass="textarea"
+                  onChange={this._onChangeDescription}
+                  checked={this.state.description}
+                  placeholder="stream description" />
+            </FormGroup>
+          </form>
         </div>
     );
   },

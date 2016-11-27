@@ -1,6 +1,14 @@
 import React from "react";
 import { browserHistory} from 'react-router';
 
+import {
+    Table,
+    ListGroup,
+    ListGroupItem,
+    Grid,
+    Row
+} from 'react-bootstrap';
+
 import StreamStore from "../stores/StreamStore.js";
 import StreamTextInput from "./StreamTextInput.js"
 import StreamActions from "../actions/StreamActions.js"
@@ -9,14 +17,18 @@ import StreamActions from "../actions/StreamActions.js"
 var StreamAddressForm = React.createClass({
     render: function () {
        return (
-           <div>
-            <StreamTextInput
-                id="new-todo"
-                placeholder="What needs to be done?"
-                onSave={this._onSave}
-                />
-           <StreamList/>
-           </div>
+           <Grid>
+                 <Row className="show-grid">
+                    <StreamTextInput
+                        id="new-todo"
+                        placeholder="Stream URL"
+                        onSave={this._onSave}
+                        />
+                 </Row>
+                 <Row className="show-grid">
+                     <StreamList/>
+                 </Row>
+           </Grid>
        )
     },
     _onSave: function(stream_host, active, description) {
@@ -27,9 +39,6 @@ var StreamAddressForm = React.createClass({
     }
 
 });
-
-
-export default StreamAddressForm;
 
 
 function getStreamState() {
@@ -61,9 +70,19 @@ var StreamList = React.createClass({
           streams.push( <Stream key={key} stream_host={allStreams[key]} />);
         }
         return (
-            <div className="quoteList col-md-8">
+            <Table responsive>
+               <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Stream IP</th>
+                        <th>Is active</th>
+                        <th>Actions</th>
+                    </tr>
+               </thead>
+               <tbody>
                 {streams}
-            </div>
+               </tbody>
+            </Table>
         );
     },
 
@@ -78,11 +97,12 @@ var Stream = React.createClass({
    render: function() {
        var stream_host = this.props.stream_host;
        return (
-           <div key={stream_host.id}>
-               <span>{ stream_host.stream_ip }</span>
-               { stream_host.active ? <label>Активний</label> :null }
-               <button onClick={() => this._delete(stream_host.id)} value={ stream_host.id } >delete</button>
-           </div>
+               <tr>
+                   <td key={stream_host.id}>{stream_host.id}</td>
+                   <td>{ stream_host.stream_ip }</td>
+                   <td>{ stream_host.active ? 'Active' :'Disabled' }</td>
+                   <td><button onClick={() => this._delete(stream_host.id)} value={ stream_host.id } >delete</button></td>
+                </tr>
        )
    },
 
@@ -90,3 +110,5 @@ var Stream = React.createClass({
        StreamActions.delete(e);
    }
 });
+
+export default StreamAddressForm;
