@@ -20,13 +20,11 @@ function sendMail(senderEmail, body) {
             body: body
       },
       success: function(data) {
-        console.log(data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.route.url, status, err.toString());
       },
       complete: function(){
-          console.log('complete')
       }
     });
 }
@@ -71,7 +69,6 @@ const EmailStore = new EmailModalStoreBaseClass();
 AppDispatcher.register(function(action) {
     var senderEmail,
         body;
-    console.log('store');
     switch (action.actionType) {
 
         case constants.SUBMIT_MAIL:
