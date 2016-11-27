@@ -11,7 +11,7 @@ var CHANGE_EVENT = 'change';
  * @param {string} senderEmail email address
  * @param {string} body email body
  */
-function sendMail(senderEmail, body) {
+function sendMessage(senderEmail, body) {
     $.ajax({
       url: '/api/feedback',
       type: 'POST',
@@ -71,13 +71,18 @@ const EmailStore = new EmailModalStoreBaseClass();
 AppDispatcher.register(function(action) {
     var senderEmail,
         body;
-    console.log('store');
     switch (action.actionType) {
 
         case constants.SUBMIT_MAIL:
-            senderEmail = action.senderEmail.trim();
+            if(action.senderEmail){
+                senderEmail = action.senderEmail.trim();
+            }
+            else{
+                // it is possible that sender will not set his name
+                senderEmail = null;
+            }
             body = action.body.trim();
-            sendMail(senderEmail, body);
+            sendMessage(senderEmail, body);
             break;
     }
 });

@@ -1,11 +1,14 @@
 import React from "react";
 import {
+    Checkbox,
     Modal,
     Button,
     FormGroup,
     ControlLabel,
     FormControl,
-    HelpBlock
+    HelpBlock,
+    Tooltip,
+    OverlayTrigger
 } from 'react-bootstrap';
 import validator from 'validator';
 
@@ -39,14 +42,12 @@ function ErrorMessage(props){
     );
 }
 
-
-
 const EmailModal = React.createClass({
   /**
    * Modal class that is used to show Bootstrap modal for the email feedback submission purpose
    */    
     getInitialState() {
-        return { showModal: false , emailValid: null, textValid: null};
+        return { showModal: false , emailValid: null, textValid: null, anonymous: false};
     },
 
     handleEmailChange: function(e) {
@@ -58,9 +59,17 @@ const EmailModal = React.createClass({
         this.setState({body: e.target.value});
         this.validateInput('textValid', e.target.value, validator.isLength, {min: 20, max: 300});
     },
+    handleAnonymousChange: function(e) {
+        this.setState({anonymous: e.target.checked});
+    },
 
     sendButtonDisabled: function(){
-        return !(this.state.emailValid && this.state.textValid);
+        if (this.state.anonymous) return !(this.state.textValid);
+        else return !(this.state.emailValid && this.state.textValid);
+    },
+
+    checkAnonymous: function(){
+        return this.state.anonymous;
     },
 
     getEmailValidationState: function(){
@@ -121,8 +130,17 @@ const EmailModal = React.createClass({
             <form onSubmit={this.submit}>
             <FormGroup controlId="formInlineEmail" validationState={this.getEmailValidationState()}>
                 <ErrorMessage error={this.state.emailValid} field="email"/>
-                <FormControl onChange={this.handleEmailChange} type="email" placeholder="john.doe@radiobarmaglot.com" />
+                <FormControl
+                    onChange={this.handleEmailChange}
+                    type="email"
+                    placeholder="john.doe@radiobarmaglot.com"
+                    disabled={this.checkAnonymous()}
+                />
                 <HelpBlock>Поле для Вашої електронної адреси.</HelpBlock>
+                <Checkbox onChange={this.handleAnonymousChange}>
+                        Залишитись Анонімом.
+                </Checkbox>
+
             </FormGroup>
             <FormGroup controlId="formControlsTextarea" validationState={this.getTextValidationState()}>
                 <ErrorMessage error={this.state.textValid} field="body"/>
@@ -130,7 +148,7 @@ const EmailModal = React.createClass({
                 <HelpBlock>Поле для Вашого відгуку.</HelpBlock>
             </FormGroup>
             </form>
-            <hr />
+            <hr/>
 
             <h4>Дякуємо за Ваш відгук!</h4>
           </Modal.Body>
