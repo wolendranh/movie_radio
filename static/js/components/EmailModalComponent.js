@@ -97,8 +97,13 @@ const EmailModal = React.createClass({
         this.setState(_getStateObject(stateItem, value, validator, options));
     },
 
+    resetState(){
+      this.setState({ showModal: false , emailValid: null, textValid: null, anonymous: false})
+
+    },
+
     close() {
-        this.setState({ showModal: false });
+        this.resetState();
     },
 
     open() {
@@ -108,7 +113,7 @@ const EmailModal = React.createClass({
     submit(){
         EmailModalActions.post(this.state.email, this.state.body);
         // close modal as user does'nt have any clue about errors and so on
-        this.close();
+        this.resetState();
     },
 
     render() {
