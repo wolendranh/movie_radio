@@ -1,6 +1,8 @@
 import logging
 
 from aiohttp import ClientSession, BasicAuth
+
+from radio.services.exceptions import ImproperlyConfiguredServiceError
 from config.settings import (
     MAIL_GUN_API_KEY,
     MAIL_GUN_API_URL,
@@ -18,6 +20,9 @@ async def send_mail(sender, body):
         body: text body of email that in going to be sent
 
     """
+    if not all([MAIL_GUN_API_KEY, INFO_EMAIL, MAIL_GUN_API_URL]):
+        raise ImproperlyConfiguredServiceError('Email sending variables are not defined! Please check your settings!')
+
     try:
         with ClientSession() as client:
             await client.post(
