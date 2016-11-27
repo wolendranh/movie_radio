@@ -7,6 +7,7 @@ var StreamActions = {
    * Dispatch an create type event using Dispatcher
    * @param  {string} host_address
    * @param  {string} active
+   * @param  {string} description
    */
   create: function(host_address, active, description) {
     AppDispatcher.dispatch({

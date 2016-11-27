@@ -4,14 +4,14 @@
   "description": "simple radio page, that will play stream from Icecast server",
   "main": "index.js",
   "dependencies": {
-    "webpack": "^1.13.1",
-    "remarkable": "*",
-    "validator-js": "*",
-    "flux": "^2.0.1",
-    "events": "*",
     "bootstrap": "*",
-    "jquery-ui": "*"
-
+    "events": "*",
+    "flux": "^2.0.1",
+    "jquery-ui": "*",
+    "react-bootstrap": "^0.30.6",
+    "remarkable": "*",
+    "validator": "6.1.0 ",
+    "webpack": "^1.13.1"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",

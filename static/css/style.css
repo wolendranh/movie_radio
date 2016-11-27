@@ -7,56 +7,26 @@ body {
   overflow: hidden;
 }
 
-/* CENTER LINE FOR TESTS */
-/*body:after {*/
-    /*content:"";*/
-    /*position: absolute;*/
-    /*z-index: -1;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*left: 50%;*/
-    /*border-left: 2px dotted #444; !*change these values to suit your liking*!*/
-/*}*/
-
-/*.test-back{*/
-  /*background:*/
-          /*linear-gradient(rgb(214, 196, 171) 5%, rgb(221, 189, 164) 95%),*/
-          /*url("../img/background.png") center center / cover no-repeat fixed;*/
-
-  /*background-blend-mode: hue;*/
-  /*overflow: hidden;*/
-/*}*/
-
 .default-background {
   background:
-          url("../img/background.png") no-repeat center center fixed;
+  url("../img/background.png") no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
 }
 
 .morning-background {
   background:
-          linear-gradient(to bottom,rgba(228, 182, 158, 0.1) 5%, rgba(140, 53,1, 0.5) 95%),
-          url("../img/background.png") no-repeat center center fixed;
+  linear-gradient(to bottom,rgba(228, 182, 158, 0.1) 5%, rgba(140, 53,1, 0.5) 95%),
+  url("../img/background.png") no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
   background-blend-mode: color-burn;
 }
 
-
-/*.morning-background {*/
-  /*background:*/
-          /*linear-gradient(to bottom,rgb(228, 182, 158) 5%, rgb(140, 53,1) 95%),*/
-          /*url("../img/background.png") no-repeat center center fixed;*/
-  /*background-size: cover;*/
-  /*overflow: hidden;*/
-  /*background-blend-mode: hue;*/
-/*}*/
-
 .day-background {
   background:
-          linear-gradient(to bottom, rgba(198, 213, 186, 0.1) 30%, rgba(198, 213, 186, 0.73) 60%),
-          url("../img/background.png") no-repeat center center fixed;
+  linear-gradient(to bottom, rgba(198, 213, 186, 0.1) 30%, rgba(198, 213, 186, 0.73) 60%),
+  url("../img/background.png") no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
   background-blend-mode: color-burn;
@@ -65,8 +35,8 @@ body {
 
 .evening-background {
   background:
-          linear-gradient(to bottom, rgba(233, 99, 0, 0.1) 30%, rgba(233, 99, 0, 0.7) 60%),
-          url("../img/background.png") no-repeat center center fixed;
+  linear-gradient(to bottom, rgba(233, 99, 0, 0.1) 30%, rgba(233, 99, 0, 0.7) 60%),
+  url("../img/background.png") no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
   background-blend-mode: color-burn;
@@ -82,8 +52,8 @@ body {
 
 body:before{
   background:
-          linear-gradient(to bottom, rgba(198, 213, 186, 0.1) 30%, rgba(198, 213, 186, 0.73) 60%),
-          url("../img/background.png") no-repeat center center fixed;
+  linear-gradient(to bottom, rgba(198, 213, 186, 0.1) 30%, rgba(198, 213, 186, 0.73) 60%),
+  url("../img/background.png") no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
   background-blend-mode: color-burn;
@@ -92,7 +62,7 @@ body:before{
 }
 
 body:hover:before{
-      opacity: 0;
+  opacity: 0;
 }
 
 
@@ -128,7 +98,7 @@ p{
   width: 100%;
   height: 60px;
 
-} 
+}
 
 
 .daily-quote {
@@ -145,10 +115,10 @@ p{
 }
 
 
-.col-sm-4.col-sm-offset-4.shake{
+.col-sm-offset-4.shake{
   position: absolute;
-  top: 40%;
-  height: 300px;
+  top: 51%;
+  height: 100px;
   margin-top: -50px;
   left: 40%;
   width: 430px;
@@ -174,99 +144,59 @@ p{
 }
 
 /*Track info bar*/
-.player-container .col-sm-4{
+.player-container .col-sm-offset-4{
   margin: 0 15%;
 }
 
 /* ================ Media query goes here ================ */
 
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
+  .track-and-volume-wrapper{
+    width: 100%;
+    margin-left: 0;
+    position: absolute;
+    top: 80%;
+    margin: 0 auto;
+  }
+  .col-sm-offset-4.shake{
+    width: 100%;
+    left: -8px;
+  }
 
-/* Iphone 5 */
-/* Portrait */
-@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+  .trackInfoWrapper{
+    width: 291px;
+    margin: 0 auto;
+  }
+
+  .volume-bars-wrapper{
+    width:70px;
+    float:left;
+  }
+  body footer.footer .col-sm-offset-4{
+    width: 233px;
+    left: 5%;
+    position: relative;
+  }
 }
 
-/*end of iphone 5 */
+@media only screen and (min-width: 1024px) {
 
-
-
-/*@media only screen and (min-width: 480px) and (max-width: 767px) {*/
-
-  /*.track-and-volume-wrapper{*/
-    /*width: 363px;*/
-    /*margin-left: 0;*/
-    /*left: 20%;*/
-    /*position: absolute;*/
-    /*top: 87%;*/
-  /*}*/
-  /*.col-sm-4.col-sm-offset-4.shake{*/
-    /*width: 363px;*/
-    /*left: 20%;*/
-  /*}*/
-  /*.trackInfoWrapper{*/
-    /*width: 291px;*/
-    /*float: left;*/
-  /*}*/
-
-  /*.volume-bars-wrapper{*/
-    /*width:70px;*/
-    /*float:left;*/
-  /*}*/
-  /*footer.footer .col-sm-4.col-sm-offset-4{*/
-    /*width: 363px;*/
-    /*left: 22%;*/
-  /*}*/
-/*}*/
-
-/*@media only screen and (min-width: 320px) and (max-width: 479px) {*/
-
-  /*.col-sm-4.col-sm-offset-4.shake{*/
-    /*width: 285px;*/
-    /*left: 6%;*/
-  /**/
-  /*}*/
-  /**/
-  /*.track-and-volume-wrapper{*/
-    /*width: 285px;*/
-    /*left: 10%;*/
-    /*position: absolute;*/
-    /*top: 91%;*/
-    /*height: 100px;*/
-    /*margin-top: -50px;*/
-  /*}*/
-
-  /*.trackInfoWrapper{*/
-    /*width: 70%;*/
-    /*float: left;*/
-  /*}*/
-
-  /*.volume-bars-wrapper{ */
-    /*width: 26%;*/
-    /*float: left;*/
-  /*}*/
-  /*footer.footer .col-sm-4.col-sm-offset-4{*/
-    /*width: 285px;*/
-    /*left: 11%;*/
-  /*}*/
-
-/*}*/
-
-@media only screen and (min-width: 768px) {
-  .col-sm-4.col-sm-offset-4.shake{
-    left: 34%;
-
-  }
   .track-and-volume-wrapper{
     width: 430px;
+    margin: 0 auto;
     position: absolute;
     top: 91%;
     height: 100px;
-    margin: -50px auto 0;
-    left: 34%;
+    margin-top: -50px;
+    left: 40%;
+  }
+  
+  .clickable-player-area.play{
+    float: left;
+    margin-left: 160px;
+  }
+  .col-sm-offset-4 .row{
+    margin-left: 107px;
   }
 
   .trackInfoWrapper{
@@ -274,53 +204,15 @@ p{
     float: left;
   }
 
-  .volume-bars-wrapper{ 
+  .volume-bars-wrapper{
     width: 70px;
     float: left;
   }
-  footer.footer .col-sm-4.col-sm-offset-4{
+  footer.footer .col-sm-offset-4{
     width: 430px;
-    left: 44%;
+    left: 40%;
   }
 
-}
-
-@media only screen and (min-width: 1920px) {
-  .col-sm-4.col-sm-offset-4.shake{
-    left: 38%;
-
-  }
-  .track-and-volume-wrapper{
-    left: 38%;
-  }
-  footer.footer .col-sm-4.col-sm-offset-4{
-    width: 430px;
-    left: 45.5%;
-  }
-
-}
-
-/* retina */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 1025px){
-  .col-sm-4.col-sm-offset-4.shake{
-    left: 32.5%;
-
-  }
-
-  footer.footer .col-sm-4.col-sm-offset-4{
-    width: 430px;
-    left: 43.5%;
-  }
-
-  .track-and-volume-wrapper{
-    width: 430px;
-    position: absolute;
-    top: 91%;
-    height: 100px;
-    margin: -50px auto 0;
-    left: 36%;
-  }
 }
 
 /* ================ Media query end ================ */
@@ -359,12 +251,12 @@ only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 1025p
 }
 
 .marquee p:hover {
-    animation-play-state: paused
+  animation-play-state: paused
 }
 
 @keyframes marquee {
-    0%   { text-indent: 27.5em }
-    100% { text-indent: -260% }
+  0%   { text-indent: 27.5em }
+  100% { text-indent: -260% }
 }
 
 /* Volume bars */
@@ -457,34 +349,34 @@ svg{
 
 .playback-pause {
   position: relative;
-  width: 1px; 
+  width: 1px;
   height: 6.5em;
-  background-color: transparent; 
+  background-color: transparent;
   opacity: 0.7;
   top: 7.5em;
 }
 
 .playback-pause:before {
-    width: 1.7em;
-    height: 6.5em;
-    background: #fff;
-    position: absolute;
-    border-radius: 9px;
-    content: "";
-    left: 9px;
+  width: 1.7em;
+  height: 6.5em;
+  background: #fff;
+  position: absolute;
+  border-radius: 9px;
+  content: "";
+  left: 9px;
 }
 
 .playback-pause:after {
-    width: 1.7em;
-    height: 6.5em;
-    background: #fff;
-    position: absolute;
-    border-radius: 9px;
-    content: "";
-    right: 9px;
+  width: 1.7em;
+  height: 6.5em;
+  background: #fff;
+  position: absolute;
+  border-radius: 9px;
+  content: "";
+  right: 9px;
 }
 
-.playback-pause:before, 
+.playback-pause:before,
 .playback-pause:after,
 .playback-pause {
   filter: drop-shadow(4px 7px 20px rgb(0,0,0));
@@ -494,9 +386,9 @@ svg{
 /* pause button end */
 
 .pull-bottom {
-    display: inline-block;
-    vertical-align: bottom;
-    float: none;
+  display: inline-block;
+  vertical-align: bottom;
+  float: none;
 }
 
 .pull-left {
@@ -511,20 +403,18 @@ body .row .social-button.col-xs-4.col-sm-4.shake{
   padding-right: 10px;
   width: 4em;
 }
-footer.footer .col-sm-4.col-sm-offset-4{
+footer.footer .col-sm-offset-4{
   margin: 0 auto;
   position: absolute;
 }
 
-
-@media
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-    /* Retina-specific stuff here */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
 
 }
-
-
 
 @keyframes windshiver {
   0% { transform: rotate(3deg); }
@@ -566,9 +456,9 @@ footer.footer .col-sm-4.col-sm-offset-4{
   animation-timing-function: linear;
 }
 
-/* Fonts */ 
+/* Fonts */
 
 @font-face {
-    font-family: gogol;
-    src: url("../fonts/gogol_font.ttf");
+  font-family: gogol;
+  src: url("../fonts/gogol_font.ttf");
 }
