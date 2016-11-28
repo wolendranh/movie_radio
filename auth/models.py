@@ -26,9 +26,10 @@ class Token:
 
     async def get_or_create(self, *args, **kwargs):
         token = await get_token(collection=self.collection, user_id=self.user_id)
-        if token:
-            return token
-        return await self.save()
+        if not token:
+            await self.save()
+            token = await get_token(collection=self.collection, user_id=self.user_id)
+        return token
 
     async def save(self, *args, **kwargs):
         if not self.key:
