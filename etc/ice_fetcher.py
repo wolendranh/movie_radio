@@ -42,9 +42,9 @@ async def get_current_song(icecast_host, icecast_port):
         icecast_host = ':'.join([icecast_host, icecast_port])
     icecast_host = '/'.join([icecast_host, METADATA_FILE])
     try:
-        with aiohttp.ClientSession() as client:
-            response = await client.request('GET', icecast_host)
-        body = await response.json()
+        async with aiohttp.ClientSession() as client:
+            async with await client.get(icecast_host) as response:
+                body = await response.json()
     except Exception as e:
         server_logger.error('Error occurred while getting response from icecast {}!'.format(str(e)))
         return None
