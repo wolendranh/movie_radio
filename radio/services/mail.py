@@ -24,15 +24,15 @@ async def send_mail(sender, body):
         raise ImproperlyConfiguredServiceError('Email sending variables are not defined! Please check your settings!')
 
     try:
-        with ClientSession() as client:
-            await client.post(
-                MAIL_GUN_API_URL,
-                auth=BasicAuth("api", MAIL_GUN_API_KEY),
-                data={"from": sender,
-                      "to": INFO_EMAIL,
-                      "subject": FEEDBACK_SUBJECT,
-                      "text": body}
-            )
+        # async with statement needed to auto close session after request was made.
+        async with ClientSession() as client:
+            async with client.post(MAIL_GUN_API_URL,
+                                   auth=BasicAuth("api", MAIL_GUN_API_KEY),
+                                   data={"from": sender,
+                                         "to": INFO_EMAIL,
+                                         "subject": FEEDBACK_SUBJECT,
+                                         "text": body}) as response:
+                    return response.read()
     except Exception as e:
         # log exception as we don't have anything else to do here.
         # raising exception doesn't make much sense. At least now.
