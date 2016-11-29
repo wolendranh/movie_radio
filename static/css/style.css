@@ -117,12 +117,8 @@ p{
 
 .col-sm-offset-4.shake{
   position: absolute;
-  top: 51%;
   height: 100px;
-  margin-top: -50px;
-  left: 40%;
-  width: 430px;
-  margin-left: 0;
+  width: 97px;
   padding: 0px;
 }
 
@@ -150,53 +146,34 @@ p{
 
 /* ================ Media query goes here ================ */
 
-@media only screen and (min-width: 320px) and (max-width: 1024px) {
-  .track-and-volume-wrapper{
-    width: 100%;
-    margin-left: 0;
-    position: absolute;
-    top: 80%;
-    margin: 0 auto;
-  }
-  .col-sm-offset-4.shake{
-    width: 100%;
-    left: -8px;
+@media only screen and (min-width: 300px) and (max-width: 768px) {
+  .row.player-container .track-and-volume-wrapper{
+    width: 240px;
+    float: left;
   }
 
-  .trackInfoWrapper{
-    width: 291px;
-    margin: 0 auto;
+  .row.player-container .trackInfoWrapper{
+    width: 240px;
+    float: left;
   }
-
-  .volume-bars-wrapper{
-    width:70px;
-    float:left;
+  .footer.row-fluid{
+    height: 38px;
   }
-  body footer.footer .col-sm-offset-4{
-    width: 233px;
-    left: 5%;
-    position: relative;
-  }
+  .volume-bars{ display: none;}
 }
 
-@media only screen and (min-width: 1024px) {
+
 
   .track-and-volume-wrapper{
     width: 430px;
-    margin: 0 auto;
     position: absolute;
     top: 91%;
     height: 100px;
     margin-top: -50px;
-    left: 40%;
   }
-  
+
   .clickable-player-area.play{
     float: left;
-    margin-left: 160px;
-  }
-  .col-sm-offset-4 .row{
-    margin-left: 107px;
   }
 
   .trackInfoWrapper{
@@ -209,11 +186,10 @@ p{
     float: left;
   }
   footer.footer .col-sm-offset-4{
-    width: 430px;
-    left: 40%;
+    width: 150px;
   }
 
-}
+
 
 /* ================ Media query end ================ */
 
@@ -411,7 +387,7 @@ footer.footer .col-sm-offset-4{
 .footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 150px;
   height: 60px;
 
 }
