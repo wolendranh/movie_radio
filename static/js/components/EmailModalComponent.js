@@ -127,7 +127,7 @@ const EmailModal = React.createClass({
 
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
-            <Modal.Title>Введіть Ваш відгук у форму!</Modal.Title>
+            <Modal.Title>Введіть Ваш відгук у форму.</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.submit}>
@@ -147,7 +147,7 @@ const EmailModal = React.createClass({
             </FormGroup>
             <FormGroup controlId="formControlsTextarea" validationState={this.getTextValidationState()}>
                 <ErrorMessage error={this.state.textValid} field="body"/>
-                <FormControl onChange={this.handleMessageChange} componentClass="textarea" placeholder="Привіт! Бармашлот дуже кльове радіо!" />
+                <FormControl onChange={this.handleMessageChange} componentClass="textarea" placeholder="Привіт! Бармаглот дуже кльове радіо!" />
                 <HelpBlock>Поле для Вашого відгуку.</HelpBlock>
             </FormGroup>
             </form>
