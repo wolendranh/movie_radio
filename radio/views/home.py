@@ -11,4 +11,4 @@ class HomeView(web.View):
 
     @aiohttp_jinja2.template('radio/landing.html')
     async def get(self):
-        return {'filter_class': get_day_time(), 'DEBUG': settings.DEBUG}
+        return {'filter_class': get_day_time(), 'DEBUG': settings.DEBUG, 'GA': settings.GOOGLE_ANALYTICS}
