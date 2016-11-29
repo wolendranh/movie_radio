@@ -65,14 +65,21 @@ body:after{
 
 
 .day {
-    background-image: url('../img/day.png');
+    background: url('../img/day.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+
 }
 
 .evening {
-    background-image: url('../img/evening.png');
+    background: url('../img/evening.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
 }
 
 .morning {
-    background-image: url('../img/morn.png');
+    background: url('../img/morn.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
 }
 
