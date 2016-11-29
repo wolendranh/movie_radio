@@ -26,7 +26,7 @@ MAIL_GUN_API_KEY = None
 MAIL_GUN_API_URL = "https://api.mailgun.net/v3/sandbox634f2c973aa64b688e61e82dba4f72f1.mailgun.org/messages"
 
 
-
+GOOGLE_ANALYTICS = "UA-88199335-1"
 
 try:
     from .local_settings import *
