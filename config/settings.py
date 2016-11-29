@@ -25,8 +25,8 @@ FEEDBACK_SUBJECT = "Barmaglot feedback"
 MAIL_GUN_API_KEY = None
 MAIL_GUN_API_URL = "https://api.mailgun.net/v3/sandbox634f2c973aa64b688e61e82dba4f72f1.mailgun.org/messages"
 
-
-
+# should come from local settings
+GOOGLE_ANALYTICS = None
 
 try:
     from .local_settings import *
