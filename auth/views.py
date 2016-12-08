@@ -62,8 +62,10 @@ class Login(web.View):
         if isinstance(user, dict):
             session = await get_session(self.request)
             set_session(session, str(user['_id']), self.request)
+            token = await Token(db=self.request.db, data={'user_id': user['_id']}).get_or_create()
             return web.json_response(content_type='application/json',
-                                     data=convert_json({'login': 'true'}),
+                                     data=convert_json({'login': 'true',
+                                                        'token': token['key']}),
                                      status=200)
         else:
             return web.json_response(content_type='application/json',
