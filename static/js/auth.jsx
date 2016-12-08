@@ -9,14 +9,6 @@ var self = module.exports = {
             if (cb) cb(true);
                 return
         }
-        self.getToken(username, pass, (res) => {
-            if (res.authenticated) {
-                localStorage.token = res.token;
-                if (cb) cb(true)
-            } else {
-                if (cb) cb(false)
-            }
-        })
     },        
     
     logout: function() {
@@ -28,21 +20,4 @@ var self = module.exports = {
     loggedIn: function() {
         return !!localStorage.token
     },
-
-    getToken: function(username, pass, cb) {
-        $.ajax({
-            type: 'POST',
-            url: '/api/get-auth-token',
-            data: {
-                username: username,
-                password: pass
-            },
-            success: function(res){
-                cb({
-                    authenticated: true,
-                    token: res.token
-                })
-            }
-        })
-    } 
 };
