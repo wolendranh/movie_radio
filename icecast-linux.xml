@@ -135,7 +135,8 @@
     <mount type="default">
         <public>0</public>
         <intro>/server-wide-intro.ogg</intro>
-        <max-listener-duration>3600</max-listener-duration>
+        <!--duration is set to 8 hours-->
+        <max-listener-duration>28800</max-listener-duration>
         <authentication type="url">
                 <option name="mount_add" value="http://auth.example.org/stream_start.php"/>
         </authentication>

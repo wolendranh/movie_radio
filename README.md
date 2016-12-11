@@ -46,7 +46,14 @@ In case if you do not  have Python 3.5:
 (to omit issue with /usr/bin/env: node: No such file or directory)
  
 #####Install icecast2 server
+server is being installed from Xiph repo's because Ubuntu one don't always have latest version.
 ```
+sudo sh -c "echo deb http://download.opensuse.org/repositories/multimedia:/xiph/xUbuntu_14.04/ ./ >>/etc/apt/sources.list.d/icecast.list"
+wget http://icecast.org/multimedia-obs.key
+gpg multimedia-obs.key
+sudo apt-key add multimedia-obs.key
+sudo apt-get update
+sudo apt-get
 sudo apt-get install icecast2
 ```
 (default icecast config is here /etc/icecast2/icecast.xml)
@@ -59,7 +66,27 @@ sudo apt-get install icecast2
 3. sudo apt-get install supervisor
 ```
 
+#####Setup Mongo DB
+```
+sudo touch /etc/apt/sources.list.d/mongodb-org-3.2.list
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse"
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
+In case if you have issues with encoding:
+```
+export LC_ALL=C
+```
+
+
+
 #####Setup Nginx
+
+```
+```
+
 ...
 #####Setup Supervisor
 ...
