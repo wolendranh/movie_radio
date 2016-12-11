@@ -35,7 +35,8 @@ var Player = React.createClass({
     componentDidMount: function() {
         PlayerStore.addChangeListener(this._onChange);
         PlayerStore.addTrackListener(this._onTrackUpdate);
-        this.refs.audio.volume = 0.4;
+        // start volume is set to max on start
+        this.refs.audio.volume = 1;
 
         // component if mounted only one time so we can assume that it is 'initial'
         // load of page
@@ -87,7 +88,7 @@ var Player = React.createClass({
   getDefaultProps: function() {
     // sets default array of props
     return {
-      volume: 0.4,
+      volume: 1,
       currentSong: '...'
     };
   },

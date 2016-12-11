@@ -9,8 +9,8 @@ var Volume = React.createClass({
   setInitialVolume: function(){
       "use strict";
         var liquid= document.querySelector('.liquid');
-        liquid.setAttribute("width", 50 + '%');
-        this.props.setVolumeHandle(0.5);
+        liquid.setAttribute("width", 100 + '%');
+        this.props.setVolumeHandle(1);
   },
 
   componentDidMount: function () {

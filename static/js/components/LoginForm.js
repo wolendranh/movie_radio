@@ -10,7 +10,7 @@ import {login} from '../auth.jsx'
 var LoginForm = React.createClass({
     // TODO: divide into smaller reusable components(form, field etc.)
     getInitialState: function() {
-        return {username: 'Ваша Бармаглот пошта',
+        return {username: 'Ваша_Бармаглот_пошта@mail.com',
                 password: 'Ваш Бармаглот пароль',
                 passwordError: false,
                 usernameError: false,
@@ -60,6 +60,7 @@ var LoginForm = React.createClass({
           data: {'username': this.state.username,
                  'password': this.state.password},
           success: function(data) {
+              localStorage.token = data.token;
               login(this.state.username, this.state.password);
               browserHistory.push('/admin');
           }.bind(this),
@@ -79,12 +80,12 @@ var LoginForm = React.createClass({
 
           <div className={ this.loginHasErrors() }>
               <input type="text" className="form-control" onChange={this.handleUsernameChange} placeholder={ this.state.username } name="username" id="login" required=""/>
-              { this.state.usernameError ? <label className="control-label" for="login">Логін повинен бути адресою електронної пошти</label> :null}
+              { this.state.usernameError ? <label className="control-label" htmlFor="login">Логін повинен бути адресою електронної пошти</label> :null}
           </div>
 
           <div className={ this.passwordHasErrors() }>
               <input type="password" className="form-control" onChange={this.handlePasswordChange} placeholder={ this.state.password } id="password" name="password" required=""/>
-              { this.state.passwordError ? <label className="control-label" for="password">Занадто короткий</label> :null }
+              { this.state.passwordError ? <label className="control-label" htmlFor="password">Занадто короткий</label> :null }
           </div>
 
           { this.state.loginError ? <div className="form-group has-error'">
