@@ -1,7 +1,22 @@
 import {render} from 'react-dom';
 import React from 'react';
+import $ from 'jquery';
+
 
 var Controls = React.createClass({
+
+  componentDidMount: function () {
+
+        $('.shake').hover(
+          function(){
+            $(this).removeClass('finish-animation');
+          }
+        );
+
+        $('.shake').mouseleave("mouseleave", function () {
+            $(this).addClass('finish-animation');
+        });
+  },
 
 
   getInitialState: function() {
