@@ -46,7 +46,7 @@ var Player = React.createClass({
         FIRST_LOAD = false;
         PlayerActions.get();
 
-        setInterval(PlayerActions.getTrack, 3000);
+        setInterval(PlayerActions.getTrack, 15000);
     },
 
     componentWillUnmount: function() {
