@@ -7,7 +7,9 @@ class BaseModel:
     """
     # TODO: implement base functionality that should fit for all models
 
-    def __init__(self, collection):
+    def __init__(self, db, collection):
+        # Should use one db param and name of collection
+        self.db = db
         self.collection = collection
         self.created = datetime.now()
 

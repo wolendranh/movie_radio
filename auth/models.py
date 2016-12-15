@@ -4,6 +4,7 @@ from datetime import datetime
 from bson.objectid import ObjectId
 
 from config.settings import USER_COLLECTION, TOKEN_COLLECTION
+from radio_db.models import BaseModel
 from auth.services import (
     get_user,
     create_user,
@@ -42,13 +43,13 @@ class Token:
         return binascii.hexlify(os.urandom(20)).decode()
 
 
-class User:
+class User(BaseModel):
     """
     default User model
     """
 
     def __init__(self, db, data, **kwargs):
-        self.db = db
+        super().__init__(db=db, collection=db[USER_COLLECTION])
         self.collection = self.db[USER_COLLECTION]
         self.email = data.get('email')
         self.login = data.get('login')
