@@ -31,18 +31,28 @@ var Controls = React.createClass({
 
 
     _onPlay: function () {
-        this.setState({ showPause: false , showPlay: false});
+        if ((/mobile/i.test(navigator.userAgent))){
+            return true
+        }else {
+            this.setState({showPause: false, showPlay: false});
+        }
     },
     
     _onCanPlay: function () {
-        this.setState({ showPause: true , showPlay: false });
-
+        if ((/mobile/i.test(navigator.userAgent))){
+            return true
+        }else {
+            this.setState({showPause: true, showPlay: false});
+        }
     },
 
     getInitialState: function() {
         return { showPause: false, showPlay: true , src: ''};
     },
     displayPause: function(e){
+        if ((/mobile/i.test(navigator.userAgent))){
+            this.setState({showPause: true, showPlay: false});
+        }
 
         var player = this.props.getPlayerRef();
         if(this.state.src != ''){

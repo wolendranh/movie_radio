@@ -75,12 +75,20 @@ var Player = React.createClass({
 
     handlePlayEvent: function(evt){
         emitPlayerPlay();
-        this.spinner.spin(document.getElementById('spin-player'));
+        if ((/mobile/i.test(navigator.userAgent))){
+            return true
+        }else{
+            this.spinner.spin(document.getElementById('spin-player'));
+        }
 
     },
     handleCanPlayEvent: function(evt){
         emitPlayerCanPlay();
-        this.spinner.stop(document.getElementById('spin-player'));
+        if ((/mobile/i.test(navigator.userAgent))){
+            return true
+        }else {
+            this.spinner.stop(document.getElementById('spin-player'));
+        }
 
     },
     controlSpinner: function(){
