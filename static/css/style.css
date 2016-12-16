@@ -281,6 +281,9 @@ svg{
 }
 
 /* play button  */
+
+
+
 .playback-play  {
   position: relative;
   background-color: white;
@@ -316,7 +319,7 @@ svg{
 .playback-play {
   filter: drop-shadow(4px 7px 10px rgb(0,0,0));
   /* somehow filter is nit working in CH */
-  -webkit-filter: none;
+  -webkit-filter: drop-shadow(4px 7px 10px rgb(0,0,0));
 }
 /* play button end */
 
@@ -360,6 +363,19 @@ svg{
 }
 
 /* pause button end */
+
+
+/* audio preload spinner (Spinner js) */
+
+#spin-player{
+  position: relative;
+  background-color: white;
+  opacity: 0.7;
+  text-align: left;
+  top: 10.5em;
+}
+
+/* spinner end */
 
 .pull-bottom {
   display: inline-block;
@@ -423,6 +439,17 @@ footer.footer .col-sm-offset-4{
   90% { transform: translate(2px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+@keyframes spaceboots-out {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(2px, 2px) rotate(-1deg); }
+    20% { transform: translate(1px, 2px) rotate(0deg); }
+    30% { transform: translate(2px, 1px) rotate(-1deg); }
+    40% { transform: translate(1px, 1px) rotate(0deg); }
+    50% { transform: translate(1px, 2px) rotate(-1deg); }
+    60% { transform: translate(2px, 1px) rotate(0.5deg); }
+    100% { transform: translate(1px, 1px) rotate(0deg); }
+}
 .shake:hover,
 .shake:focus {
   animation-name: spaceboots;
@@ -432,6 +459,14 @@ footer.footer .col-sm-offset-4{
   animation-timing-function: linear;
 }
 
+
+.finish-animation {
+  animation-duration: 4s;
+  transform-origin: 50% 50%;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-name: spaceboots-out;
+}
 /* Fonts */
 
 @font-face {

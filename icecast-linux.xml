@@ -13,7 +13,8 @@
     -->
 
     <limits>
-        <clients>100</clients>
+        <!-- Limit of listeners that are able to connect to stream-->
+        <clients>400</clients>
         <sources>2</sources>
         <queue-size>524288</queue-size>
         <client-timeout>30</client-timeout>
@@ -135,7 +136,8 @@
     <mount type="default">
         <public>0</public>
         <intro>/server-wide-intro.ogg</intro>
-        <max-listener-duration>3600</max-listener-duration>
+        <!--duration is set to 8 hours-->
+        <max-listener-duration>28800</max-listener-duration>
         <authentication type="url">
                 <option name="mount_add" value="http://auth.example.org/stream_start.php"/>
         </authentication>
