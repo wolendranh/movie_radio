@@ -39,7 +39,7 @@ body:after{
 .morning-day {
   -webkit-animation-name: morning-day;
   animation-fill-mode: forwards;
-  -webkit-animation-duration: 3s;
+  -webkit-animation-duration: 14s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-direction: alternate;
   -webkit-animation-timing-function: linear;
@@ -48,7 +48,7 @@ body:after{
 .day-evening {
   -webkit-animation-name: day-evening;
   animation-fill-mode: forwards;
-  -webkit-animation-duration: 3s;
+  -webkit-animation-duration: 14s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-direction: alternate;
   -webkit-animation-timing-function: linear;
@@ -57,7 +57,7 @@ body:after{
 .evening-morning {
   -webkit-animation-name: evening-morning;
   animation-fill-mode: forwards;
-  -webkit-animation-duration: 3s;
+  -webkit-animation-duration: 14s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-direction: alternate;
   -webkit-animation-timing-function: linear;

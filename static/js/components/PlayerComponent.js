@@ -66,7 +66,7 @@ var Player = React.createClass({
         FIRST_LOAD = false;
         PlayerActions.get();
 
-        setInterval(PlayerActions.getTrack, 6000);
+        setInterval(PlayerActions.getTrack, 3000);
 
         // invoke spinner
         this.controlSpinner();
