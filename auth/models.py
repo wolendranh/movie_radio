@@ -8,9 +8,7 @@ from radio_db.models import BaseModel
 from auth.services import (
     get_user,
     create_user,
-    check_user_auth,
-    create_token,
-    get_token
+    check_user_auth
 )
 
 
@@ -24,18 +22,14 @@ class Token(BaseModel):
         self.user_id = ObjectId(data.get('user_id'))
 
     async def get_or_create(self, *args, **kwargs):
-        token = await get_token(collection=self.collection, user_id=self.user_id)
-        if not token:
-            await self.save()
-            token = await get_token(collection=self.collection, user_id=self.user_id)
-        return token
+        return await super().get_or_create(parameters={'user': self.user_id})
 
     async def save(self, *args, **kwargs):
         if not self.key:
             self.key = self.generate_key()
 
-        token_data = {'user': self.user_id, 'created': self.created, 'key': self.key}
-        return await create_token(collection=self.collection, token_data=token_data)
+        parameters = {'user': self.user_id, 'created': self.created, 'key': self.key}
+        return await super().save(parameters)
 
     def generate_key(self):
         return binascii.hexlify(os.urandom(20)).decode()
