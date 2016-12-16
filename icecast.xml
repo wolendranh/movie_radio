@@ -13,7 +13,8 @@
     -->
 
     <limits>
-        <clients>100</clients>
+        <!-- Limit of listeners that are able to connect to stream-->
+        <clients>400</clients>
         <sources>2</sources>
         <queue-size>524288</queue-size>
         <client-timeout>30</client-timeout>

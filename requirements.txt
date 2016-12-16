@@ -22,3 +22,6 @@ requests==2.10.0
 six==1.10.0
 bcrypt
 gunicorn
+
+
+-e git://github.com/locustio/locust.git@master#egg=locustio
