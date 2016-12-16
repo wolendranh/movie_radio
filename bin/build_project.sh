@@ -18,8 +18,7 @@ echo
 CODE=$?
 [ $CODE -ne 0 ] && exit $CODE
 
-echo "Building JS ..."
-ln -s /usr/bin/nodejs /usr/bin/node
+echo "Building Webpack Dev build ..."
 ./build_js.sh
 echo
 CODE=$?
