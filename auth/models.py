@@ -14,16 +14,14 @@ from auth.services import (
 )
 
 
-class Token:
+class Token(BaseModel):
     """
     The default authorization token model.
     """
     def __init__(self, db, data, **kwargs):
-        self.db = db
-        self.collection = self.db[TOKEN_COLLECTION]
+        super().__init__(db=db, collection=TOKEN_COLLECTION)
         self.key = None
         self.user_id = ObjectId(data.get('user_id'))
-        self.created = datetime.now()
 
     async def get_or_create(self, *args, **kwargs):
         token = await get_token(collection=self.collection, user_id=self.user_id)
@@ -49,8 +47,7 @@ class User(BaseModel):
     """
 
     def __init__(self, db, data, **kwargs):
-        super().__init__(db=db, collection=db[USER_COLLECTION])
-        self.collection = self.db[USER_COLLECTION]
+        super().__init__(db=db, collection=USER_COLLECTION)
         self.email = data.get('email')
         self.login = data.get('login')
         self.password = str.encode(data.get('password'))
