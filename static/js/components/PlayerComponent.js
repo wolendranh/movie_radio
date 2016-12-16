@@ -1,11 +1,13 @@
 import {render} from 'react-dom';
 import React from 'react';
 import $ from 'jquery';
+import Spinner from 'spin';
 
 import PlayerStore from "../stores/PlayerStore.js"
 import PlayerActions from "../actions/PlayerActions.js"
 import Controls from "./PlayerControls.js"
 import Volume from "./PlayerVolume.js"
+
 
 // TODO: fix filters
 import {triggerChange} from "../filters.js"
@@ -29,9 +31,27 @@ function getCurrentDatetime(){
     return PlayerStore.getDaytime()
 }
 
+function emitPlayerCanPlay(){
+    "use strict";
+    PlayerActions.canPlay();
+}
+
+function emitPlayerPlay(){
+    "use strict";
+    PlayerActions.play();
+}
+
 
 var Player = React.createClass({
-
+    getInitialState: function() {
+        return {
+            currentSong: 'Barmaglot ...',
+            stream: getActiveStream(),
+            spinnerActive: false
+        }
+    },
+    
+    
     componentDidMount: function() {
         PlayerStore.addChangeListener(this._onChange);
         PlayerStore.addTrackListener(this._onTrackUpdate);
@@ -46,20 +66,47 @@ var Player = React.createClass({
         FIRST_LOAD = false;
         PlayerActions.get();
 
-        setInterval(PlayerActions.getTrack, 300000);
+        setInterval(PlayerActions.getTrack, 3000);
+
+        // invoke spinner
+        this.controlSpinner();
+
+    },
+
+    handlePlayEvent: function(evt){
+        emitPlayerPlay();
+        this.spinner.spin(document.getElementById('spin-player'));
+
+    },
+    handleCanPlayEvent: function(evt){
+        emitPlayerCanPlay();
+        this.spinner.stop(document.getElementById('spin-player'));
+
+    },
+    controlSpinner: function(){
+        var player = this.getPlayer();
+        var opts = {
+            shadow: true,
+            radius: 25,
+            width: 11,
+            trail: 100,
+            length: 28,
+            lines: 13,
+            color: '#FFFFFF',
+            opacity: 0.5,
+            scale: 1
+        };
+        this.spinner = new Spinner(opts);
+
+        player.addEventListener('play', evt => this.handlePlayEvent(evt));
+        player.addEventListener('canplay', evt => this.handleCanPlayEvent(evt));
     },
 
     componentWillUnmount: function() {
         PlayerStore.removeChangeListener(this._onChange);
         PlayerStore.removeTrackListener(this._onTrackUpdate);
     },
-
-    getInitialState: function() {
-        return {
-          currentSong: 'Barmaglot ...',
-          stream: getActiveStream()
-        }
-    },
+    
 
     _onTrackUpdate: function (){
         "use strict";
@@ -82,7 +129,7 @@ var Player = React.createClass({
         this.setState({
             stream: getActiveStream()
         });
-        this.loadPlayer();
+        // this.loadPlayer();
     },
 
   getDefaultProps: function() {
@@ -106,10 +153,10 @@ var Player = React.createClass({
     }
   },
 
-  loadPlayer: function () {
-    var audio = this.getPlayer();
-    audio.load();
-  },
+  // loadPlayer: function () {
+  //   var audio = this.getPlayer();
+  //   audio.load();
+  // },
 
   getPlayer: function(){
     return this.refs.audio;
