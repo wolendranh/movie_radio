@@ -1,0 +1,16 @@
+---
+- hosts: barmaglot
+  tasks:
+   - name: Install NGINX
+     sudo: yes
+     apt: pkg=nginx state=installed update_cache=true
+     notify:
+      - Start Nginx
+
+   - name: Install Supervisor
+     sudo: yes
+     apt: pkg=supervisor state=installed update_cache=true
+
+  handlers:
+   - name: Start Nginx
+     service: name=nginx state=started

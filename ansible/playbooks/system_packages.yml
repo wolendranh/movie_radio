@@ -1,0 +1,76 @@
+---
+- hosts: barmaglot
+  
+  vars_prompt:
+
+    - name: virtualenv_dir
+      prompt: "Please enter the virtualenv_dir"
+      private: no
+
+    - name: app_dir
+      prompt: "Please enter the app_dir"
+      private: no
+
+  tasks:
+
+   - name: Install Git
+     sudo: yes
+     apt: pkg=git state=installed update_cache=true
+   
+   - name: Install Python-Pip
+     sudo: yes
+     apt: pkg=python-pip state=installed update_cache=true
+   
+   - name: Install GNU Readline Library
+     sudo: yes
+     apt: pkg=libreadline-dev state=installed update_cache=true
+
+   - name: Install System-Packages
+     sudo: yes
+     action: apt pkg={{item}} state=installed
+     with_items:
+         - make
+         - build-essential
+         - libssl-dev
+         - zlib1g-dev
+         - libbz2-dev
+         - libsqlite3-dev
+
+   - name: Install Python-System-Packages
+     sudo: yes
+     action: apt pkg={{item}} state=installed
+     with_items:
+         - build-essential
+         - python-dev
+         - python-setuptools
+         - python-pip
+         - python-smbus
+
+   - name: Install Foreign Function Interface library
+     sudo: yes
+     apt: pkg=libffi-dev state=installed update_cache=true
+
+   - name: Install Virtual Env 
+     sudo: yes
+     apt: pkg=virtualenv state=installed update_cache=true
+     notify:
+      - Initiate virtualenv
+      - Install requirements
+
+   - name: Install NodeJS
+     sudo: yes
+     apt: pkg=nodejs state=installed update_cache=true
+
+   - name: Install NPM
+     sudo: yes
+     apt: pkg=npm state=installed update_cache=true
+
+
+  handlers:
+    - name: Initiate virtualenv
+      command: virtualenv {{ virtualenv_dir }} -p python3.5 creates="{{ virtualenv_dir }}"
+
+    - name: Install requirements
+      pip: 
+        requirements={{ app_dir }}/requirements.txt 
+        virtualenv={{ virtualenv_dir }}
