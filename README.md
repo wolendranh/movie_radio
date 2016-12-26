@@ -1,26 +1,7 @@
 # movie_radio
 simple radio page, that will play stream from Icecast server
 
-#####to install project on clean VM:
-(Python related stuff)
 
-
-```
-1. sudo apt-get install git
-2. sudo apt-get install python-pip
-next line is for working python 3 terminal interpreter
-3. sudo apt-get install libreadline-dev
- SSL related dev libs
-4. sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev
-5. sudo apt-get install build-essential python-dev python-setuptools python-pip python-smbus
-6. sudo apt-get install libffi-dev
-7. Install python >=3.5 (see Install Python Section)
-8. pip install virtualenv
-9. virtualenv -p python3.5 env
-Activate virtual env
-10.source env/bin/activate
-11.pip install -r requirments.txt
-```
 #####Install python(if not already installed)
 In case if you do not  have Python 3.5:
 ```
@@ -32,19 +13,51 @@ In case if you do not  have Python 3.5:
     make altinstall
 ```
 
-
 #####to install project on clean VM:
-(JS related stuff)
+###Step 1 — Installing ansible
+Add the Ansible PPA and refresh our system's package index, install the ansible
+by typing the following commands:
 
 ```
-1. sudo apt-get install nodejs
-2. sudo apt-get install npm
-3. npm install
-4. ln -s /usr/bin/nodejs /usr/bin/node
-5. ./build_js.sh
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt-get update
+$ sudo apt-get install ansible
 ```
-(to omit issue with /usr/bin/env: node: No such file or directory)
- 
+
+###Step 2 — Configuring Ansible Hosts
+Open the file with root privileges like this:
+
+```
+$ sudo vim /etc/ansible/hosts
+```
+
+Add the following configuration:
+
+```
+[barmaglot]
+your_server_ip
+```
+
+Make sure that you have ssh connection to host that was specified
+and test connection via ansible:
+
+```
+$ ssh root@your_server_ip
+$ ansible -m ping all
+```
+
+
+###Step 3 — Run Building Env Playlist
+For building environment
+
+```
+$ cd ansible
+$ ansible-playbook -s playbooks/system_packages.yml  --ask-sudo-pass
+>>>
+Please enter the virtualenv_dir: `path_to_virtual_env`
+Please enter the app_dir: `project_root`/movie_radio
+```
+
 #####Install icecast2 server
 server is being installed from Xiph repo's because Ubuntu one don't always have latest version.
 ```
@@ -60,10 +73,10 @@ sudo apt-get install icecast2
 
 
 #####Production related
+Run Ansible Production Playlist
+
 ```
-1. sudo apt-get install nginx
-2. setup nginx conf file in sites-available(and simlink to sites enabled)
-3. sudo apt-get install supervisor
+$  ansible-playbook -s playbooks/production.yml  --ask-sudo-pass
 ```
 
 #####Setup Mongo DB
@@ -81,21 +94,12 @@ export LC_ALL=C
 ```
 
 
-
-#####Setup Nginx
-
-```
-```
-
-...
-#####Setup Supervisor
-...
-
 To run project in dev env
 
 ```
-python app.py
+$ ./bin/run_radio.sh
 ```
+
 #####TODO:
  - add setup of streaming
  - add setup on production
