@@ -73,4 +73,4 @@
     - name: Install requirements
       pip: 
         requirements={{ app_dir }}/requirements.txt 
-        virtualenv={{ virtualenv_dir }}
+        executable={{ virtualenv_dir }}/bin/pip3
