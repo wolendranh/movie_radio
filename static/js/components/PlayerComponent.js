@@ -137,7 +137,9 @@ var Player = React.createClass({
         this.setState({
             stream: getActiveStream()
         });
-        // this.loadPlayer();
+        if ((/mobile/i.test(navigator.userAgent))) {
+            this.loadPlayer();
+        }
     },
 
   getDefaultProps: function() {
@@ -161,10 +163,10 @@ var Player = React.createClass({
     }
   },
 
-  // loadPlayer: function () {
-  //   var audio = this.getPlayer();
-  //   audio.load();
-  // },
+  loadPlayer: function () {
+    var audio = this.getPlayer();
+    audio.load();
+  },
 
   getPlayer: function(){
     return this.refs.audio;

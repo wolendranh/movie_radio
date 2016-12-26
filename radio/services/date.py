@@ -8,7 +8,7 @@ EVENING = 'evening'
 KIEV_ZONE = 'Europe/Kiev'
 
 
-def get_day_time():
+def get_day_time(day_time={}):
     """
     Discover part of the day based on zone and hour
     Returns: `str`
@@ -33,6 +33,7 @@ def get_day_time():
     # print('==' * 80)
     # print(day_time['day_time'])
     # print('==' * 80)
+    # return day_time['day_time']
     # return day_time['day_time']
 
     zone = pytz.timezone(KIEV_ZONE)
