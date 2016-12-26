@@ -64,7 +64,9 @@
    - name: Install NPM
      sudo: yes
      apt: pkg=npm state=installed update_cache=true
-
+     notify:
+      - Install NPM packages
+      - Building Webpack Dev build
 
   handlers:
     - name: Initiate virtualenv
@@ -74,3 +76,10 @@
       pip: 
         requirements={{ app_dir }}/requirements.txt 
         executable={{ virtualenv_dir }}/bin/pip3
+
+    - name: Install NPM packages
+      npm:
+        path={{ app_dir }}
+
+    - name: Building Webpack Dev build
+      shell: cd {{ app_dir }}; sh {{ app_dir }}/build_js.sh >> dev_build_js.log
