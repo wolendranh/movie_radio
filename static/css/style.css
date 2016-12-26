@@ -209,16 +209,19 @@ p{
 .marquee {
   overflow: hidden;
   position: relative;
+  white-space: nowrap;
+
 }
 
 .marquee p {
+  will-change: transform;
   display: block;
   width: 200%;
 
   position: absolute;
   overflow: hidden;
-
-  animation: marquee 8s linear infinite;
+  padding-left: 70%;
+  animation: marquee-test 15s linear infinite;
 }
 
 .marquee span {
@@ -230,10 +233,15 @@ p{
   animation-play-state: paused
 }
 
-@keyframes marquee {
-  0%   { text-indent: 27.5em }
-  100% { text-indent: -260% }
+@keyframes marquee-test {
+ 0%   { -webkit-transform: translateX(0); }
+ 100% { -webkit-transform: translateX(-100%); }
 }
+
+/*@keyframes marquee {*/
+  /*0%   { text-indent: 27.5em }*/
+  /*100% { text-indent: -260% }*/
+/*}*/
 
 /* Volume bars */
 .volume-bars {
