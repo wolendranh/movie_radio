@@ -14,7 +14,7 @@ In case if you do not  have Python 3.5:
 ```
 
 ###to install project on clean VM:
-#####Step 1 — Installing ansible
+#####Step 1 — Installing Ansible
 Add the Ansible PPA and refresh our system's package index, install the ansible
 by typing the following commands:
 
