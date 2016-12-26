@@ -2,7 +2,7 @@
 simple radio page, that will play stream from Icecast server
 
 
-#####Install python(if not already installed)
+###Install python(if not already installed)
 In case if you do not  have Python 3.5:
 ```
     wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
@@ -13,8 +13,8 @@ In case if you do not  have Python 3.5:
     make altinstall
 ```
 
-#####to install project on clean VM:
-###Step 1 — Installing ansible
+###to install project on clean VM:
+#####Step 1 — Installing ansible
 Add the Ansible PPA and refresh our system's package index, install the ansible
 by typing the following commands:
 
@@ -24,7 +24,7 @@ $ sudo apt-get update
 $ sudo apt-get install ansible
 ```
 
-###Step 2 — Configuring Ansible Hosts
+#####Step 2 — Configuring Ansible Hosts
 Open the file with root privileges like this:
 
 ```
@@ -46,8 +46,7 @@ $ ssh root@your_server_ip
 $ ansible -m ping all
 ```
 
-
-###Step 3 — Run Building Env Playlist
+#####Step 3 — Run Building Env Playlist
 For building environment
 
 ```
@@ -58,7 +57,7 @@ Please enter the virtualenv_dir: `path_to_virtual_env`
 Please enter the app_dir: `project_root`/movie_radio
 ```
 
-#####Install icecast2 server
+###Install icecast2 server
 server is being installed from Xiph repo's because Ubuntu one don't always have latest version.
 ```
 sudo sh -c "echo deb http://download.opensuse.org/repositories/multimedia:/xiph/xUbuntu_14.04/ ./ >>/etc/apt/sources.list.d/icecast.list"
@@ -72,14 +71,14 @@ sudo apt-get install icecast2
 (default icecast config is here /etc/icecast2/icecast.xml)
 
 
-#####Production related
+###Production related
 Run Ansible Production Playlist
 
 ```
 $  ansible-playbook -s playbooks/production.yml  --ask-sudo-pass
 ```
 
-#####Setup Mongo DB
+###Setup Mongo DB
 ```
 sudo touch /etc/apt/sources.list.d/mongodb-org-3.2.list
 echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse"
@@ -92,7 +91,6 @@ In case if you have issues with encoding:
 ```
 export LC_ALL=C
 ```
-
 
 To run project in dev env
 
