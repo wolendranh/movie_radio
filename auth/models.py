@@ -8,36 +8,28 @@ from radio_db.models import BaseModel
 from auth.services import (
     get_user,
     create_user,
-    check_user_auth,
-    create_token,
-    get_token
+    check_user_auth
 )
 
 
-class Token:
+class Token(BaseModel):
     """
     The default authorization token model.
     """
     def __init__(self, db, data, **kwargs):
-        self.db = db
-        self.collection = self.db[TOKEN_COLLECTION]
+        super().__init__(db=db, collection=TOKEN_COLLECTION)
         self.key = None
         self.user_id = ObjectId(data.get('user_id'))
-        self.created = datetime.now()
 
     async def get_or_create(self, *args, **kwargs):
-        token = await get_token(collection=self.collection, user_id=self.user_id)
-        if not token:
-            await self.save()
-            token = await get_token(collection=self.collection, user_id=self.user_id)
-        return token
+        return await super().get_or_create(parameters={'user': self.user_id})
 
     async def save(self, *args, **kwargs):
         if not self.key:
             self.key = self.generate_key()
 
-        token_data = {'user': self.user_id, 'created': self.created, 'key': self.key}
-        return await create_token(collection=self.collection, token_data=token_data)
+        parameters = {'user': self.user_id, 'created': self.created, 'key': self.key}
+        return await super().save(parameters)
 
     def generate_key(self):
         return binascii.hexlify(os.urandom(20)).decode()
@@ -49,8 +41,7 @@ class User(BaseModel):
     """
 
     def __init__(self, db, data, **kwargs):
-        super().__init__(db=db, collection=db[USER_COLLECTION])
-        self.collection = self.db[USER_COLLECTION]
+        super().__init__(db=db, collection=USER_COLLECTION)
         self.email = data.get('email')
         self.login = data.get('login')
         self.password = str.encode(data.get('password'))
