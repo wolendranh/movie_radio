@@ -30,9 +30,6 @@ async def init(loop):
         db_handler,
         ], debug=True)
 
-    handler = app.make_handler()
-    aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-
     # route part
     app.router.add_static('/static', 'static', name='static')
     app.router.add_static('/node_modules', 'node_modules', name='static_dist')
@@ -42,6 +39,10 @@ async def init(loop):
         app.router.add_route(route[0], route[1], route[2], name=route[3])
     # end route part
     # db connect
+
+    handler = app.make_handler()
+    aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
+
     app.client = ma.AsyncIOMotorClient(settings.MONGO_HOST)
     app.db = app.client[settings.MONGO_DB_NAME]
 

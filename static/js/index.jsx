@@ -7,6 +7,7 @@ import { Router, IndexRoute, Route, browserHistory, hashHistory} from 'react-rou
 import LandingComponent from './components/Landing.js';
 import LoginForm from './components/LoginForm.js';
 import AdminComponent from './components/AdminComponent.js';
+import RESTAdminComponent from './components/RESTAdminComponent.js'
 
 // import helpers
 import { loggedIn } from './auth.jsx';
@@ -27,7 +28,7 @@ render((
         <Route path="/" component={LandingComponent}>
         </Route>
         <Route path="/login" url="/login" component={ LoginForm }/>
-        <Route path="/admin" component={ AdminComponent } onEnter={requireAuth}/>
+        <Route path="/admin" component={ RESTAdminComponent } onEnter={requireAuth}/>
     </Router>)
 , document.getElementById('app'));
 

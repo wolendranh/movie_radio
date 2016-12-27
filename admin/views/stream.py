@@ -1,7 +1,10 @@
 from bson.json_util import dumps
 from aiohttp import web
-from admin.models import Stream
 from bson.objectid import ObjectId
+
+from admin.models import Stream
+from admin.serializers.stream import serialize as serialize_stream
+
 
 
 class Collection(web.View):
@@ -9,12 +12,17 @@ class Collection(web.View):
     def encode(self, data):
         return dumps(data, indent=4).encode('utf-8')
 
+
+    def get_filters(self):
+        return
+
     async def get(self):
         stream = Stream(db=self.request.db, data={})
         queryset = await stream.all()
         return web.Response(status=200,
+                            headers={'Content-Range': '16'},
                             body=self.encode(
-                                data={'streams': queryset}),
+                                data=map(serialize_stream, queryset)),
                             content_type='application/json')
 
     async def post(self):
