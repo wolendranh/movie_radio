@@ -1,0 +1,14 @@
+---
+- hosts: barmaglot
+  
+  vars_prompt:
+
+    - name: app_dir
+      prompt: "Please enter the app_dir"
+      private: no
+
+  tasks:
+
+   - name: Install Python
+     sudo: yes
+     shell: cd {{ app_dir }}; sh bin/install_python3_5.sh >> dev_build.log

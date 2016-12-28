@@ -1,18 +1,6 @@
 # movie_radio
 simple radio page, that will play stream from Icecast server
 
-
-###Install python(if not already installed)
-In case if you do not  have Python 3.5:
-```
-    wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
-    tar xf Python-3.5.1.tar.xz
-    cd Python-3.5.1
-    ./configure
-    make
-    make altinstall
-```
-
 ###to install project on clean VM:
 #####Step 1 — Installing Ansible
 Add the Ansible PPA and refresh our system's package index, install the ansible
@@ -46,7 +34,17 @@ $ ssh root@your_server_ip
 $ ansible -m ping all
 ```
 
-#####Step 3 — Run Building Env Playlist
+#####Step 3 — Install Python3.5(if not already installed)
+In case if you do not have Python 3.5:
+
+```
+$ cd ansible
+$ ansible-playbook -s playbooks/install_python.yml  --ask-sudo-pass
+>>>
+Please enter the app_dir: `project_root`/movie_radio
+```
+
+#####Step 4 — Run Building Env Playlist
 For building environment
 
 ```
