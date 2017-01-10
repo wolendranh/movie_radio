@@ -42,17 +42,17 @@ function emitPlayerPlay(){
 }
 
 
-var Player = React.createClass({
-    getInitialState: function() {
+class Player extends React.Component {
+    getInitialState() {
         return {
             currentSong: 'Barmaglot ...',
             stream: getActiveStream(),
             spinnerActive: false
         }
-    },
+    }
     
     
-    componentDidMount: function() {
+    componentDidMount() {
         PlayerStore.addChangeListener(this._onChange);
         PlayerStore.addTrackListener(this._onTrackUpdate);
         // start volume is set to max on start
@@ -71,9 +71,9 @@ var Player = React.createClass({
         // invoke spinner
         this.controlSpinner();
 
-    },
+    }
 
-    handlePlayEvent: function(evt){
+    handlePlayEvent(evt){
         emitPlayerPlay();
         if ((/mobile/i.test(navigator.userAgent))){
             return true
@@ -81,8 +81,8 @@ var Player = React.createClass({
             this.spinner.spin(document.getElementById('spin-player'));
         }
 
-    },
-    handleCanPlayEvent: function(evt){
+    }
+    handleCanPlayEvent(evt){
         emitPlayerCanPlay();
         if ((/mobile/i.test(navigator.userAgent))){
             return true
@@ -90,8 +90,8 @@ var Player = React.createClass({
             this.spinner.stop(document.getElementById('spin-player'));
         }
 
-    },
-    controlSpinner: function(){
+    }
+    controlSpinner(){
         var player = this.getPlayer();
         var opts = {
             shadow: true,
@@ -108,15 +108,15 @@ var Player = React.createClass({
 
         player.addEventListener('play', evt => this.handlePlayEvent(evt));
         player.addEventListener('canplay', evt => this.handleCanPlayEvent(evt));
-    },
+    }
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         PlayerStore.removeChangeListener(this._onChange);
         PlayerStore.removeTrackListener(this._onTrackUpdate);
-    },
+    }
     
 
-    _onTrackUpdate: function (){
+    _onTrackUpdate(){
         "use strict";
         var track = getCurrentTrack();
         var dayTime = getCurrentDatetime();
@@ -131,48 +131,48 @@ var Player = React.createClass({
             this.setState({currentSong: 'Barmaglot ...'})
         }
 
-    },
+    }
     
-    _onChange: function() {
+    _onChange() {
         this.setState({
             stream: getActiveStream()
         });
         if ((/mobile/i.test(navigator.userAgent))) {
             this.loadPlayer();
         }
-    },
+    }
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     // sets default array of props
     return {
       volume: 1,
       currentSong: '...'
     };
-  },
+  }
 
-  setVolume: function(volume){
+  setVolume(volume){
     // get reference of player to bypass it to child components if needed
     this.refs.audio.volume = volume;
-  },
+  }
 
-  getVolume: function() {
+  getVolume() {
     if (typeof this.refs.audio != "undefined"){
       return this.refs.audio.volume;
     } else {
       return this.props.volume;
     }
-  },
+  }
 
-  loadPlayer: function () {
+  loadPlayer() {
     var audio = this.getPlayer();
     audio.load();
-  },
+  }
 
-  getPlayer: function(){
+  getPlayer(){
     return this.refs.audio;
-  },
+  }
 
-  render: function() {
+  render() {
     return (
           <div>
               <Controls getPlayerRef={ this.getPlayer }/>
@@ -188,6 +188,6 @@ var Player = React.createClass({
 
     )
   }
-});
+};
 
 module.exports =  Player;

@@ -1,29 +1,30 @@
 import React from "react";
+
 var ReactPropTypes = React.PropTypes;
 
 var ENTER_KEY_CODE = 13;
 
-var StreamTextInput = React.createClass({
+class StreamTextInput extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     className: ReactPropTypes.string,
     id: ReactPropTypes.string,
     placeholder: ReactPropTypes.string,
     onSave: ReactPropTypes.func.isRequired,
     value: ReactPropTypes.string
-  },
+  }
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       value: this.props.value || '',
       active: this.props.active || ''
     };
-  },
+  }
 
   /**
    * @return {object}
    */
-  render: function() /*object*/ {
+  render() /*object*/ {
     return (
         <div>
         <input
@@ -49,52 +50,52 @@ var StreamTextInput = React.createClass({
         />
         </div>
     );
-  },
+  }
 
   /**
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways.
    */
-  _save: function() {
+  _save() {
     this.props.onSave(this.state.value, this.state.active, this.state.description);
     this.setState({
       value: '',
       active: '',
       description: ''
     });
-  },
+  }
 
   /**
    * @param {object} event
    */
-  _onChange: function(/*object*/ event) {
+  _onChange(/*object*/ event) {
     this.setState({
       value: event.target.value
     });
-  },
+  }
 
-  _onChangeActive: function (event) {
+  _onChangeActive(event) {
     this.setState({
       active: event.target.checked
     })
-  },
+  }
 
-  _onChangeDescription: function (event) {
+  _onChangeDescription(event) {
     this.setState({
       description: event.target.value
     })
-  },
+  }
 
 
   /**
    * @param  {object} event
    */
-  _onKeyDown: function(event) {
+  _onKeyDown(event) {
     if (event.keyCode === ENTER_KEY_CODE) {
       this._save();
     }
   }
 
-});
+};
 
 export default StreamTextInput;

@@ -3,8 +3,8 @@ import {render} from "react-dom"
 import EmailModal from "./EmailModalComponent"
 
 
-var FooterComponent = React.createClass({
-    render: function(){
+class FooterComponent extends React.Component{
+    render(){
         return(<footer className="footer row-fluid">
                     <div className="col-sm-offset-4">
                         <div className="row">
@@ -21,6 +21,6 @@ var FooterComponent = React.createClass({
                     </div>
                 </footer>)
     }
-});
+};
 
 module.exports =  FooterComponent;

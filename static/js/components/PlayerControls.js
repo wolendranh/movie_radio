@@ -5,9 +5,9 @@ import $ from 'jquery';
 import PlayerStore from "../stores/PlayerStore.js"
 import PlayerActions from "../actions/PlayerActions.js"
 
-var Controls = React.createClass({
+class Controls extends React.Component {
 
-    componentDidMount: function () {
+    componentDidMount() {
         PlayerStore.addCanPlayListener(this._onCanPlay);
         PlayerStore.addPlayListener(this._onPlay);
         
@@ -21,35 +21,35 @@ var Controls = React.createClass({
         $('.shake').mouseleave("mouseleave", function () {
             $(this).addClass('finish-animation');
         });
-    },
+    }
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
             PlayerStore.removeCanPlayListener(this._onCanPlay);
             PlayerStore.removePlayListener(this._onPlay);
-    },
+    }
 
 
 
-    _onPlay: function () {
+    _onPlay() {
         if ((/mobile/i.test(navigator.userAgent))){
             return true
         }else {
             this.setState({showPause: false, showPlay: false});
         }
-    },
+    }
     
-    _onCanPlay: function () {
+    _onCanPlay() {
         if ((/mobile/i.test(navigator.userAgent))){
             return true
         }else {
             this.setState({showPause: true, showPlay: false});
         }
-    },
+    }
 
-    getInitialState: function() {
+    getInitialState() {
         return { showPause: false, showPlay: true , src: ''};
-    },
-    displayPause: function(e){
+    }
+    displayPause(e){
         if ((/mobile/i.test(navigator.userAgent))){
             this.setState({showPause: true, showPlay: false});
         }
@@ -59,16 +59,16 @@ var Controls = React.createClass({
             player.src = this.state.src;
         }
         player.play();
-    },
-    displayPlay: function(e){
+    }
+    displayPlay(e){
         var player = this.props.getPlayerRef();
         // save current source to imitate Stop as browser API will literally 'pause' stream
         this.setState({ showPause: false , showPlay: true, src: player.src});
         player.src = '';
         player.pause();
-    },
+    }
 
-    render: function() {
+    render() {
         return (
           <div className="row player-controlls">
                   <div className="col-sm-4 col-sm-offset-4 shake">
@@ -90,7 +90,7 @@ var Controls = React.createClass({
           </div>
         )
     }
-});
+};
 
 
 export default Controls;
