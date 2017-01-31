@@ -48,7 +48,7 @@
          specified is /stream but you can change it here if an alternative is
          wanted or an extension is required
         -->
-    <shoutcast-mount>/barmaglot</shoutcast-mount>
+    <shoutcast-mount>/barmaglot-test</shoutcast-mount>
     <charset>UTF-8</charset>
 
 
