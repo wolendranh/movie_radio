@@ -3,7 +3,7 @@ simple radio page, that will play stream from Icecast server
 
 ###to install project on clean VM:
 #####Step 1 — Installing Ansible
-Add the Ansible PPA and refresh our system's package index, install the ansible
+Add the Ansible PPA and refresh your system's package index, install the ansible
 by typing the following commands:
 
 ```
@@ -70,7 +70,7 @@ sudo apt-get install icecast2
 
 
 ###Production related
-Run Ansible Production Playlist
+Run Ansible Production playbook
 
 ```
 $  ansible-playbook -s playbooks/production.yml  --ask-sudo-pass
