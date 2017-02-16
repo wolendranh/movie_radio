@@ -16,7 +16,7 @@ $ sudo apt-get install ansible
 Open the file with root privileges like this:
 
 ```
-$ sudo vim /etc/ansible/hosts
+$ sudo vi /etc/ansible/hosts
 ```
 
 Add the following configuration:
@@ -26,11 +26,18 @@ Add the following configuration:
 your_server_ip
 ```
 
+In case if you use local connection set:
+
+```
+[barmaglot]
+127.0.0.1 ansible_connection=local
+```
+
 Make sure that you have ssh connection to host that was specified
 and test connection via ansible:
 
 ```
-$ ssh root@your_server_ip
+$ sudo ssh your_server_ip
 $ ansible -m ping all
 ```
 
