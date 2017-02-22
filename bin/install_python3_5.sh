@@ -7,12 +7,11 @@ wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
 [ $CODE -ne 0 ] && exit $CODE
 
 echo "Unpacking package..."
-tar xf Python-3    wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
 tar xf Python-3.5.1.tar.xz
 [ $CODE -ne 0 ] && exit $CODE
 
 echo "Installion..."
 cd Python-3.5.1
 ./configure
-make
-make altinstall
+sudo make
+sudo make altinstall
