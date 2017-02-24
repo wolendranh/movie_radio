@@ -9,6 +9,14 @@
 
   tasks:
 
+   - debug:
+       msg: "Running playbook as {{ lookup('env', 'USER') }} ..."
+
    - name: Install Python
      sudo: yes
-     shell: cd {{ app_dir }}; sh bin/install_python3_5.sh >> dev_build.log
+     sudo_user: "{{ lookup('env', 'USER') }}"
+     command: chdir={{ app_dir }} sh bin/install_python3_5.sh >> dev_build.log 
+     register: install_stdout
+     
+   - debug:
+       msg: "{{ install_stdout.stdout }}"
