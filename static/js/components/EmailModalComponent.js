@@ -45,7 +45,7 @@ const EmailModal = React.createClass({
    * Modal class that is used to show Bootstrap modal for the email feedback submission purpose
    */    
     getInitialState() {
-        return { showModal: false , emailValid: null, textValid: null, anonymous: false};
+        return { showModal: false , emailValid: null, anonymous: false};
     },
 
     handleEmailChange: function(e) {
@@ -55,15 +55,15 @@ const EmailModal = React.createClass({
     },
     handleMessageChange: function(e) {
         this.setState({body: e.target.value});
-        this.validateInput('textValid', e.target.value, validator.isLength, {min: 20, max: 300});
+        // this.validateInput('textValid', e.target.value, validator.isLength, {min: 20, max: 300});
     },
     handleAnonymousChange: function(e) {
         this.setState({anonymous: e.target.checked});
     },
 
     sendButtonDisabled: function(){
-        if (this.state.anonymous) return !(this.state.textValid);
-        else return !(this.state.emailValid && this.state.textValid);
+        if (this.state.anonymous) return false;
+        else return !(this.state.emailValid);
     },
 
     checkAnonymous: function(){

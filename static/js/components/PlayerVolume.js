@@ -60,8 +60,7 @@ var Volume = React.createClass({
   render: function () {
       // svg styles
       var style = {
-          fill: '#fa0000',
-          fillOpacity: 0.1
+          fill: '#fa0000'
       };
 
     return (
@@ -83,9 +82,9 @@ var Volume = React.createClass({
                 <rect className='volume-bar four' x="50" y="5.8" width="11px" height="54.2px" style={style} rx='2'/>
                 <rect className='volume-bar five' x="65" y="0" width="11px" height="60px" style={style} rx='2'/>
               </clipPath>
-              <rect x="0" y="0" width="0" height="120" className='liquid'
-                    clipPath="url(#volume)"/>
               <rect id='clipped' x="0" y="0" width="78" height="120" className='slider'
+                                    clipPath="url(#volume)"/>
+              <rect x="0" y="0" width="0" height="120" className='liquid'
                     clipPath="url(#volume)"/>
               <foreignObject x="0" y="0" width="75" height="120">
                 <div id='phantom' xmlns="http://www.w3.org/1999/xhtml"></div>

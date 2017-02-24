@@ -16,6 +16,16 @@ var PlayerActions = {
     AppDispatcher.dispatch({
       actionType: PlayerConstants.PLAYER_GET_TRACK
     });    
+  },
+  canPlay: function () {
+    AppDispatcher.dispatch({
+      actionType: PlayerConstants.PLAYER_CAN_PLAY
+    });    
+  },
+  play: function () {
+    AppDispatcher.dispatch({
+      actionType: PlayerConstants.PLAYER_PLAY
+    });    
   }
 };
 

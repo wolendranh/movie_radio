@@ -6,6 +6,8 @@ import constants from "../constants/PlayerConstants.js";
 
 var CHANGE_EVENT = 'player_change';
 var TRACK_UPDATE_EVENT = 'track_update';
+var PLAYER_CAN_PLAY = 'player_can_play';
+var PLAYER_PLAY = 'player_play';
 
 // variable that will hold active stream
 var _stream = '';
@@ -58,6 +60,17 @@ function fetchTrack(){
 }
 
 
+function storeEmitCanPlay(){
+    "use strict";
+    PlayerStore.emitCanPlay()
+}
+
+function storeEmitPlay(){
+    "use strict";
+    PlayerStore.emitPlay()
+}
+
+
 /**
  * Stream store class that is inherited from node JS EventEmitter
  * to be able to emit events
@@ -89,7 +102,15 @@ class PlayerStoreBaseClass extends EventEmitter {
     
   emitTrackUpdate(){
       this.emit(TRACK_UPDATE_EVENT);
-  }  
+  }
+
+  emitCanPlay(){
+      this.emit(PLAYER_CAN_PLAY);
+  }
+
+  emitPlay(){
+      this.emit(PLAYER_PLAY);
+  }
 
   /**
    * Subscribe for 'change-event'
@@ -123,6 +144,37 @@ class PlayerStoreBaseClass extends EventEmitter {
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
+    
+  /**
+   * Subscribe for 'can-play' event
+   * @param {function} callback
+   */
+  addCanPlayListener(callback) {
+    this.on(PLAYER_CAN_PLAY, callback);
+  }
+  /**
+   * * Un subscribe from 'can-play'
+   * @param {function} callback
+   */    
+  removeCanPlayListener(callback) {
+    this.removeListener(PLAYER_CAN_PLAY, callback);
+  }    
+
+  /**
+   * * Un subscribe from 'play' event
+   * @param {function} callback
+   */
+  addPlayListener(callback) {
+    this.on(PLAYER_PLAY, callback);
+  }    
+  /**
+   * * Un subscribe from 'play'
+   * @param {function} callback
+   */
+  removePlayListener(callback) {
+    this.removeListener(PLAYER_CAN_PLAY, callback);
+  }        
+    
 }
 
 // create new instance of store
@@ -136,6 +188,12 @@ AppDispatcher.register(function(action) {
             break;
         case constants.PLAYER_GET_TRACK:
             fetchTrack();
+            break;
+        case constants.PLAYER_CAN_PLAY:
+            storeEmitCanPlay();
+            break;
+        case constants.PLAYER_PLAY:
+            storeEmitPlay();
             break;
             
     }
