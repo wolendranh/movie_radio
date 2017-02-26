@@ -1,22 +1,38 @@
 ---
 - hosts: barmaglot
-  
+
   vars_prompt:
 
-    - name: app_dir
-      prompt: "Please enter the app_dir"
-      private: no
+  - name: app_dir
+    prompt: "Please enter the app_dir"
+    private: no
 
   tasks:
+    - name: get&unpack Python
+      sudo: yes
+      sudo_user: "{{ lookup('env', 'USER') }}"
+      unarchive:
+        src: https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
+        dest: "{{ app_dir }}"
+        remote_src: True
 
-   - debug:
-       msg: "Running playbook as {{ lookup('env', 'USER') }} ..."
+    - name: ./configure Python
+      sudo: yes
+      sudo_user: "{{ lookup('env', 'USER') }}"
+      command: chdir={{ app_dir }}/Python-3.5.1 {{ item }}
+      with_items:
+        - ./configure
 
-   - name: Install Python
-     sudo: yes
-     sudo_user: "{{ lookup('env', 'USER') }}"
-     command: chdir={{ app_dir }} sh bin/install_python3_5.sh >> dev_build.log 
-     register: install_stdout
-     
-   - debug:
-       msg: "{{ install_stdout.stdout }}"
+    - name: make Python
+      sudo: yes
+      sudo_user: "{{ lookup('env', 'USER') }}"
+      command: chdir={{ app_dir }}/Python-3.5.1 {{ item }}
+      with_items:
+        - make
+
+    - name: make altinstall Python
+      sudo: yes
+      sudo_user: "{{ lookup('env', 'USER') }}"
+      command: chdir={{ app_dir }}/Python-3.5.1 {{ item }}
+      with_items:
+        - make altinstall
