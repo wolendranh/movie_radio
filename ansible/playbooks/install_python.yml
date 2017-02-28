@@ -1,38 +1,50 @@
 ---
 - hosts: barmaglot
-
-  vars_prompt:
-
-  - name: app_dir
-    prompt: "Please enter the app_dir"
-    private: no
+  vars:
+    current_sudo_user: "{{ lookup('env', 'USER') }}"
 
   tasks:
-    - name: get&unpack Python
-      sudo: yes
-      sudo_user: "{{ lookup('env', 'USER') }}"
-      unarchive:
-        src: https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
-        dest: "{{ app_dir }}"
-        remote_src: True
 
-    - name: ./configure Python
-      sudo: yes
-      sudo_user: "{{ lookup('env', 'USER') }}"
-      command: chdir={{ app_dir }}/Python-3.5.1 {{ item }}
-      with_items:
-        - ./configure
+  - name: Install Python related System-Packages
+    action: apt pkg={{item}} state=installed update_cache=true
+    with_items:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libsqlite3-dev
+      - python-dev
+      - python-setuptools
+      - python-pip
+      - python-smbus
+      - libreadline-dev
 
-    - name: make Python
-      sudo: yes
-      sudo_user: "{{ lookup('env', 'USER') }}"
-      command: chdir={{ app_dir }}/Python-3.5.1 {{ item }}
-      with_items:
-        - make
+  - name: get&unpack Python
+    unarchive:
+      src: https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tar.xz
+      dest: /tmp
+      remote_src: True
 
-    - name: make altinstall Python
-      sudo: yes
-      sudo_user: "{{ lookup('env', 'USER') }}"
-      command: chdir={{ app_dir }}/Python-3.5.1 {{ item }}
-      with_items:
-        - make altinstall
+  - name: ./configure Python
+    command: chdir=/tmp/Python-3.5.1 {{ item }}
+    with_items:
+      - ./configure
+
+  - name: make Python
+    command: chdir=/tmp/Python-3.5.1 {{ item }}
+    with_items:
+      - make
+
+  - name: make altinstall Python
+    become: yes
+    become_user: root
+    command: chdir=/tmp/Python-3.5.1 {{ item }}
+    with_items:
+      - make altinstall
+
+  - name: Remove tmp files
+    file: path={{ item }} state=absent
+    with_items:
+      - /tmp/Python.tar.xz
+      - /tmp/Python-3.5.1
