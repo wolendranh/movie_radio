@@ -1,7 +1,5 @@
 ---
 - hosts: barmaglot
-  vars:
-    current_sudo_user: "{{ lookup('env', 'USER') }}"
 
   tasks:
 

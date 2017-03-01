@@ -1,6 +1,9 @@
 ---
 - hosts: barmaglot
-  
+
+  vars:
+      current_sudo_user: "{{ lookup('env', 'USER') }}"
+
   vars_prompt:
 
     - name: virtualenv_dir
@@ -13,68 +16,43 @@
 
   tasks:
 
-   - name: Install Git
-     sudo: yes
-     apt: pkg=git state=installed update_cache=true
-   
-   - name: Install Python-Pip
-     sudo: yes
-     apt: pkg=python-pip state=installed update_cache=true
-   
-   - name: Install GNU Readline Library
-     sudo: yes
-     apt: pkg=libreadline-dev state=installed update_cache=true
+    - name: Install Git
+      sudo: yes
+      apt: pkg=git state=installed update_cache=true
 
-   - name: Install System-Packages
-     sudo: yes
-     action: apt pkg={{item}} state=installed
-     with_items:
-         - make
-         - build-essential
-         - libssl-dev
-         - zlib1g-dev
-         - libbz2-dev
-         - libsqlite3-dev
+    - name: Install Foreign Function Interface library
+      sudo: yes
+      apt: pkg=libffi-dev state=installed update_cache=true
 
-   - name: Install Python-System-Packages
-     sudo: yes
-     action: apt pkg={{item}} state=installed
-     with_items:
-         - build-essential
-         - python-dev
-         - python-setuptools
-         - python-pip
-         - python-smbus
-
-   - name: Install Foreign Function Interface library
-     sudo: yes
-     apt: pkg=libffi-dev state=installed update_cache=true
-
-   - name: Install Virtual Env 
-     sudo: yes
-     apt: pkg=virtualenv state=installed update_cache=true
-     notify:
+    - name: Install Virtual Env
+      become: yes
+      apt: pkg=virtualenv state=installed update_cache=true
+      notify:
       - Initiate virtualenv
       - Install requirements
 
-   - name: Install NodeJS
-     sudo: yes
-     apt: pkg=nodejs state=installed update_cache=true
+    - name: Install NodeJS
+      sudo: yes
+      apt: pkg=nodejs state=installed update_cache=true
 
-   - name: Install NPM
-     sudo: yes
-     apt: pkg=npm state=installed update_cache=true
-     notify:
+    - name: Install NPM
+      sudo: yes
+      apt: pkg=npm state=installed update_cache=true
+      notify:
       - Install NPM packages
       - Building Webpack Dev build
 
   handlers:
     - name: Initiate virtualenv
+      become: yes
+      become_user: "{{ current_sudo_user }}"
       command: virtualenv {{ virtualenv_dir }} -p python3.5 creates="{{ virtualenv_dir }}"
 
     - name: Install requirements
-      pip: 
-        requirements={{ app_dir }}/requirements.txt 
+      become: yes
+      become_user: "{{ current_sudo_user }}"
+      pip:
+        requirements={{ app_dir }}/requirements.txt
         executable={{ virtualenv_dir }}/bin/pip3
 
     - name: Install NPM packages
