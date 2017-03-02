@@ -63,6 +63,13 @@ body:after{
   -webkit-animation-timing-function: linear;
 }
 
+.test-new{
+    background: url('../img/new_back.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+
+}
+
 
 .day {
     background: url('../img/day.png') no-repeat center center fixed;

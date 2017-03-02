@@ -10,7 +10,7 @@ import Volume from "./PlayerVolume.js"
 
 
 // TODO: fix filters
-import {triggerChange} from "../filters.js"
+// import {triggerChange} from "../filters.js"
 
 
 // define variable that will indicate if this is 'reload' of page or AJAX call
@@ -62,7 +62,7 @@ var Player = React.createClass({
         // load of page
         var dayTime = $('body').attr('class');
 
-        triggerChange(dayTime, true);
+        // triggerChange(dayTime, true);
         FIRST_LOAD = false;
         PlayerActions.get();
 
@@ -122,7 +122,7 @@ var Player = React.createClass({
         var dayTime = getCurrentDatetime();
 
         // triggering change of filters(filter module will decide himself weather it is needed or not)
-        triggerChange(dayTime, FIRST_LOAD);
+        // triggerChange(dayTime, FIRST_LOAD);
         FIRST_LOAD = false;
 
         if (track != null){
