@@ -64,7 +64,7 @@ body:after{
 }
 
 .test-new{
-    background: url('../img/new_back.jpg') no-repeat center center fixed;
+    background: url('../img/playlist.jpg') no-repeat center center fixed;
     background-size: cover;
     overflow: hidden;
 
