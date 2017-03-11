@@ -44,8 +44,9 @@ class EmailModal extends React.Component{
   /**
    * Modal class that is used to show Bootstrap modal for the email feedback submission purpose
    */
-    getInitialState() {
-        return { showModal: false , emailValid: null, anonymous: false};
+    constructor(props) {
+     super(props);
+     this.state = { showModal: false , emailValid: null, anonymous: false};
     }
 
     handleEmailChange(e) {

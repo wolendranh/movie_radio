@@ -37,8 +37,9 @@ function getStreamState() {
 
 
 class StreamList extends React.Component {
-    getInitialState() {
-        return getStreamState()
+    constructor(props){
+      super(props);
+      this.state = getStreamState();
     }
 
     componentDidMount() {

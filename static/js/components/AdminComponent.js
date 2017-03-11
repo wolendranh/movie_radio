@@ -7,8 +7,9 @@ import LogoutButton from "../logout.jsx"
 import StreamAddressForm from "../components/StreamingForm.js"
 
 class AdminComponent extends React.Component {
-   getInitialState() {
-        return {'user':[]}
+    constructor(props){
+      super(props);
+      this.state = {'user': []};
     }
 
     componentDidMount() {

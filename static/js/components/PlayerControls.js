@@ -6,12 +6,16 @@ import PlayerStore from "../stores/PlayerStore.js"
 import PlayerActions from "../actions/PlayerActions.js"
 
 class Controls extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { showPause: false, showPlay: true , src: ''};
+    }
 
     componentDidMount() {
         PlayerStore.addCanPlayListener(this._onCanPlay);
         PlayerStore.addPlayListener(this._onPlay);
-        
-        
+
+
         $('.shake').hover(
           function(){
             $(this).removeClass('finish-animation');
@@ -30,15 +34,15 @@ class Controls extends React.Component {
 
 
 
-    _onPlay() {
+    _onPlay = () => {
         if ((/mobile/i.test(navigator.userAgent))){
             return true
         }else {
             this.setState({showPause: false, showPlay: false});
         }
     }
-    
-    _onCanPlay() {
+
+    _onCanPlay = () =>  {
         if ((/mobile/i.test(navigator.userAgent))){
             return true
         }else {
@@ -46,10 +50,7 @@ class Controls extends React.Component {
         }
     }
 
-    getInitialState() {
-        return { showPause: false, showPlay: true , src: ''};
-    }
-    displayPause(e){
+    displayPause = () => {
         if ((/mobile/i.test(navigator.userAgent))){
             this.setState({showPause: true, showPlay: false});
         }
@@ -60,7 +61,7 @@ class Controls extends React.Component {
         }
         player.play();
     }
-    displayPlay(e){
+    displayPlay = () => {
         var player = this.props.getPlayerRef();
         // save current source to imitate Stop as browser API will literally 'pause' stream
         this.setState({ showPause: false , showPlay: true, src: player.src});

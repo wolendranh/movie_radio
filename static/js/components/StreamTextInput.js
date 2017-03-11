@@ -5,17 +5,9 @@ var ReactPropTypes = React.PropTypes;
 var ENTER_KEY_CODE = 13;
 
 class StreamTextInput extends React.Component {
-
-  static propTypes = {
-    className: ReactPropTypes.string,
-    id: ReactPropTypes.string,
-    placeholder: ReactPropTypes.string,
-    onSave: ReactPropTypes.func.isRequired,
-    value: ReactPropTypes.string
-  }
-
-  getInitialState() {
-    return {
+  constructor(props){
+    super(props);
+    this.state = {
       value: this.props.value || '',
       active: this.props.active || ''
     };
@@ -97,5 +89,13 @@ class StreamTextInput extends React.Component {
   }
 
 };
+
+StreamTextInput.propTypes = {
+  className: ReactPropTypes.string,
+  id: ReactPropTypes.string,
+  placeholder: ReactPropTypes.string,
+  onSave: ReactPropTypes.func.isRequired,
+  value: ReactPropTypes.string
+}
 
 export default StreamTextInput;

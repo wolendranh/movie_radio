@@ -10,12 +10,15 @@ import {login} from '../auth.jsx'
 
 class LoginForm extends React.Component {
     // TODO: divide into smaller reusable components(form, field etc.)
-    getInitialState() {
-        return {username: 'Ваша_Бармаглот_пошта@mail.com',
-                password: 'Ваш Бармаглот пароль',
-                passwordError: false,
-                usernameError: false,
-                loginError: undefined};
+    constructor(props){
+      super(props);
+      this.state = {
+        username: 'Ваша_Бармаглот_пошта@mail.com',
+        password: 'Ваш Бармаглот пароль',
+        passwordError: false,
+        usernameError: false,
+        loginError: undefined
+      };
     }
 
     componentWillMount(){
