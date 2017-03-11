@@ -2,7 +2,7 @@ import React from "react";
 import $ from 'jquery';
 import {render} from "react-dom"
 
-import QuoteBox from "./QuoteBoxComponent.js";
+
 import LogoutButton from "../logout.jsx"
 import StreamAddressForm from "../components/StreamingForm.js"
 
@@ -33,7 +33,6 @@ class AdminComponent extends React.Component {
         })
     }
 
-    // render also rendered a Quote Component, so far we do not need it
    render(){
        return (<div>
                     <LogoutButton />

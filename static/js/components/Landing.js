@@ -1,9 +1,9 @@
 import React from "react";
 import {render} from "react-dom"
+import $ from "jquery";
 
 import Player from './PlayerComponent.js';
 import FooterComponent from "./FooterComponent.js"
-import $ from "jquery";
 
 class LandingComponent extends React.Component {
 
@@ -34,7 +34,7 @@ class LandingComponent extends React.Component {
 
         $(window).trigger('resize');
     }
-    
+
     render(){
         return(
             <div id="landing">

@@ -25,7 +25,7 @@ const ERROR_MAPPING = {
 
 function ErrorMessage(props){
     /**
-     * Base on props pased (see props param for possible input) show or hide error message on form.
+     * Base on props passed (see props param for possible input) show or hide error message on form.
      * @param {object} props - possible fields of this object are 'error' and 'field'. Error - indicate weather field
      * is valid or in current moment of time. Field - field for which error will/not be shown
      */
@@ -43,7 +43,7 @@ function ErrorMessage(props){
 class EmailModal extends React.Component{
   /**
    * Modal class that is used to show Bootstrap modal for the email feedback submission purpose
-   */    
+   */
     getInitialState() {
         return { showModal: false , emailValid: null, anonymous: false};
     }
