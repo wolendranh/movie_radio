@@ -25,7 +25,7 @@ const ERROR_MAPPING = {
 
 function ErrorMessage(props){
     /**
-     * Base on props pased (see props param for possible input) show or hide error message on form.
+     * Base on props passed (see props param for possible input) show or hide error message on form.
      * @param {object} props - possible fields of this object are 'error' and 'field'. Error - indicate weather field
      * is valid or in current moment of time. Field - field for which error will/not be shown
      */
@@ -40,51 +40,52 @@ function ErrorMessage(props){
     );
 }
 
-const EmailModal = React.createClass({
+class EmailModal extends React.Component{
   /**
    * Modal class that is used to show Bootstrap modal for the email feedback submission purpose
-   */    
-    getInitialState() {
-        return { showModal: false , emailValid: null, anonymous: false};
-    },
+   */
+    constructor(props) {
+     super(props);
+     this.state = { showModal: false , emailValid: null, anonymous: false};
+    }
 
-    handleEmailChange: function(e) {
+    handleEmailChange = (e) => {
         this.setState({email: e.target.value});
         this.validateInput('emailValid', e.target.value, validator.isEmail);
 
-    },
-    handleMessageChange: function(e) {
+    }
+    handleMessageChange = (e) => {
         this.setState({body: e.target.value});
         // this.validateInput('textValid', e.target.value, validator.isLength, {min: 20, max: 300});
-    },
-    handleAnonymousChange: function(e) {
+    }
+    handleAnonymousChange = (e) => {
         this.setState({anonymous: e.target.checked});
-    },
+    }
 
-    sendButtonDisabled: function(){
+    sendButtonDisabled = () =>{
         if (this.state.anonymous) return false;
         else return !(this.state.emailValid);
-    },
+    }
 
-    checkAnonymous: function(){
+    checkAnonymous(){
         return this.state.anonymous;
-    },
+    }
 
-    getEmailValidationState: function(){
+    getEmailValidationState(){
         var valid = this.state.emailValid;
         if(valid == true) return 'success';
         else if(valid == null) return null;
-        else return 'error'
-    },
+        else return 'error';
+    }
 
-    getTextValidationState: function(){
+    getTextValidationState(){
         var valid = this.state.textValid;
         if(valid == true) return 'success';
         else if(valid == null) return null;
-        else return 'error'
-    },
+        else return 'error';
+    }
 
-    validateInput: function(stateItem, value, validator, options){
+    validateInput = (stateItem, value, validator, options) =>{
         var _getStateObject = function(stateItem, value, validator, options) {
             /**
              * Helper method to construct state property from passed values
@@ -95,26 +96,26 @@ const EmailModal = React.createClass({
           return returnObj;
         };
         this.setState(_getStateObject(stateItem, value, validator, options));
-    },
+    }
 
-    resetState(){
+    resetState = () =>{
       this.setState({ showModal: false , emailValid: null, textValid: null, anonymous: false})
 
-    },
+    }
 
-    close() {
+    close = () => {
         this.resetState();
-    },
+    }
 
-    open() {
+    open = () => {
         this.setState({ showModal: true });
-    },
+    }
 
-    submit(){
+    submit = () =>{
         EmailModalActions.post(this.state.email, this.state.body);
         // close modal as user does'nt have any clue about errors and so on
         this.resetState();
-    },
+    }
 
     render() {
     return (
@@ -165,6 +166,6 @@ const EmailModal = React.createClass({
       </div>
     );
     }
-});
+};
 
 module.exports =  EmailModal;

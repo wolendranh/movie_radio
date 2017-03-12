@@ -1,4 +1,4 @@
-import {render} from 'react-dom';
+import {render, findDOMNode} from 'react-dom';
 import React from 'react';
 import $ from 'jquery';
 import Spinner from 'spin';
@@ -41,22 +41,41 @@ function emitPlayerPlay(){
     PlayerActions.play();
 }
 
+class Audio extends React.Component {
+  render(){
+    return (
+      <audio
+        id="barmaglot-player"
+        preload="none"
+        src={ this.props.stream.stream_ip }>
+         </audio>
+    )
+  }
+}
 
-var Player = React.createClass({
-    getInitialState: function() {
-        return {
-            currentSong: 'Barmaglot ...',
-            stream: getActiveStream(),
-            spinnerActive: false
-        }
-    },
-    
-    
-    componentDidMount: function() {
+
+class Player extends React.Component {
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        currentSong: 'Barmaglot ...',
+        stream: getActiveStream(),
+        spinnerActive: false
+      };
+      this.setVolume = this.setVolume.bind(this);
+      this._onTrackUpdate = this._onChange.bind(this);
+      this._onChange = this._onChange.bind(this);
+
+    }
+
+
+    componentDidMount() {
         PlayerStore.addChangeListener(this._onChange);
         PlayerStore.addTrackListener(this._onTrackUpdate);
         // start volume is set to max on start
-        this.refs.audio.volume = 1;
+        this.player = this.getPlayer()
+        this.player.volume = 1;
 
         // component if mounted only one time so we can assume that it is 'initial'
         // load of page
@@ -71,9 +90,9 @@ var Player = React.createClass({
         // invoke spinner
         this.controlSpinner();
 
-    },
+    }
 
-    handlePlayEvent: function(evt){
+    handlePlayEvent(evt){
         emitPlayerPlay();
         if ((/mobile/i.test(navigator.userAgent))){
             return true
@@ -81,8 +100,8 @@ var Player = React.createClass({
             this.spinner.spin(document.getElementById('spin-player'));
         }
 
-    },
-    handleCanPlayEvent: function(evt){
+    }
+    handleCanPlayEvent(evt){
         emitPlayerCanPlay();
         if ((/mobile/i.test(navigator.userAgent))){
             return true
@@ -90,8 +109,8 @@ var Player = React.createClass({
             this.spinner.stop(document.getElementById('spin-player'));
         }
 
-    },
-    controlSpinner: function(){
+    }
+    controlSpinner(){
         var player = this.getPlayer();
         var opts = {
             shadow: true,
@@ -108,15 +127,15 @@ var Player = React.createClass({
 
         player.addEventListener('play', evt => this.handlePlayEvent(evt));
         player.addEventListener('canplay', evt => this.handleCanPlayEvent(evt));
-    },
+    }
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         PlayerStore.removeChangeListener(this._onChange);
         PlayerStore.removeTrackListener(this._onTrackUpdate);
-    },
-    
+    }
 
-    _onTrackUpdate: function (){
+
+    _onTrackUpdate(){
         "use strict";
         var track = getCurrentTrack();
         var dayTime = getCurrentDatetime();
@@ -131,63 +150,59 @@ var Player = React.createClass({
             this.setState({currentSong: 'Barmaglot ...'})
         }
 
-    },
-    
-    _onChange: function() {
+    }
+
+    _onChange() {
         this.setState({
             stream: getActiveStream()
         });
         if ((/mobile/i.test(navigator.userAgent))) {
             this.loadPlayer();
         }
-    },
+    }
 
-  getDefaultProps: function() {
-    // sets default array of props
-    return {
-      volume: 1,
-      currentSong: '...'
-    };
-  },
-
-  setVolume: function(volume){
+  setVolume(volume){
     // get reference of player to bypass it to child components if needed
-    this.refs.audio.volume = volume;
-  },
+    this.player.volume = volume;
+  }
 
-  getVolume: function() {
-    if (typeof this.refs.audio != "undefined"){
-      return this.refs.audio.volume;
+  getVolume() {
+    if (typeof this.player != "undefined"){
+      return this.player.volume;
     } else {
       return this.props.volume;
     }
-  },
+  }
 
-  loadPlayer: function () {
+  loadPlayer() {
     var audio = this.getPlayer();
     audio.load();
-  },
+  }
 
-  getPlayer: function(){
-    return this.refs.audio;
-  },
+  getPlayer = () => {
+    return findDOMNode(this.audio);
+  }
 
-  render: function() {
+  render() {
     return (
           <div>
               <Controls getPlayerRef={ this.getPlayer }/>
               <div className="row player-container">
                   <div className="col-sm-4 col-sm-offset-4 player">
-                      <audio id="barmaglot-player" preload="none" ref="audio" src={ this.state.stream.stream_ip }>
-                      </audio>
+                      <Audio stream={ this.state.stream } ref={(audio) => this.audio = audio }/>
                   </div>
                   <Volume setVolumeHandle={ this.setVolume } song={ this.state.currentSong } getVolumeHandle={ this.getVolume }/>
               </div>
-              
+
           </div>
 
     )
   }
-});
+};
+
+Player.defaultProps = {
+  volume: 1,
+  currentSong: '...'
+};
 
 module.exports =  Player;

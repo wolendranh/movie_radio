@@ -1,14 +1,14 @@
 import React from "react";
 import {render} from "react-dom"
+import $ from "jquery";
 
 import Player from './PlayerComponent.js';
 import FooterComponent from "./FooterComponent.js"
-import $ from "jquery";
 
-var LandingComponent = React.createClass({
+class LandingComponent extends React.Component {
 
     // Remove volume bar if touch device
-    componentDidMount: function(){
+    componentDidMount(){
         if ((/mobile/i.test(navigator.userAgent))){
             var volumeWrapper = document.getElementsByClassName('volume-bars-wrapper')[0];
             volumeWrapper.remove();
@@ -33,8 +33,9 @@ var LandingComponent = React.createClass({
         });
 
         $(window).trigger('resize');
-    },
-    render: function(){
+    }
+
+    render(){
         return(
             <div id="landing">
                 <div className="row logo-container">
@@ -48,6 +49,6 @@ var LandingComponent = React.createClass({
 
         )
     }
-});
+};
 
 module.exports =  LandingComponent;
