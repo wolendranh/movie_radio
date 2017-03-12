@@ -64,7 +64,7 @@ class Player extends React.Component {
         spinnerActive: false
       };
       this.setVolume = this.setVolume.bind(this);
-      this._onTrackUpdate = this._onChange.bind(this);
+      this._onTrackUpdate = this._onTrackUpdate.bind(this);
       this._onChange = this._onChange.bind(this);
 
     }
