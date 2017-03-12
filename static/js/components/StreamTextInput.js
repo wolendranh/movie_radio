@@ -48,7 +48,7 @@ class StreamTextInput extends React.Component {
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways.
    */
-  _save() {
+  _save = () => {
     this.props.onSave(this.state.value, this.state.active, this.state.description);
     this.setState({
       value: '',
@@ -60,19 +60,19 @@ class StreamTextInput extends React.Component {
   /**
    * @param {object} event
    */
-  _onChange(/*object*/ event) {
+  _onChange = (/*object*/ event) => {
     this.setState({
       value: event.target.value
     });
   }
 
-  _onChangeActive(event) {
+  _onChangeActive = (event) => {
     this.setState({
       active: event.target.checked
     })
   }
 
-  _onChangeDescription(event) {
+  _onChangeDescription = (event) => {
     this.setState({
       description: event.target.value
     })
@@ -82,7 +82,7 @@ class StreamTextInput extends React.Component {
   /**
    * @param  {object} event
    */
-  _onKeyDown(event) {
+  _onKeyDown = (event) => {
     if (event.keyCode === ENTER_KEY_CODE) {
       this._save();
     }

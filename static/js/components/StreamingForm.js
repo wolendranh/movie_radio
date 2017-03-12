@@ -65,7 +65,7 @@ class StreamList extends React.Component {
         );
     }
 
-    _onChange() {
+    _onChange = () => {
         this.setState(getStreamState());
     }
 

@@ -25,12 +25,12 @@ class LoginForm extends React.Component {
         document.body.style.backgroundColor = "white";
     }
 
-    handlePasswordChange(e) {
+    handlePasswordChange = (e) => {
         this.setState({ passwordError: this.validateField(this.state.password, validator.isLength, 4) ? false: true});
 
         this.setState({password: e.target.value});
     }
-    handleUsernameChange(e) {
+    handleUsernameChange = (e) => {
         this.setState({username: e.target.value});
         this.setState({usernameError: this.validateField(this.state.username, validator.isEmail) ? false: true});
     }
@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
         return 'form-group'+((this.state.passwordError) ? ' has-error': '');
     }
 
-    handleSubmit(e){
+    handleSubmit = (e) => {
         e.preventDefault();
 
         if (this.state.passwordError || this.state.usernameError){ return true }

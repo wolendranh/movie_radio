@@ -10,7 +10,6 @@ class Volume extends React.Component {
       "use strict";
         var liquid= document.querySelector('.liquid');
         liquid.setAttribute("width", 100 + '%');
-        // this.props.setVolumeHandle(1);
   }
 
   componentDidMount() {

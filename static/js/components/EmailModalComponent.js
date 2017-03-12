@@ -49,20 +49,20 @@ class EmailModal extends React.Component{
      this.state = { showModal: false , emailValid: null, anonymous: false};
     }
 
-    handleEmailChange(e) {
+    handleEmailChange = (e) => {
         this.setState({email: e.target.value});
         this.validateInput('emailValid', e.target.value, validator.isEmail);
 
     }
-    handleMessageChange(e) {
+    handleMessageChange = (e) => {
         this.setState({body: e.target.value});
         // this.validateInput('textValid', e.target.value, validator.isLength, {min: 20, max: 300});
     }
-    handleAnonymousChange(e) {
+    handleAnonymousChange = (e) => {
         this.setState({anonymous: e.target.checked});
     }
 
-    sendButtonDisabled(){
+    sendButtonDisabled = () =>{
         if (this.state.anonymous) return false;
         else return !(this.state.emailValid);
     }
@@ -85,7 +85,7 @@ class EmailModal extends React.Component{
         else return 'error';
     }
 
-    validateInput(stateItem, value, validator, options){
+    validateInput = (stateItem, value, validator, options) =>{
         var _getStateObject = function(stateItem, value, validator, options) {
             /**
              * Helper method to construct state property from passed values
@@ -98,20 +98,20 @@ class EmailModal extends React.Component{
         this.setState(_getStateObject(stateItem, value, validator, options));
     }
 
-    resetState(){
+    resetState = () =>{
       this.setState({ showModal: false , emailValid: null, textValid: null, anonymous: false})
 
     }
 
-    close() {
+    close = () => {
         this.resetState();
     }
 
-    open() {
+    open = () => {
         this.setState({ showModal: true });
     }
 
-    submit(){
+    submit = () =>{
         EmailModalActions.post(this.state.email, this.state.body);
         // close modal as user does'nt have any clue about errors and so on
         this.resetState();
