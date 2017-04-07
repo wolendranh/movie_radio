@@ -15,7 +15,7 @@ import {triggerChange} from "../filters.js"
 
 // define variable that will indicate if this is 'reload' of page or AJAX call
 var FIRST_LOAD;
-
+let STREAM_DISCONNECT_RETRY_INTERVAL_ID;
 
 function getActiveStream() {
   return PlayerStore.getActive()
@@ -74,12 +74,16 @@ class Player extends React.Component {
         PlayerStore.addChangeListener(this._onChange);
         PlayerStore.addTrackListener(this._onTrackUpdate);
         // start volume is set to max on start
-        this.player = this.getPlayer()
+        this.player = this.getPlayer();
         this.player.volume = 1;
+
+
+
+        this.player.addEventListener('ended', this.handleStreamEnded);
 
         // component if mounted only one time so we can assume that it is 'initial'
         // load of page
-        var dayTime = $('body').attr('class');
+        let dayTime = $('body').attr('class');
 
         triggerChange(dayTime, true);
         FIRST_LOAD = false;
@@ -111,8 +115,8 @@ class Player extends React.Component {
 
     }
     controlSpinner(){
-        var player = this.getPlayer();
-        var opts = {
+        let player = this.getPlayer();
+        let opts = {
             shadow: true,
             radius: 25,
             width: 11,
@@ -137,8 +141,8 @@ class Player extends React.Component {
 
     _onTrackUpdate(){
         "use strict";
-        var track = getCurrentTrack();
-        var dayTime = getCurrentDatetime();
+        let track = getCurrentTrack();
+        let dayTime = getCurrentDatetime();
 
         // triggering change of filters(filter module will decide himself weather it is needed or not)
         triggerChange(dayTime, FIRST_LOAD);
@@ -175,13 +179,36 @@ class Player extends React.Component {
   }
 
   loadPlayer() {
-    var audio = this.getPlayer();
+    let audio = this.getPlayer();
     audio.load();
   }
 
   getPlayer = () => {
     return findDOMNode(this.audio);
-  }
+  };
+
+  reloadStreamSource = () => {
+    let player = this.getPlayer();
+    console.log('stream disconnected, repairing it by hand ...');
+    player.src =  this.state.stream.stream_ip + '?cb=' + new Date().getTime();
+    let playPromise = player.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(function () {
+            // Automatic playback started!
+            console.log('fixed by hands!');
+            clearInterval(STREAM_DISCONNECT_RETRY_INTERVAL_ID);
+        }).catch(function (error) {
+            // Automatic playback failed.
+            // Show a UI element to let the user manually start playback.
+            console.log(error);
+        });
+    }
+  };
+
+  handleStreamEnded = (e) => {
+    STREAM_DISCONNECT_RETRY_INTERVAL_ID = setInterval(this.reloadStreamSource, 1500);
+  };
 
   render() {
     return (
@@ -198,7 +225,7 @@ class Player extends React.Component {
 
     )
   }
-};
+}
 
 Player.defaultProps = {
   volume: 1,
