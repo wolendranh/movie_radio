@@ -2,53 +2,57 @@ import { Router, Link, browserHistory} from 'react-router';
 import {render} from 'react-dom';
 import React from 'react';
 import $ from 'jquery';
+
 import {login} from '../auth.jsx'
 // import validator from 'validator';
 // TODO: replace validator or make it accessible from import statement
 
 
-var LoginForm = React.createClass({
+class LoginForm extends React.Component {
     // TODO: divide into smaller reusable components(form, field etc.)
-    getInitialState: function() {
-        return {username: 'Ваша_Бармаглот_пошта@mail.com',
-                password: 'Ваш Бармаглот пароль',
-                passwordError: false,
-                usernameError: false,
-                loginError: undefined};
-    },
+    constructor(props){
+      super(props);
+      this.state = {
+        username: 'Ваша_Бармаглот_пошта@mail.com',
+        password: 'Ваш Бармаглот пароль',
+        passwordError: false,
+        usernameError: false,
+        loginError: undefined
+      };
+    }
 
-    componentWillMount: function(){
+    componentWillMount(){
         document.body.style.backgroundColor = "white";
-    },
+    }
 
-    handlePasswordChange: function(e) {
+    handlePasswordChange = (e) => {
         this.setState({ passwordError: this.validateField(this.state.password, validator.isLength, 4) ? false: true});
 
         this.setState({password: e.target.value});
-    },
-    handleUsernameChange: function(e) {
+    }
+    handleUsernameChange = (e) => {
         this.setState({username: e.target.value});
         this.setState({usernameError: this.validateField(this.state.username, validator.isEmail) ? false: true});
-    },
+    }
 
-    validateField: function(data, validatorClass, args){
+    validateField(data, validatorClass, args){
         if (typeof(args) !== 'undefined'){
             return validatorClass(data, args);
         }else{
             return validatorClass(data);
         }
 
-    },
+    }
 
-    loginHasErrors: function(){
+    loginHasErrors(){
             return 'form-group'+((this.state.usernameError) ? ' has-error': '');
-    },
+    }
 
-    passwordHasErrors: function(){
+    passwordHasErrors(){
         return 'form-group'+((this.state.passwordError) ? ' has-error': '');
-    },
+    }
 
-    handleSubmit: function(e){
+    handleSubmit = (e) => {
         e.preventDefault();
 
         if (this.state.passwordError || this.state.usernameError){ return true }
@@ -70,9 +74,9 @@ var LoginForm = React.createClass({
             console.error(this.props.route.url, status, err.toString());
           }.bind(this)
         });
-    },
+    }
 
-    render: function(){
+    render(){
        return (
         <div className="wrapper">
         <form className="form-signin" method="post" role="form" onSubmit={this.handleSubmit}>
@@ -97,6 +101,6 @@ var LoginForm = React.createClass({
         </div>
        )
     }
-});
+};
 
 export default LoginForm;

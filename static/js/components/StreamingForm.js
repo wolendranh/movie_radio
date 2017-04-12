@@ -6,8 +6,8 @@ import StreamTextInput from "./StreamTextInput.js"
 import StreamActions from "../actions/StreamActions.js"
 
 
-var StreamAddressForm = React.createClass({
-    render: function () {
+class StreamAddressForm extends React.Component {
+    render() {
        return (
            <div>
             <StreamTextInput
@@ -18,18 +18,15 @@ var StreamAddressForm = React.createClass({
            <StreamList/>
            </div>
        )
-    },
-    _onSave: function(stream_host, active, description) {
-    if (stream_host.trim()){
-      StreamActions.create(stream_host, active, description);
     }
 
+    _onSave(stream_host, active, description) {
+      if (stream_host.trim()){
+        StreamActions.create(stream_host, active, description);
+      }
     }
 
-});
-
-
-export default StreamAddressForm;
+};
 
 
 function getStreamState() {
@@ -39,21 +36,22 @@ function getStreamState() {
 }
 
 
-var StreamList = React.createClass({
-    getInitialState: function() {
-        return getStreamState()
-    },
+class StreamList extends React.Component {
+    constructor(props){
+      super(props);
+      this.state = getStreamState();
+    }
 
-    componentDidMount: function() {
+    componentDidMount() {
         StreamStore.addChangeListener(this._onChange);
         StreamActions.fetch();
-    },
+    }
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         StreamStore.removeChangeListener(this._onChange);
-    },
+    }
 
-    render: function() {
+    render() {
         var allStreams = this.state.allStreams;
         var streams = [];
 
@@ -65,17 +63,17 @@ var StreamList = React.createClass({
                 {streams}
             </div>
         );
-    },
+    }
 
-    _onChange: function() {
+    _onChange = () => {
         this.setState(getStreamState());
     }
 
-});
+};
 
-var Stream = React.createClass({
+class Stream extends React.Component {
 
-   render: function() {
+   render() {
        var stream_host = this.props.stream_host;
        return (
            <div key={stream_host.id}>
@@ -84,9 +82,11 @@ var Stream = React.createClass({
                <button onClick={() => this._delete(stream_host.id)} value={ stream_host.id } >delete</button>
            </div>
        )
-   },
+   }
 
-   _delete: function (e) {
+   _delete(e) {
        StreamActions.delete(e);
    }
-});
+};
+
+export default StreamAddressForm;

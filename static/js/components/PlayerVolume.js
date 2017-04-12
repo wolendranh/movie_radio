@@ -4,16 +4,15 @@ import $ from 'jquery';
 import 'jquery-ui/ui/widgets/slider';
 import 'jquery-ui/ui/widgets/draggable';
 
-var Volume = React.createClass({
+class Volume extends React.Component {
 
-  setInitialVolume: function(){
+  setInitialVolume(){
       "use strict";
         var liquid= document.querySelector('.liquid');
         liquid.setAttribute("width", 100 + '%');
-        this.props.setVolumeHandle(1);
-  },
+  }
 
-  componentDidMount: function () {
+  componentDidMount() {
     'use strict';
 
      // set volume on start of app
@@ -55,9 +54,9 @@ var Volume = React.createClass({
         this.props.setVolumeHandle(newVolume);
       }.bind(this)
     })
-  },
+  }
 
-  render: function () {
+  render() {
       // svg styles
       var style = {
           fill: '#fa0000'
@@ -96,6 +95,6 @@ var Volume = React.createClass({
     </div>
     )
   }
-});
+};
 
 export default Volume;
