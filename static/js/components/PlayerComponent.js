@@ -54,7 +54,7 @@ class Audio extends React.Component {
 }
 
 
-class Player extends React.Component {
+export default class Player extends React.Component {
 
     constructor(props) {
       super(props);

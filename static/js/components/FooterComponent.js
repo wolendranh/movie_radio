@@ -3,7 +3,7 @@ import {render} from "react-dom"
 import EmailModal from "./EmailModalComponent"
 
 
-class FooterComponent extends React.Component{
+export default class FooterComponent extends React.Component{
     render(){
         return(<footer className="footer row-fluid">
                     <div className="col-sm-offset-4">

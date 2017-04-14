@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        	"outDir": "./built",
+	        "allowJs": true,
+          "sourceMap": true,
+        	"target": "es5",
+          "jsx": "react",
+          "allowSyntheticDefaultImports": true,
+          "allowUnreachableCode": true
+    },
+    "include": [
+        "./static/**/*"
+    ]
+}

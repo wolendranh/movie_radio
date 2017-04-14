@@ -1,10 +1,10 @@
 // import libs
-import React from "react";
+import * as React from 'react';
 import { render } from 'react-dom';
 import { Router, IndexRoute, Route, browserHistory, hashHistory} from 'react-router';
 
 // import components
-import LandingComponent from './components/Landing.js';
+import LandingComponent from './components/Landing';
 import LoginForm from './components/LoginForm.js';
 import AdminComponent from './components/AdminComponent.js';
 
@@ -30,4 +30,3 @@ render((
         <Route path="/admin" component={ AdminComponent } onEnter={requireAuth}/>
     </Router>)
 , document.getElementById('app'));
-

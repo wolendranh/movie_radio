@@ -1,11 +1,11 @@
-import React from "react";
+import * as React from 'react';
 import {render} from "react-dom"
 import $ from "jquery";
 
 import Player from './PlayerComponent.js';
 import FooterComponent from "./FooterComponent.js"
 
-class LandingComponent extends React.Component {
+export default class LandingComponent extends React.Component {
 
     // Remove volume bar if touch device
     componentDidMount(){
@@ -52,3 +52,4 @@ class LandingComponent extends React.Component {
 };
 
 module.exports =  LandingComponent;
+module.default = LandingComponent;

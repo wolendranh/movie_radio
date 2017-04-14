@@ -4,15 +4,17 @@
   "description": "simple radio page, that will play stream from Icecast server",
   "main": "index.js",
   "dependencies": {
+    "@types/react": "^15.0.21",
+    "@types/react-dom": "^0.14.23",
     "bootstrap": "*",
     "events": "*",
     "flux": "^2.0.1",
     "jquery-ui": "*",
     "react-bootstrap": "^0.30.6",
     "remarkable": "*",
+    "spin": "0.0.1",
     "validator": "6.1.0 ",
-    "webpack": "^1.13.1",
-    "spin": "0.0.1"
+    "webpack": "^1.13.1"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
@@ -24,7 +26,8 @@
     "jquery": "^2.2.4",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-router": "^2.4.1"
+    "react-router": "^2.4.1",
+    "typescript": "^2.2.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
