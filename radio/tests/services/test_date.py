@@ -20,7 +20,7 @@ class DateServiceTestCase(TestCase):
 
     def test_morning(self):
         with mock.patch('radio.services.date.datetime') as mock_date:
-            mock_date.now.return_value = datetime.datetime(2016, 6, 30, 6)
+            mock_date.now.return_value = datetime.datetime(2016, 6, 30, 9)
             result = get_day_time()
             assert result == MORNING
 
