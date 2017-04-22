@@ -1,6 +1,9 @@
 # movie_radio
 simple radio page, that will play stream from Icecast server
 
+[![Build Status](https://travis-ci.org/wolendranh/movie_radio.svg?branch=master)](https://travis-ci.org/wolendranh/movie_radio)
+
+
 #####to install project on clean VM:
 (Python related stuff)
 
@@ -44,7 +47,7 @@ In case if you do not  have Python 3.5:
 5. ./build_js.sh
 ```
 (to omit issue with /usr/bin/env: node: No such file or directory)
- 
+
 #####Install icecast2 server
 server is being installed from Xiph repo's because Ubuntu one don't always have latest version.
 ```
