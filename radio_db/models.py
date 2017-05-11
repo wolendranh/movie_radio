@@ -5,8 +5,7 @@ class BaseModel:
     """
     Base model to interact with Mongo DB
     """
-    # TODO: implement base functionality
-    # that should fit for all models
+    # TODO: implement base functionality that should fit for all models
 
     def __init__(self, db, collection):
         # Should use one db param and name of collection
