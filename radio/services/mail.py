@@ -13,7 +13,7 @@ from config.settings import (
 server_logger = logging.getLogger('aiohttp.server')
 
 
-async def send_mail(sender, body):
+async def send_mail(sender: str, body: str) -> None:
     """
     Args:
         sender: email sender

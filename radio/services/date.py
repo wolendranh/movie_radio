@@ -8,7 +8,7 @@ EVENING = 'evening'
 KIEV_ZONE = 'Europe/Kiev'
 
 
-def get_day_time():
+def get_day_time() -> str:
     """
     Discover part of the day based on zone and hour
     Returns: `str`
