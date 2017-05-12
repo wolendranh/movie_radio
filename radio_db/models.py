@@ -48,5 +48,3 @@ class BaseModel:
     async def delete(self, parameters):
         result = await self.collection.remove(parameters)
         return result
-
-

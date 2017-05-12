@@ -4,6 +4,8 @@ aiohttp-session==0.5.0
 aioredis==0.2.7
 aiohttp_debugtoolbar
 bson
+codecov==2.0.9
+coverage
 cffi==1.7.0
 chardet==2.3.0
 cryptography==1.4
