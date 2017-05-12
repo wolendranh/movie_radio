@@ -14,3 +14,4 @@ install:
 script:
   - python -m unittest
   - npm test
+  - codecov
