@@ -2,6 +2,7 @@
 simple radio page, that will play stream from Icecast server
 
 [![Build Status](https://travis-ci.org/wolendranh/movie_radio.svg?branch=master)](https://travis-ci.org/wolendranh/movie_radio)
+[![codecov](https://codecov.io/gh/wolendranh/movie_radio/branch/master/graph/badge.svg)](https://codecov.io/gh/wolendranh/movie_radio)
 
 
 #####to install project on clean VM:
